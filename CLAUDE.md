@@ -17,3 +17,8 @@ Per the README (`# kyepa` / "38 multipurpose website"), this is the early scaffo
 ## Other files
 
 - `shortcut.md` is a standalone reference doc (keyboard shortcuts for a beginner programmer) — it's learning material, not project documentation, and is unrelated to the site's code.
+
+## Git workflow
+
+- The user is a novice programmer — explain git/CLI actions in plain terms as you make them.
+- The user has pre-authorized committing and pushing to `origin/main` automatically once a unit of requested work is complete, without waiting for explicit confirmation each time. Still surface what was committed/pushed afterward. This does not extend to destructive operations (force-push, reset --hard, etc.) — confirm those as usual.
