@@ -4,22 +4,124 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  min-height: 100vh;
+  font-family: system-ui, sans-serif;
+  color: #f5f5f5;
+  background: #000;
+}
+
+/* Fixed video background, sits behind the whole site */
+.bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+/* Frosted layer that crawls up over the video as the page scrolls */
+.blur-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(8, 8, 10, 0.55);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  clip-path: inset(calc((1 - var(--progress, 0)) * 100%) 0 0 0);
+  -webkit-clip-path: inset(calc((1 - var(--progress, 0)) * 100%) 0 0 0);
+}
+
+/* Splash section */
+.hero {
+  position: relative;
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #f5f5f5;
-  font-family: system-ui, sans-serif;
   text-align: center;
+  padding: 2rem;
+  overflow: hidden;
 }
 
-h1 {
-  font-size: 3rem;
-  color: #222;
+.hero-copy {
+  transform: translateY(calc(var(--progress, 0) * -12vh));
+  opacity: calc(1 - var(--progress, 0));
 }
 
-p {
+.line {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+.line-1 {
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  animation-delay: 0s;
+}
+
+.line-2 {
+  margin-top: 0.75rem;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 400;
+  animation-delay: 3s;
+}
+
+.line-3 {
   margin-top: 0.5rem;
-  color: #666;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 300;
+  color: #cfcfcf;
+  animation-delay: 4s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  color: #f5f5f5;
+  opacity: 0;
+  transform: translateX(-50%);
+  animation:
+    fadeIn 1s ease 5s forwards,
+    pulse 2.2s ease-in-out 6s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, 0); opacity: 1; }
+  50% { transform: translate(-50%, 10px); opacity: 0.55; }
+}
+
+/* Scrolling content */
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.content section {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 6rem 1.5rem;
+}
+
+.content h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.content p {
+  line-height: 1.7;
+  color: #e2e2e2;
 }
