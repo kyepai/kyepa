@@ -207,6 +207,13 @@ body {
   max-height: 80vh;
 }
 
+.modal-title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.25rem;
+}
+
 .modal-content p {
   line-height: 1.7;
   color: #e2e2e2;
