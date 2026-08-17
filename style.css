@@ -131,3 +131,51 @@ body {
   line-height: 1.7;
   color: #e2e2e2;
 }
+
+/* Space out consecutive paragraphs within a section */
+.content p + p {
+  margin-top: 1.25rem;
+}
+
+/* Mid-page section breaks ("Movement is Life", "Always... Pocket") —
+   echo the splash-copy treatment from the hero */
+.section-break {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 0;
+  text-align: center;
+}
+
+.section-break h2 {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+/* Closing pull-quote line, right before the footer */
+.closing-line {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+  text-align: center;
+}
+
+.closing-line p {
+  font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+  font-weight: 400;
+  font-style: italic;
+  color: #cfcfcf;
+  margin: 0;
+}
+
+/* Footer */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem 1.5rem 3rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  color: #cfcfcf;
+}
