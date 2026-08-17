@@ -132,6 +132,17 @@ body {
   color: #e2e2e2;
 }
 
+.content a {
+  color: inherit;
+  text-decoration-color: rgba(245, 245, 245, 0.4);
+  text-underline-offset: 0.15em;
+}
+
+.content a:hover,
+.content a:focus-visible {
+  text-decoration-color: currentColor;
+}
+
 /* Space out consecutive paragraphs within a section */
 .content p + p {
   margin-top: 1.25rem;
