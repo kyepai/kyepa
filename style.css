@@ -62,7 +62,7 @@ body {
 
 .hero-logo {
   display: block;
-  width: min(440px, 85vw);
+  width: min(1760px, 85vw);
   height: auto;
   margin: 0 auto 1.5rem;
   opacity: 0;
