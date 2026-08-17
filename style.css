@@ -167,6 +167,11 @@ body {
   transition: text-decoration-color 0.2s ease;
 }
 
+.inline-link-button .line-right {
+  display: block;
+  text-align: right;
+}
+
 .inline-link-button:hover,
 .inline-link-button:focus-visible {
   text-decoration-color: currentColor;
