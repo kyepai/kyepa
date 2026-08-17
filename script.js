@@ -1,9 +1,8 @@
 // Play both background videos at a barely-perceptible crawl, like paint drying.
 const videoA = document.querySelector(".bg-video-a");
 const videoB = document.querySelector(".bg-video-b");
-[videoA, videoB].forEach((v) => {
-  if (v) v.playbackRate = 0.1;
-});
+if (videoA) videoA.playbackRate = 0.4;
+if (videoB) videoB.playbackRate = 0.2;
 
 // Swap to the second video once the blur layer has crawled over 67% of the
 // view (from the bottom), so the change happens while mostly hidden. Swaps
