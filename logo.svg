@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Laag_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 368 151">
+  <!-- Generator: Adobe Illustrator 30.7.0, SVG Export Plug-In . SVG Version: 2.1.4 Build 114)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+        stroke: #f4f1df;
+        stroke-width: 9px;
+      }
+    </style>
+  </defs>
+  <path class="st0" d="M49.5,28.5v72"/>
+  <path class="st0" d="M84.5,54.5l-30.5,22"/>
+  <path class="st0" d="M54,76.5l30.5,20.1"/>
+  <path class="st0" d="M142.5,56.5l-32.1,66"/>
+  <path class="st0" d="M107.5,56.5l17.5,36"/>
+  <path class="st0" d="M166.5,73.5h39.2"/>
+  <path class="st0" d="M201.5,78v-7c0-5.5-4.5-10-10-10h-15c-5.5,0-10,4.5-10,10v15c0,5.5,4.5,10,10,10h15c5.5,0,10-4.5,10-10"/>
+  <path class="st0" d="M230.5,56.5v66"/>
+  <path class="st0" d="M230.5,61h25c5.5,0,10,4.5,10,10v15c0,5.5-4.5,10-10,10h-25"/>
+  <path class="st0" d="M328.5,61h-25c-5.5,0-10,4.5-10,10v15c0,5.5,4.5,10,10,10h25"/>
+  <path class="st0" d="M328.5,56.5v44"/>
+</svg>
