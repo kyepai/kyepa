@@ -169,6 +169,7 @@ body {
 
 .inline-link-button .line-right {
   display: block;
+  width: 100%;
   text-align: right;
 }
 
