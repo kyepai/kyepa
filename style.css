@@ -36,8 +36,8 @@ body {
   inset: 0;
   z-index: -1;
   background: rgba(8, 8, 10, 0.55);
-  backdrop-filter: blur(27px);
-  -webkit-backdrop-filter: blur(27px);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
   clip-path: inset(calc((1 - var(--progress, 0)) * 100%) 0 0 0);
   -webkit-clip-path: inset(calc((1 - var(--progress, 0)) * 100%) 0 0 0);
 }
