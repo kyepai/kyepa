@@ -152,6 +152,80 @@ body {
   text-decoration-color: currentColor;
 }
 
+.inline-link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgba(245, 245, 245, 0.4);
+  text-underline-offset: 0.15em;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.inline-link-button:hover,
+.inline-link-button:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+/* Techno Reclamation reveal modal */
+.modal {
+  border: none;
+  border-radius: 12px;
+  padding: 0;
+  width: min(640px, 90vw);
+  max-height: 80vh;
+  background: #111a13;
+  color: #f5f5f5;
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  position: relative;
+  padding: 2.5rem 2rem 2rem;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.modal-content p {
+  line-height: 1.7;
+  color: #e2e2e2;
+}
+
+.modal-content p + p {
+  margin-top: 1.25rem;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(245, 245, 245, 0.1);
+  color: #f5f5f5;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.modal-close:hover,
+.modal-close:focus-visible {
+  background: rgba(245, 245, 245, 0.25);
+}
+
 /* Space out consecutive paragraphs within a section */
 .content p + p {
   margin-top: 1.25rem;

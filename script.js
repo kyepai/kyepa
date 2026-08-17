@@ -28,3 +28,21 @@ function updateScrollProgress() {
 window.addEventListener("scroll", updateScrollProgress, { passive: true });
 window.addEventListener("resize", updateScrollProgress);
 updateScrollProgress();
+
+// Techno Reclamation pop-up: opens on the "survival guide" line, closes via
+// its own button or a click on the backdrop.
+const technoTrigger = document.getElementById("techno-reclamation-trigger");
+const technoModal = document.getElementById("techno-reclamation-modal");
+const technoClose = document.getElementById("techno-reclamation-close");
+
+if (technoTrigger && technoModal) {
+  technoTrigger.addEventListener("click", () => technoModal.showModal());
+}
+if (technoClose && technoModal) {
+  technoClose.addEventListener("click", () => technoModal.close());
+}
+if (technoModal) {
+  technoModal.addEventListener("click", (event) => {
+    if (event.target === technoModal) technoModal.close();
+  });
+}
