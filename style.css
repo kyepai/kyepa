@@ -242,6 +242,62 @@ body {
   margin-top: 1.25rem;
 }
 
+/* Testimonials strip — squared photo tiles, center pair full strength,
+   outer pair fading out to round out the row */
+.testimonials {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(1rem, 3vw, 1.75rem);
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  overflow-x: auto;
+}
+
+.testimonial-tile {
+  flex: 0 0 clamp(120px, 20vw, 200px);
+  text-align: center;
+}
+
+.testimonial-tile.fade {
+  opacity: 0.4;
+}
+
+.testimonial-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  background: rgba(245, 245, 245, 0.08);
+  border: 1px solid rgba(245, 245, 245, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(245, 245, 245, 0.6);
+  margin-bottom: 1rem;
+}
+
+.testimonial-quote {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: #e2e2e2;
+}
+
+.testimonial-name {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  color: #cfcfcf;
+}
+
+.testimonial-name span {
+  color: rgba(207, 207, 207, 0.6);
+}
+
 /* Mid-page section breaks ("Movement is Life", "Always... Pocket") —
    echo the splash-copy treatment from the hero */
 .section-break {
