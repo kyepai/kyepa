@@ -195,7 +195,7 @@ body {
 }
 
 .modal::backdrop {
-  background: rgba(20, 37, 25, 0.6);
+  background: transparent;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
 }
@@ -254,29 +254,53 @@ body {
 .testimonials {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: clamp(1rem, 3vw, 1.75rem);
-  max-width: 960px;
+  max-width: 1536px; /* 960px widened 60% so it breaks past the other sections' margins */
   margin: 0 auto;
   padding: 4rem 1.5rem;
   overflow-x: auto;
+  perspective: 1400px;
 }
 
 .testimonial-tile {
   flex: 0 0 clamp(120px, 20vw, 200px);
   text-align: center;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.4), 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.testimonial-tile:nth-child(2),
+.testimonial-tile:nth-child(3) {
+  transform: translateZ(24px) scale(1.06);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5), 0 6px 14px rgba(0, 0, 0, 0.35);
 }
 
 .testimonial-tile.fade {
   opacity: 0.4;
 }
 
+.testimonial-tile.fade:first-child {
+  transform: translateZ(-12px) rotateY(16deg) scale(0.9);
+}
+
+.testimonial-tile.fade:last-child {
+  transform: translateZ(-12px) rotateY(-16deg) scale(0.9);
+}
+
+.testimonial-tile:hover {
+  transform: translateZ(30px) scale(1.1);
+  box-shadow: 0 28px 56px rgba(0, 0, 0, 0.55), 0 8px 16px rgba(0, 0, 0, 0.4);
+  opacity: 1;
+}
+
 .testimonial-photo {
   width: 100%;
   aspect-ratio: 1 / 1;
   border-radius: 8px;
-  background: rgba(245, 245, 245, 0.08);
-  border: 1px solid rgba(245, 245, 245, 0.15);
+  background: linear-gradient(155deg, rgba(245, 245, 245, 0.14), rgba(245, 245, 245, 0.04));
+  border: 1px solid rgba(245, 245, 245, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
