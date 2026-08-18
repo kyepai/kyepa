@@ -417,7 +417,7 @@ body {
 .contact-cta {
   max-width: 640px;
   margin: 0 auto;
-  padding: 4rem 1.5rem 6rem;
+  padding: 4rem 1.5rem 2rem;
   text-align: center;
 }
 
@@ -470,7 +470,7 @@ body {
   display: block;
   height: 3rem;
   width: auto;
-  margin: 2rem auto 0;
+  margin: 1.5rem auto 0;
   opacity: 0.85;
 }
 
@@ -486,7 +486,7 @@ body {
   position: relative;
   z-index: 1;
   text-align: center;
-  padding: 2rem 1.5rem 3rem;
+  padding: 1rem 1.5rem 3rem;
   font-size: 0.95rem;
   letter-spacing: 0.05em;
   color: #cfcfcf;
