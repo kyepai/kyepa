@@ -46,3 +46,20 @@ if (technoModal) {
     if (event.target === technoModal) technoModal.close();
   });
 }
+
+// Two Books pop-up: same open/close pattern as the Techno Reclamation one.
+const booksTrigger = document.getElementById("books-trigger");
+const booksModal = document.getElementById("books-modal");
+const booksClose = document.getElementById("books-close");
+
+if (booksTrigger && booksModal) {
+  booksTrigger.addEventListener("click", () => booksModal.showModal());
+}
+if (booksClose && booksModal) {
+  booksClose.addEventListener("click", () => booksModal.close());
+}
+if (booksModal) {
+  booksModal.addEventListener("click", (event) => {
+    if (event.target === booksModal) booksModal.close();
+  });
+}

@@ -52,22 +52,10 @@
         actually standing in the room.
       </p>
       <p>
-        Two books sit behind this philosophy, and I'll name one. Julian
-        Baggini's <em>How the World Thinks</em> treats philosophical
-        traditions from Japan, India, China, the Muslim world, Africa and
-        Australia with the same seriousness as anything out of Athens. His
-        argument: there's no single correct architecture for reasoning about
-        a good life, only different, internally coherent ones. I design the
-        same way — not by installing my framework in you, but by
-        understanding the one you're already running on.
-      </p>
-      <p>
-        The second I'll leave unnamed — its title distracts from the point,
-        which is this: real change happens inside radical honesty. Not the
-        performative kind. The kind where you say the true thing over the
-        tidy one, and take full ownership of what you actually want. That's
-        the standard I hold myself to, and the one I ask of anyone I work
-        with.
+        <button type="button" class="inline-link-button" id="books-trigger">
+          Two books sit behind this philosophy.<br>
+          <span class="line-right">Click here to read more.</span>
+        </button>
       </p>
       <p>
         So when you ask what a Life Experience Designer does: I build the
@@ -76,6 +64,43 @@
         great deal more honesty about what you're actually building it for.
       </p>
     </section>
+
+    <dialog id="books-modal" class="modal modal--maroon">
+      <div class="modal-content">
+        <button type="button" class="modal-close" id="books-close" aria-label="Close">&times;</button>
+        <h2 class="modal-title">Two Books</h2>
+        <div class="book-panels">
+          <div class="book-panel">
+            <div class="book-cover" aria-hidden="true">HWT</div>
+            <div class="book-text">
+              <h3 class="book-title">How the World Thinks<span>— Julian Baggini</span></h3>
+              <p>
+                Baggini treats philosophical traditions from Japan, India,
+                China, the Muslim world, Africa and Australia with the same
+                seriousness as anything out of Athens. His argument: there's
+                no single correct architecture for reasoning about a good
+                life, only different, internally coherent ones. I design the
+                same way — not by installing my framework in you, but by
+                understanding the one you're already running on.
+              </p>
+            </div>
+          </div>
+          <div class="book-panel">
+            <div class="book-cover" aria-hidden="true">TES</div>
+            <div class="book-text">
+              <h3 class="book-title">The Ethical Slut<span>— Dossie Easton &amp; Janet W. Hardy</span></h3>
+              <p>
+                Its real subject is this: real change happens inside radical
+                honesty. Not the performative kind. The kind where you say
+                the true thing over the tidy one, and take full ownership of
+                what you actually want. That's the standard I hold myself
+                to, and the one I ask of anyone I work with.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </dialog>
 
     <!-- TODO(Kyle): placeholder peer testimonials — swap in real client testimonials and photos as they roll in -->
     <section class="testimonials" aria-label="Testimonials">

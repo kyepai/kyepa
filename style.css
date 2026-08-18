@@ -244,6 +244,62 @@ body {
   background: rgba(245, 245, 245, 0.25);
 }
 
+/* Two Books reveal modal — same shape as Techno Reclamation, maroon plate */
+.modal--maroon .modal-content {
+  background: #2e1116;
+}
+
+.book-panels {
+  display: flex;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.book-panel {
+  flex: 1 1 240px;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.book-cover {
+  flex: 0 0 64px;
+  width: 64px;
+  aspect-ratio: 2 / 3;
+  border-radius: 4px;
+  background: rgba(245, 245, 245, 0.1);
+  border: 1px solid rgba(245, 245, 245, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+.book-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.book-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.book-title span {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgba(245, 245, 245, 0.6);
+  margin-top: 0.2rem;
+}
+
+.book-text p {
+  margin-top: 0.75rem;
+}
+
 /* Space out consecutive paragraphs within a section */
 .content p + p {
   margin-top: 1.25rem;
