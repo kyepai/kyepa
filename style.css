@@ -143,6 +143,7 @@ body {
 
 .content a {
   color: inherit;
+  font-weight: 600;
   text-decoration-color: rgba(245, 245, 245, 0.4);
   text-underline-offset: 0.15em;
 }
