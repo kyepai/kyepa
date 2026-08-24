@@ -308,6 +308,10 @@ body {
   color: rgba(245, 245, 245, 0.6);
 }
 
+.pull-quote-right {
+  text-align: right;
+}
+
 /* Testimonials strip — squared photo tiles, center pair full strength,
    outer pair fading out to round out the row */
 .testimonials {
@@ -410,6 +414,23 @@ body {
   font-weight: 400;
   font-style: italic;
   color: rgba(245, 245, 245, 0.6);
+}
+
+.section-break-cta {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: underline;
+  text-decoration-color: rgba(245, 245, 245, 0.4);
+  text-underline-offset: 0.15em;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.section-break--trigger:hover .section-break-cta,
+.section-break--trigger:focus-visible .section-break-cta {
+  text-decoration-color: currentColor;
 }
 
 /* Clickable section-break banner (e.g. "Movement is Life" -> Belle Histoire) */
