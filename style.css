@@ -157,6 +157,10 @@ body {
   text-decoration-color: currentColor;
 }
 
+.cta-line {
+  text-align: center;
+}
+
 .inline-link-button {
   background: none;
   border: none;
