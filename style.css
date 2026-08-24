@@ -301,6 +301,13 @@ body {
   margin-top: 1.25rem;
 }
 
+.quote-attribution {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  color: rgba(245, 245, 245, 0.6);
+}
+
 /* Testimonials strip — squared photo tiles, center pair full strength,
    outer pair fading out to round out the row */
 .testimonials {
