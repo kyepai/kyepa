@@ -414,6 +414,14 @@ body {
   text-align: center;
 }
 
+.movement-portrait {
+  display: block;
+  width: min(320px, 60vw);
+  height: auto;
+  margin: 1.5rem auto 0;
+  border-radius: 8px;
+}
+
 .section-break h2 {
   font-size: clamp(1.75rem, 5vw, 3rem);
   font-weight: 600;
