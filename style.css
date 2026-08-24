@@ -204,7 +204,7 @@ body {
   padding: 1.25rem 1.5rem;
   border-radius: 10px;
   border: 1px solid rgba(245, 245, 245, 0.12);
-  background: rgba(20, 20, 20, 0.55);
+  background: rgba(20, 20, 20, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   color: #f5f5f5;
@@ -240,7 +240,7 @@ body {
   padding: 0;
   width: min(640px, 90vw);
   max-height: 80vh;
-  background: #111a13;
+  background: rgba(17, 26, 19, 0.88);
   color: #f5f5f5;
 }
 
@@ -252,7 +252,7 @@ body {
 
 /* Belle Histoire: neutral tile, not the default green */
 #movement-modal {
-  background: #17181c;
+  background: rgba(23, 24, 28, 0.88);
 }
 
 .modal-content {
@@ -299,9 +299,15 @@ body {
   background: rgba(245, 245, 245, 0.25);
 }
 
-/* Two Books reveal modal — same shape as Techno Reclamation, maroon plate */
+/* Two Books reveal modal — same shape as Techno Reclamation, maroon plate.
+   Dialog itself goes transparent so only the content div's translucent
+   maroon shows, instead of stacking two semi-transparent layers. */
+.modal--maroon {
+  background: transparent;
+}
+
 .modal--maroon .modal-content {
-  background: #2e1116;
+  background: rgba(46, 17, 22, 0.88);
 }
 
 .book-panels {
@@ -520,6 +526,14 @@ body {
   font-weight: 600;
   letter-spacing: 0.01em;
   margin: 0;
+}
+
+/* "ALWAYS on BEAT and in the POCKET" is long enough to wrap at the shared
+   section-break size, so it gets its own smaller scale, kept to one line
+   at every viewport width. */
+.section-break--tight h2 {
+  font-size: clamp(0.95rem, 4.5vw, 2rem);
+  white-space: nowrap;
 }
 
 .section-break-subtitle {
