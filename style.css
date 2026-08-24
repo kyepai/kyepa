@@ -546,10 +546,11 @@ body {
 }
 
 .section-break-cta {
-  display: block;
-  margin-top: 1rem;
+  display: inline-block;
+  margin-left: 0.35em;
   font-size: 0.9rem;
   font-weight: 600;
+  font-style: normal;
   letter-spacing: 0.02em;
   text-decoration: underline;
   text-decoration-color: rgba(245, 245, 245, 0.4);
