@@ -199,6 +199,12 @@ body {
   -webkit-backdrop-filter: blur(4px);
 }
 
+/* Belle Histoire: no backdrop blur behind the popup */
+#movement-modal::backdrop {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
 .modal-content {
   position: relative;
   padding: 2.5rem 2rem 2rem;
