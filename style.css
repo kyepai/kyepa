@@ -181,6 +181,47 @@ body {
   text-decoration-color: currentColor;
 }
 
+/* Club Athleten hover plate: reveals on hovering/focusing the link itself,
+   which still clicks straight through to their site. Blurred, but kept
+   colorless (grayscale) rather than tinted like the modals. */
+.plate-trigger {
+  position: relative;
+}
+
+.hover-plate {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transform: translateY(4px);
+  margin-top: 0.5rem;
+  width: min(420px, 85vw);
+  padding: 1.25rem 1.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(245, 245, 245, 0.12);
+  background: rgba(20, 20, 20, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #f5f5f5;
+  font-size: 0.9rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.6;
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 5;
+}
+
+.plate-trigger:hover .hover-plate,
+.plate-trigger:focus-within .hover-plate {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
 /* Techno Reclamation reveal modal */
 .modal {
   position: fixed;
