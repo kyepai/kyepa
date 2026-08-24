@@ -47,6 +47,61 @@ if (technoModal) {
   });
 }
 
+// Belle Histoire pop-up: "Movement is Life" banner is a role="button" div
+// (not a real <button>, since it wraps an <h2>), so it needs a keydown
+// handler too, matching native button Enter/Space activation.
+const movementTrigger = document.getElementById("movement-trigger");
+const movementModal = document.getElementById("movement-modal");
+const movementClose = document.getElementById("movement-close");
+
+if (movementTrigger && movementModal) {
+  movementTrigger.addEventListener("click", () => movementModal.showModal());
+  movementTrigger.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      movementModal.showModal();
+    }
+  });
+}
+if (movementClose && movementModal) {
+  movementClose.addEventListener("click", () => movementModal.close());
+}
+if (movementModal) {
+  movementModal.addEventListener("click", (event) => {
+    if (event.target === movementModal) movementModal.close();
+  });
+}
+
+// Shimmer sweep on the "Movement is Life" banner: fires 2s after every
+// second mouse-move/scroll "gesture" (continuous movement is throttled down
+// to one counted gesture per second so a single drag/scroll doesn't rack up
+// several), alternating between the rolling and racing animation styles.
+const shimmerArrow = document.querySelector("#movement-trigger .shimmer-arrow");
+if (shimmerArrow) {
+  let gestureCount = 0;
+  let gestureThrottled = false;
+  let useRacing = false;
+
+  function countGesture() {
+    if (gestureThrottled) return;
+    gestureThrottled = true;
+    setTimeout(() => { gestureThrottled = false; }, 1000);
+
+    gestureCount++;
+    if (gestureCount % 2 === 0) {
+      setTimeout(() => {
+        shimmerArrow.classList.remove("shimmer-rolling", "shimmer-racing");
+        void shimmerArrow.offsetWidth; // restart animation if still running
+        shimmerArrow.classList.add(useRacing ? "shimmer-racing" : "shimmer-rolling");
+        useRacing = !useRacing;
+      }, 2000);
+    }
+  }
+
+  window.addEventListener("mousemove", countGesture, { passive: true });
+  window.addEventListener("scroll", countGesture, { passive: true });
+}
+
 // Two Books pop-up: same open/close pattern as the Techno Reclamation one.
 const booksTrigger = document.getElementById("books-trigger");
 const booksModal = document.getElementById("books-modal");
