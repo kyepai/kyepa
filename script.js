@@ -76,8 +76,9 @@ if (movementModal) {
 // second mouse-move/scroll "gesture" (continuous movement is throttled down
 // to one counted gesture per second so a single drag/scroll doesn't rack up
 // several), alternating between the rolling and racing animation styles.
-const shimmerArrow = document.querySelector("#movement-trigger .shimmer-arrow");
-if (shimmerArrow) {
+const shimmerRoll = document.querySelector("#movement-trigger .shimmer-arrow--roll");
+const shimmerRace = document.querySelector("#movement-trigger .shimmer-arrow--race");
+if (shimmerRoll && shimmerRace) {
   let gestureCount = 0;
   let gestureThrottled = false;
   let useRacing = false;
@@ -90,9 +91,11 @@ if (shimmerArrow) {
     gestureCount++;
     if (gestureCount % 2 === 0) {
       setTimeout(() => {
-        shimmerArrow.classList.remove("shimmer-rolling", "shimmer-racing");
-        void shimmerArrow.offsetWidth; // restart animation if still running
-        shimmerArrow.classList.add(useRacing ? "shimmer-racing" : "shimmer-rolling");
+        const arrow = useRacing ? shimmerRace : shimmerRoll;
+        const animationClass = useRacing ? "shimmer-racing" : "shimmer-rolling";
+        arrow.classList.remove("shimmer-rolling", "shimmer-racing");
+        void arrow.offsetWidth; // restart animation if still running
+        arrow.classList.add(animationClass);
         useRacing = !useRacing;
       }, 2000);
     }

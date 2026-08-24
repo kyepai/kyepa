@@ -446,6 +446,7 @@ body {
 }
 
 .section-break-subtitle {
+  position: relative;
   margin-top: 0.5rem;
   font-size: clamp(0.85rem, 2vw, 1rem);
   font-weight: 400;
@@ -484,11 +485,11 @@ body {
   outline: none;
 }
 
-/* Shimmer sweep: a small arrow-shaped highlight, vertically centered on the
-   banner. Two variants alternate: a slower "rolling" sweep, right to left,
-   that tumbles end over end, and a fast "racing" streak, left to right,
-   with a stretched motion-blur tail (arrow flipped to still point the way
-   it's travelling). */
+/* Shimmer sweep: two small arrow-shaped highlights, confined to the
+   subtitle paragraph's own box, stacked one above the other — rolling on
+   top, racing underneath. Rolling sweeps right to left, tumbling end over
+   end; racing sweeps left to right as a fast, stretched motion-blur
+   streak (arrow flipped to still point the way it's travelling). */
 .banner-shimmer {
   position: absolute;
   inset: 0;
@@ -498,10 +499,9 @@ body {
 
 .shimmer-arrow {
   position: absolute;
-  top: 50%;
   left: 105%;
-  width: 2.75rem;
-  height: 1.5rem;
+  width: 2.25rem;
+  height: 1.1rem;
   transform: translate(-50%, -50%);
   opacity: 0;
   background: linear-gradient(90deg,
@@ -510,6 +510,14 @@ body {
     rgba(245, 245, 245, 0.95) 55%,
     rgba(245, 245, 245, 0) 100%);
   clip-path: polygon(0% 50%, 35% 15%, 35% 40%, 100% 40%, 100% 60%, 35% 60%, 35% 85%);
+}
+
+.shimmer-arrow--roll {
+  top: 30%;
+}
+
+.shimmer-arrow--race {
+  top: 70%;
 }
 
 @keyframes shimmer-roll {
