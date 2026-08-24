@@ -145,10 +145,6 @@ body {
   font-style: italic;
 }
 
-.text-center {
-  text-align: center;
-}
-
 .content a {
   color: inherit;
   font-weight: 600;
@@ -366,7 +362,31 @@ body {
   color: rgba(245, 245, 245, 0.6);
 }
 
-.pull-quote-left {
+.pull-quote-right {
+  text-align: right;
+}
+
+/* Haiku diagonal: shrink-wrapped to the middle line's own width, so the top
+   line (right-aligned) hugs the middle line's right edge and the bottom
+   line (left-aligned) hugs its left edge — a visual staircase continuing
+   the diagonal from the right-aligned quote above down to the left-aligned
+   paragraph below. */
+.haiku-diagonal {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.haiku-line {
+  display: block;
+}
+
+.haiku-line--top {
+  text-align: right;
+}
+
+.haiku-line--bottom {
   text-align: left;
 }
 
