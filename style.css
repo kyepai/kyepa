@@ -145,6 +145,10 @@ body {
   font-style: italic;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .content a {
   color: inherit;
   font-weight: 600;
