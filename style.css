@@ -203,10 +203,9 @@ body {
   -webkit-backdrop-filter: blur(4px);
 }
 
-/* Belle Histoire: no backdrop blur behind the popup */
-#movement-modal::backdrop {
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+/* Belle Histoire: neutral tile, not the default green */
+#movement-modal {
+  background: #17181c;
 }
 
 .modal-content {
