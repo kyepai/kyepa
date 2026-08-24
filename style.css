@@ -141,6 +141,10 @@ body {
   color: #e2e2e2;
 }
 
+.text-italic {
+  font-style: italic;
+}
+
 .content a {
   color: inherit;
   font-weight: 600;
