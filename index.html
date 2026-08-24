@@ -12,7 +12,7 @@
   <video class="bg-video bg-video-b" src="background2.mov" autoplay muted loop playsinline></video>
   <div class="blur-layer" aria-hidden="true"></div>
 
-  <header class="hero">
+  <header class="hero" id="hero-banner" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="offers-modal">
     <div class="hero-copy">
       <img class="hero-logo" src="logo.svg" alt="Kyepa">
       <p class="line line-1">Life Experience Designer</p>
@@ -475,9 +475,48 @@
         <button type="button" class="modal-close" id="offers-close" aria-label="Close">&times;</button>
         <h2 class="modal-title">Suite of Offers</h2>
         <p>
-          <!-- TODO(Kyle): needs your input — actual services, packages, and/or pricing to list here -->
-          Offer details are still being finalized — check back soon, or
-          reach out directly below.
+          Every engagement runs on the same five-phase Life Experience
+          Design Sprint — Map, Diverge, Decide, Prototype, Test — borrowed
+          from the product design sprint and run on an actual life instead
+          of a feature. Choose the format that matches how much of it
+          you're ready to run.
+        </p>
+        <div class="offer-list">
+          <div class="offer-item">
+            <p class="offer-name">Discovery Call <span class="offer-price">Free</span></p>
+            <p>20 minutes, video or phone — a fit-check before anything else.</p>
+          </div>
+          <div class="offer-item">
+            <p class="offer-name">Single Sprint <span class="offer-price">€450</span></p>
+            <p>
+              One ~3-hour intensive session. All five phases, compressed —
+              you leave with a written map and a prototype script.
+            </p>
+          </div>
+          <div class="offer-item">
+            <p class="offer-name">Full Sprint <span class="offer-price">€1,600</span></p>
+            <p>
+              Five sessions across 3–5 weeks, one phase at a time, with
+              real-world testing in between. The flagship format — one
+              complimentary iteration session included within 60 days.
+            </p>
+          </div>
+          <div class="offer-item">
+            <p class="offer-name">Design Partner <span class="offer-price">€900 / month</span></p>
+            <p>
+              A monthly 90-minute session plus async check-ins, for
+              sprinting continuously across a longer arc. Minimum
+              three-month commitment.
+            </p>
+          </div>
+          <div class="offer-item">
+            <p class="offer-name">Sprint Sampler <span class="offer-price">€45 / person</span></p>
+            <p>A 90-minute group taste of the Map phase, capped at 12 people.</p>
+          </div>
+        </div>
+        <p class="offer-note">
+          Indicative pricing.
+          <a href="mailto:info@kyepa.com">Get in touch</a> for a discovery call.
         </p>
       </div>
     </dialog>
@@ -497,7 +536,9 @@
           <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
         </svg>
       </a>
-      <img class="footer-logo" src="logo.svg" alt="Kyepa">
+      <a class="footer-logo-link" href="#" aria-label="Back to top">
+        <img class="footer-logo" src="logo.svg" alt="Kyepa">
+      </a>
     </section>
 
   </main>

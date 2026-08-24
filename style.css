@@ -42,7 +42,7 @@ body {
   -webkit-clip-path: inset(calc((1 - var(--progress, 0)) * 100%) 0 0 0);
 }
 
-/* Splash section */
+/* Splash section — also the trigger for jumping to the Offers modal */
 .hero {
   position: relative;
   height: 100vh;
@@ -53,6 +53,12 @@ body {
   text-align: center;
   padding: 2rem;
   overflow: hidden;
+  cursor: pointer;
+}
+
+.hero:focus-visible {
+  outline: 2px solid rgba(245, 245, 245, 0.6);
+  outline-offset: -4px;
 }
 
 .hero-copy {
@@ -658,6 +664,45 @@ body {
   background: rgba(0, 0, 0, 0.25);
 }
 
+.modal--offers a {
+  text-decoration-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal--offers a:hover,
+.modal--offers a:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+.offer-list {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.offer-item p + p {
+  margin-top: 0.35rem;
+}
+
+.offer-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  font-weight: 600;
+}
+
+.offer-price {
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.offer-note {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
 /* Contact call-to-action */
 .contact-cta {
   max-width: 640px;
@@ -710,12 +755,25 @@ body {
   transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
-/* Scaled to the social button's 3rem diameter, sitting between it and the footer */
+/* Scaled to the social button's 3rem diameter, sitting between it and the
+   footer; also a back-to-top link. */
+.footer-logo-link {
+  display: block;
+  width: fit-content;
+  margin: 1.5rem auto 0;
+  transition: opacity 0.2s ease;
+}
+
+.footer-logo-link:hover,
+.footer-logo-link:focus-visible {
+  opacity: 0.7;
+}
+
 .footer-logo {
   display: block;
   height: 3rem;
   width: auto;
-  margin: 1.5rem auto 0;
+  margin: 0;
   opacity: 0.85;
 }
 

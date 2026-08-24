@@ -138,3 +138,22 @@ if (offersModal) {
     if (event.target === offersModal) offersModal.close();
   });
 }
+
+// Top banner: clicking it jumps to the bottom of the page and opens the
+// Offers modal, same destination as the "Click here to see suite of
+// offers" link in the footer.
+const heroBanner = document.getElementById("hero-banner");
+if (heroBanner && offersModal) {
+  function openOffersFromHero() {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    offersModal.showModal();
+  }
+
+  heroBanner.addEventListener("click", openOffersFromHero);
+  heroBanner.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openOffersFromHero();
+    }
+  });
+}
