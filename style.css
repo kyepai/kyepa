@@ -416,7 +416,11 @@ body {
 
 .movement-portrait-wrap {
   position: relative;
-  width: min(320px, 60vw);
+  /* Font-size mirrors .section-break h2's clamp so the "ch" width below
+     tracks the title's own text size across viewports, keeping it wide
+     enough for "Movement is Life" to stay on one line. */
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  width: min(100%, clamp(260px, 24ch, 560px));
   margin: 0 auto;
 }
 
@@ -433,9 +437,10 @@ body {
   right: 0;
   bottom: 0.75rem;
   margin: 0;
-  padding: 0 0.75rem;
+  padding: 0 0.5rem;
   color: #fff;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7), 0 1px 4px rgba(0, 0, 0, 0.85);
+  white-space: nowrap;
 }
 
 .section-break h2 {
