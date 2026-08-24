@@ -121,3 +121,20 @@ if (booksModal) {
     if (event.target === booksModal) booksModal.close();
   });
 }
+
+// Offers pop-up: same open/close pattern as the other modals.
+const offersTrigger = document.getElementById("offers-trigger");
+const offersModal = document.getElementById("offers-modal");
+const offersClose = document.getElementById("offers-close");
+
+if (offersTrigger && offersModal) {
+  offersTrigger.addEventListener("click", () => offersModal.showModal());
+}
+if (offersClose && offersModal) {
+  offersClose.addEventListener("click", () => offersModal.close());
+}
+if (offersModal) {
+  offersModal.addEventListener("click", (event) => {
+    if (event.target === offersModal) offersModal.close();
+  });
+}

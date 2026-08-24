@@ -463,7 +463,24 @@
 
     <div class="closing-line">
       <p>Be transformed by what moves you</p>
+      <p class="closing-line-cta">
+        <button type="button" class="inline-link-button" id="offers-trigger" aria-haspopup="dialog" aria-controls="offers-modal">
+          Click here to see suite of offers
+        </button>
+      </p>
     </div>
+
+    <dialog id="offers-modal" class="modal modal--offers">
+      <div class="modal-content">
+        <button type="button" class="modal-close" id="offers-close" aria-label="Close">&times;</button>
+        <h2 class="modal-title">Suite of Offers</h2>
+        <p>
+          <!-- TODO(Kyle): needs your input — actual services, packages, and/or pricing to list here -->
+          Offer details are still being finalized — check back soon, or
+          reach out directly below.
+        </p>
+      </div>
+    </dialog>
 
     <section class="contact-cta">
       <h2>Let's Design Something Together</h2>

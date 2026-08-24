@@ -631,6 +631,33 @@ body {
   margin: 0;
 }
 
+.closing-line .closing-line-cta {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-style: normal;
+}
+
+/* Offers modal: same blurred backdrop as the other modals, but plated in
+   the logo's own cream tone with black text instead of the dark palette. */
+.modal--offers {
+  background: #f4f1df;
+  color: #000;
+}
+
+.modal--offers .modal-content p {
+  color: #000;
+}
+
+.modal--offers .modal-close {
+  background: rgba(0, 0, 0, 0.1);
+  color: #000;
+}
+
+.modal--offers .modal-close:hover,
+.modal--offers .modal-close:focus-visible {
+  background: rgba(0, 0, 0, 0.25);
+}
+
 /* Contact call-to-action */
 .contact-cta {
   max-width: 640px;
