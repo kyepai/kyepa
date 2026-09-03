@@ -122,13 +122,17 @@ if (booksModal) {
   });
 }
 
-// Offers pop-up: same open/close pattern as the other modals.
-const offersTrigger = document.getElementById("offers-trigger");
+// Offers pop-up: same open/close pattern as the other modals. Multiple
+// triggers on the page (footer CTA, the Club Athleten mention) share this
+// class and all open the same modal.
+const offersTriggers = document.querySelectorAll(".offers-trigger");
 const offersModal = document.getElementById("offers-modal");
 const offersClose = document.getElementById("offers-close");
 
-if (offersTrigger && offersModal) {
-  offersTrigger.addEventListener("click", () => offersModal.showModal());
+if (offersModal) {
+  offersTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => offersModal.showModal());
+  });
 }
 if (offersClose && offersModal) {
   offersClose.addEventListener("click", () => offersModal.close());
