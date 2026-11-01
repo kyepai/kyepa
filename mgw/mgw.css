@@ -1,0 +1,1375 @@
+/* ==========================================================================
+   GREENLIT — Mr Gay World 2026 campaign styles
+   ==========================================================================
+   Self-contained. Every selector is scoped under .mgw so this can sit on top
+   of the existing site without touching it, and the whole folder can be
+   deleted after the campaign.
+
+   Two modes share all of this:
+     .mgw--overlay  the pop-up on the homepage (a native <dialog>)
+     .mgw--page     the standalone route at /mgw/, which also scrolls
+
+   Scene state is read off [data-scene="1|2|3|4"] on the .mgw root, set by
+   mgw.js. Phase state is on [data-phase].
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Tokens
+   Palette: near-black, off-white, silver, cool grays. The single accent is
+   the national costume — an abstract brown pelican in silver glitter fading
+   into gray wings — translated into --mgw-plume plus a fine mesh overlay.
+   -------------------------------------------------------------------------- */
+.mgw {
+  /* The experience is deliberately cinematic-dark. Declaring the scheme and
+     every colour explicitly means OS light mode cannot wash it out. */
+  color-scheme: dark;
+
+  --mgw-black: #07080a;
+  --mgw-ink: #0d0f12;
+  --mgw-off-white: #f4f4f1;
+  --mgw-silver: #d8dade;
+  --mgw-gray: #8a8f98;
+  --mgw-gray-dim: #595f68;
+  --mgw-line: rgba(216, 218, 222, 0.14);
+  --mgw-line-soft: rgba(216, 218, 222, 0.07);
+
+  /* Sint Maarten flag, used only as a hairline accent. */
+  --mgw-red: #c8102e;
+  --mgw-blue: #003da5;
+
+  /* The pelican: silver glitter fading into gray wings. */
+  --mgw-plume: linear-gradient(
+    118deg,
+    #ffffff 0%,
+    #eef0f3 16%,
+    #b9bec6 42%,
+    #7d838c 72%,
+    #5a6068 100%
+  );
+
+  --mgw-display: "Oswald", "Archivo Narrow", "Haettenschweiler",
+    "Arial Narrow", system-ui, sans-serif;
+  --mgw-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mgw-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", "Menlo",
+    "Consolas", monospace;
+
+  /* Letterbox bar height. Scene 4 opens it up to 0. */
+  --mgw-bar: 10vh;
+
+  /* Safe-area shorthands — resolve to 0 where unsupported, so they are safe
+     to use unconditionally. The homepage viewport meta deliberately does NOT
+     set viewport-fit=cover (that would change your existing layout on
+     notched iPhones); only /mgw/ opts in. */
+  --mgw-sa-t: env(safe-area-inset-top, 0px);
+  --mgw-sa-b: env(safe-area-inset-bottom, 0px);
+  --mgw-sa-l: env(safe-area-inset-left, 0px);
+  --mgw-sa-r: env(safe-area-inset-right, 0px);
+
+  font-family: var(--mgw-body);
+  color: var(--mgw-off-white);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Scoped reset. The homepage gets one from style.css, but the standalone
+   route deliberately does not load style.css — so without this, /mgw/ would
+   pick up browser default heading margins and list bullets and the two modes
+   would drift apart. Scoped under .mgw so it changes nothing outside. */
+.mgw *,
+.mgw *::before,
+.mgw *::after {
+  box-sizing: border-box;
+}
+
+.mgw h1,
+.mgw h2,
+.mgw h3,
+.mgw p,
+.mgw ul,
+.mgw ol,
+.mgw li,
+.mgw figure {
+  margin: 0;
+  padding: 0;
+}
+
+.mgw ul,
+.mgw ol {
+  list-style: none;
+}
+
+.mgw button {
+  font: inherit;
+  color: inherit;
+}
+
+.mgw img {
+  max-width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   2. Roots for the two modes
+   -------------------------------------------------------------------------- */
+
+/* Overlay: a native <dialog>, so showModal() hands us the focus trap, Escape,
+   an inert background and top-layer stacking for free — the same pattern the
+   rest of the site already uses for its modals. */
+dialog.mgw--overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: var(--mgw-black);
+}
+
+dialog.mgw--overlay::backdrop {
+  background: #07080a;
+}
+
+/* Page: the standalone route, which scrolls past the film into the story. */
+.mgw--page {
+  background: var(--mgw-black);
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+/* While the overlay is open, stop the page underneath from scrolling. */
+html.mgw-locked,
+html.mgw-locked body {
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   3. The film stage
+   -------------------------------------------------------------------------- */
+/* A single full-width column with its content vertically centred. The hero is
+   the only in-flow child, so it alone defines the stage height; every scene
+   before it is absolutely positioned on top. */
+.mgw-film {
+  position: relative;
+  display: grid;
+  grid-template-columns: 100%;
+  align-content: center;
+  overflow: hidden;
+  isolation: isolate;
+  background: radial-gradient(
+      120% 90% at 50% 8%,
+      #15181d 0%,
+      var(--mgw-black) 62%
+    ),
+    var(--mgw-black);
+}
+
+/* Overlay mode: the stage fills the dialog exactly. */
+.mgw--overlay .mgw-film {
+  height: 100%;
+}
+
+/* Page mode: a full viewport, using svh so mobile browser chrome appearing
+   and disappearing cannot clip the hero (the classic 100vh bug). */
+.mgw--page .mgw-film {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+/* ---- Texture: tulle, mesh, grain. All decorative, all pointer-inert. ---- */
+.mgw-tex {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Soft blurred layers, like tulle held up to a light. */
+.mgw-tulle {
+  z-index: 0;
+  opacity: 0.55;
+  background:
+    radial-gradient(38% 30% at 22% 26%, rgba(216, 218, 222, 0.16), transparent 70%),
+    radial-gradient(42% 34% at 78% 68%, rgba(138, 143, 152, 0.14), transparent 72%),
+    radial-gradient(30% 24% at 60% 12%, rgba(255, 255, 255, 0.07), transparent 70%);
+  filter: blur(26px);
+}
+
+/* Fine netting from the costume. Kept very faint — texture, not pattern. */
+.mgw-mesh {
+  z-index: 1;
+  opacity: 0.5;
+  background-image: repeating-linear-gradient(
+      0deg,
+      var(--mgw-line-soft) 0 1px,
+      transparent 1px 7px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--mgw-line-soft) 0 1px,
+      transparent 1px 7px
+    );
+  mask-image: radial-gradient(70% 60% at 50% 45%, #000 0%, transparent 78%);
+  -webkit-mask-image: radial-gradient(70% 60% at 50% 45%, #000 0%, transparent 78%);
+}
+
+/* Film grain. An inline SVG turbulence, so it costs no extra request. */
+.mgw-grain {
+  z-index: 6;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  animation: mgw-grain-shift 0.6s steps(3) infinite;
+}
+
+@keyframes mgw-grain-shift {
+  0% { transform: translate3d(0, 0, 0); }
+  33% { transform: translate3d(-3%, 2%, 0); }
+  66% { transform: translate3d(2%, -3%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+/* ---- Letterbox bars: closed in scenes 1–3, opening in scene 4. ---- */
+.mgw-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 7;
+  height: var(--mgw-bar);
+  background: var(--mgw-black);
+  pointer-events: none;
+  transition: height 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mgw-bar--top { top: 0; }
+.mgw-bar--bottom { bottom: 0; }
+
+/* A single hairline of flag colour along the inside edge of each bar. */
+.mgw-bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--mgw-blue) 18%,
+    var(--mgw-silver) 50%,
+    var(--mgw-red) 82%,
+    transparent 100%
+  );
+  opacity: 0.4;
+}
+
+.mgw-bar--top::after { bottom: 0; }
+.mgw-bar--bottom::after { top: 0; }
+
+.mgw[data-scene="4"] { --mgw-bar: 0vh; }
+
+/* --------------------------------------------------------------------------
+   4. HUD — the monospace film metadata in the corners
+   -------------------------------------------------------------------------- */
+.mgw-hud {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+  font-family: var(--mgw-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  color: var(--mgw-gray);
+  text-transform: uppercase;
+}
+
+.mgw-hud > * {
+  position: absolute;
+  padding: 0.5rem 0.75rem;
+}
+
+.mgw-hud-reel {
+  top: calc(var(--mgw-bar) + var(--mgw-sa-t));
+  left: var(--mgw-sa-l);
+  transition: top 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mgw-hud-tc {
+  top: calc(var(--mgw-bar) + var(--mgw-sa-t));
+  right: var(--mgw-sa-r);
+  transition: top 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  font-variant-numeric: tabular-nums;
+}
+
+.mgw-hud-route {
+  bottom: calc(var(--mgw-bar) + var(--mgw-sa-b));
+  left: var(--mgw-sa-l);
+  transition: bottom 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--mgw-silver);
+}
+
+/* --------------------------------------------------------------------------
+   5. Controls — skip / close / replay. Real buttons, visible from frame one.
+   -------------------------------------------------------------------------- */
+.mgw-controls {
+  position: absolute;
+  z-index: 20;
+  bottom: calc(var(--mgw-bar) + var(--mgw-sa-b) + 0.35rem);
+  right: calc(var(--mgw-sa-r) + 0.5rem);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: bottom 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mgw-btn-ghost {
+  font-family: var(--mgw-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mgw-silver);
+  background: rgba(13, 15, 18, 0.6);
+  border: 1px solid var(--mgw-line);
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  /* Comfortable tap target on iPhone without inflating the visual pill. */
+  min-height: 40px;
+}
+
+.mgw-btn-ghost:hover,
+.mgw-btn-ghost:focus-visible {
+  color: var(--mgw-off-white);
+  border-color: rgba(216, 218, 222, 0.45);
+  background: rgba(13, 15, 18, 0.85);
+}
+
+/* Square close button, top right, below the letterbox bar. */
+.mgw-close {
+  position: absolute;
+  z-index: 20;
+  top: calc(var(--mgw-bar) + var(--mgw-sa-t) + 0.35rem);
+  right: calc(var(--mgw-sa-r) + 0.5rem);
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--mgw-silver);
+  background: rgba(13, 15, 18, 0.6);
+  border: 1px solid var(--mgw-line);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: top 900ms cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.mgw-close:hover,
+.mgw-close:focus-visible {
+  color: var(--mgw-off-white);
+  border-color: rgba(216, 218, 222, 0.45);
+}
+
+/* The timecode shares the top-right corner with the close button in overlay
+   mode, so shift it clear. */
+.mgw--overlay .mgw-hud-tc { right: calc(var(--mgw-sa-r) + 3.25rem); }
+
+/* Consistent focus ring everywhere in the experience. */
+.mgw :focus-visible {
+  outline: 2px solid var(--mgw-silver);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   6. Scene 1 — "The deadline"
+   -------------------------------------------------------------------------- */
+/* Absolutely positioned so it shares the frame with the hero rather than
+   stacking above it, and so it can leave without the layout shifting. */
+.mgw-scene1 {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 1.5rem;
+  padding: calc(var(--mgw-bar) + 1rem) clamp(1.25rem, 6vw, 3rem);
+  transition: opacity 600ms ease;
+}
+
+/* Keep the scene 1 text on the same left edge as the hero copy below it, so
+   the cut from film to hero does not shift the eye. */
+.mgw-scene1 > * {
+  width: 100%;
+  max-width: 68rem;
+  margin: 0 auto;
+}
+
+/* The dramatised clock. */
+.mgw-clock {
+  font-family: var(--mgw-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  color: var(--mgw-silver);
+  font-size: clamp(0.8125rem, 3.4vw, 1rem);
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.mgw-clock-label {
+  color: var(--mgw-gray);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.mgw-clock-value {
+  font-size: clamp(1.25rem, 6vw, 2rem);
+  font-weight: 500;
+}
+
+/* Scene 2 drops the clock to seconds only and leans on it. */
+.mgw[data-scene="2"] .mgw-clock-value {
+  font-size: clamp(2.5rem, 13vw, 4.5rem);
+  color: var(--mgw-off-white);
+}
+
+/* Scene 3 freezes and fades it out. */
+.mgw[data-scene="3"] .mgw-clock,
+.mgw[data-scene="4"] .mgw-clock {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+/* ---- Type-on lines. The text is real text in the DOM; only a width
+   reveal and a caret are animated, so screen readers get the full string. -- */
+.mgw-type {
+  display: grid;
+  gap: 0.6rem;
+  font-family: var(--mgw-mono);
+  font-size: clamp(0.9375rem, 4.2vw, 1.25rem);
+  color: var(--mgw-off-white);
+}
+
+.mgw-type-line {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  /* Flicker like an old title card. */
+  animation: mgw-flicker 2.6s steps(1) infinite;
+}
+
+/* ch-based widths so the steps() reveal lands on character boundaries. */
+.mgw[data-scene="1"] .mgw-type-line--a,
+.mgw[data-scene="2"] .mgw-type-line--a,
+.mgw[data-scene="3"] .mgw-type-line--a,
+.mgw[data-scene="4"] .mgw-type-line--a {
+  width: var(--mgw-ch-a, 18ch);
+  animation: mgw-type-a 900ms steps(18) 180ms both,
+    mgw-flicker 2.6s steps(1) infinite;
+}
+
+.mgw[data-scene="1"] .mgw-type-line--b,
+.mgw[data-scene="2"] .mgw-type-line--b,
+.mgw[data-scene="3"] .mgw-type-line--b,
+.mgw[data-scene="4"] .mgw-type-line--b {
+  width: var(--mgw-ch-b, 10ch);
+  animation: mgw-type-b 520ms steps(10) 1250ms both;
+}
+
+@keyframes mgw-type-a {
+  from { width: 0; }
+  to { width: var(--mgw-ch-a, 18ch); }
+}
+
+@keyframes mgw-type-b {
+  from { width: 0; }
+  to { width: var(--mgw-ch-b, 10ch); }
+}
+
+@keyframes mgw-flicker {
+  0%, 92%, 100% { opacity: 1; }
+  93% { opacity: 0.72; }
+  95% { opacity: 1; }
+  96% { opacity: 0.85; }
+}
+
+/* The caret that hangs on the unfinished second line. */
+.mgw-caret {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.05em;
+  vertical-align: -0.16em;
+  background: var(--mgw-silver);
+  animation: mgw-blink 1s steps(1) infinite;
+}
+
+@keyframes mgw-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Scene 1 copy clears out once the slate has snapped. */
+.mgw[data-scene="3"] .mgw-type,
+.mgw[data-scene="4"] .mgw-type {
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+
+.mgw[data-scene="3"] .mgw-scene1,
+.mgw[data-scene="4"] .mgw-scene1 {
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   7. Scene 2 — "The call": the tremble, then the slate snaps shut
+   -------------------------------------------------------------------------- */
+.mgw[data-scene="2"] .mgw-film {
+  animation: mgw-tremble 2s ease-in-out both;
+}
+
+@keyframes mgw-tremble {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  10% { transform: translate3d(-1px, 1px, 0); }
+  22% { transform: translate3d(1.5px, -1px, 0); }
+  36% { transform: translate3d(-2px, -1.5px, 0); }
+  52% { transform: translate3d(2px, 1.5px, 0); }
+  68% { transform: translate3d(-2.5px, 1px, 0); }
+  84% { transform: translate3d(2px, -2px, 0); }
+}
+
+/* The clapperboard. Abstract: a striped bar across the frame with an arm
+   hinged at the left that snaps down onto it. */
+.mgw-slate {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  display: grid;
+  align-content: center;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.mgw-slate-bar,
+.mgw-slate-arm {
+  height: clamp(28px, 7vh, 54px);
+  background: var(--mgw-ink);
+  background-image: repeating-linear-gradient(
+    115deg,
+    var(--mgw-off-white) 0 26px,
+    var(--mgw-ink) 26px 52px
+  );
+  border-top: 1px solid rgba(7, 8, 10, 0.8);
+  border-bottom: 1px solid rgba(7, 8, 10, 0.8);
+}
+
+.mgw-slate-arm {
+  transform-origin: 0 100%;
+  transform: rotate(-26deg);
+}
+
+/* Scene 2 plays the snap: both halves swing in, meet, and the frame flashes. */
+.mgw[data-scene="2"] .mgw-slate {
+  animation: mgw-slate-in 900ms cubic-bezier(0.16, 1, 0.3, 1) 900ms both;
+}
+
+.mgw[data-scene="2"] .mgw-slate-arm {
+  animation: mgw-slate-snap 320ms cubic-bezier(0.6, -0.3, 0.8, 1) 1280ms both;
+}
+
+@keyframes mgw-slate-in {
+  from { opacity: 0; transform: scale(1.1); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes mgw-slate-snap {
+  from { transform: rotate(-26deg); }
+  70% { transform: rotate(1.5deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* The slate is gone by scene 3. */
+.mgw[data-scene="3"] .mgw-slate,
+.mgw[data-scene="4"] .mgw-slate {
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+/* A single frame of white on the snap. */
+.mgw-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: var(--mgw-off-white);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mgw[data-scene="3"] .mgw-flash {
+  animation: mgw-flash 520ms ease-out both;
+}
+
+@keyframes mgw-flash {
+  0% { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   8. Scene 3 — "GREENLIT"
+   -------------------------------------------------------------------------- */
+.mgw-word-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 11;
+  display: grid;
+  place-items: center;
+  padding: 0 1rem;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.mgw-word {
+  font-family: var(--mgw-display);
+  font-weight: 700;
+  font-size: clamp(3.25rem, 19vw, 11rem);
+  line-height: 0.88;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  text-align: center;
+  /* Silver glitter fading into gray wings, with a projector beam sweeping
+     across it. The beam is the first background layer; it is what animates. */
+  background-image: linear-gradient(
+      100deg,
+      transparent 36%,
+      rgba(255, 255, 255, 0.95) 50%,
+      transparent 64%
+    ),
+    var(--mgw-plume);
+  background-size: 300% 100%, 100% 100%;
+  background-position: 170% 0, 0 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Browsers without background-clip:text still get a readable word. */
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .mgw-word { color: var(--mgw-silver); }
+}
+
+.mgw[data-scene="3"] .mgw-word-wrap {
+  animation: mgw-word-slam 620ms cubic-bezier(0.14, 1.2, 0.3, 1) both;
+}
+
+.mgw[data-scene="3"] .mgw-word {
+  animation: mgw-sweep 1100ms ease-out 360ms both;
+}
+
+@keyframes mgw-word-slam {
+  0% { opacity: 0; transform: scale(1.38); filter: blur(10px); }
+  55% { opacity: 1; filter: blur(0); }
+  70% { transform: scale(0.985); }
+  100% { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+
+@keyframes mgw-sweep {
+  from { background-position: 170% 0, 0 0; }
+  to { background-position: -70% 0, 0 0; }
+}
+
+/* Scene 4 lifts the word away and hands the frame to the hero. */
+.mgw[data-scene="4"] .mgw-word-wrap {
+  opacity: 0;
+  transform: translateY(-2.5vh) scale(0.94);
+  transition: opacity 700ms ease, transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Glitter canvas. Sized and driven by mgw.js; skipped under reduced motion. */
+.mgw-glitter {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   9. Scene 4 — the hero
+   -------------------------------------------------------------------------- */
+.mgw-hero {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: calc(var(--mgw-bar) + var(--mgw-sa-t) + 3.5rem)
+    clamp(1.25rem, 6vw, 3rem)
+    calc(var(--mgw-bar) + var(--mgw-sa-b) + 5rem);
+  display: grid;
+  gap: clamp(1.75rem, 5vw, 3rem);
+  align-items: center;
+  /* visibility, not just opacity: an opacity-0 hero would still put its
+     links in the tab order, so a keyboard user tabbing during scene 1 would
+     land on buttons they cannot see. visibility flips in immediately on
+     scene 4 and out only after the fade has finished. */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 700ms ease, visibility 0s linear 700ms;
+}
+
+.mgw[data-scene="4"] .mgw-hero {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 700ms ease, visibility 0s linear 0s;
+}
+
+/* Mobile first: one column, copy above the frame. Two columns from 56rem. */
+@media (min-width: 56rem) {
+  .mgw-hero {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+  .mgw-hero-copy { order: 1; }
+  .mgw-hero-media { order: 2; }
+}
+
+/* Each hero element arrives on a short stagger once scene 4 lands. */
+.mgw[data-scene="4"] .mgw-rise {
+  animation: mgw-rise 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--mgw-i, 0) * 90ms);
+}
+
+@keyframes mgw-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.mgw-eyebrow {
+  font-family: var(--mgw-mono);
+  font-size: clamp(0.5625rem, 2.4vw, 0.6875rem);
+  letter-spacing: 0.17em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  color: var(--mgw-gray);
+  margin-bottom: 1rem;
+}
+
+/* A hairline of flag colour above the eyebrow, used sparingly. */
+.mgw-eyebrow::before {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 2px;
+  margin-bottom: 0.9rem;
+  background: linear-gradient(
+    90deg,
+    var(--mgw-red) 0 33%,
+    var(--mgw-off-white) 33% 66%,
+    var(--mgw-blue) 66% 100%
+  );
+}
+
+.mgw-headline {
+  font-family: var(--mgw-display);
+  font-weight: 600;
+  font-size: clamp(2.4rem, 11vw, 4.75rem);
+  line-height: 0.96;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+  color: var(--mgw-off-white);
+  margin-bottom: 1rem;
+}
+
+.mgw-subline {
+  font-size: clamp(1rem, 4.2vw, 1.1875rem);
+  line-height: 1.6;
+  color: var(--mgw-silver);
+  max-width: 34ch;
+  margin-bottom: 1.75rem;
+}
+
+/* Phase status: "Voting opens soon." or the live close countdown. */
+.mgw-status {
+  font-family: var(--mgw-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mgw-gray);
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.mgw-status-clock {
+  color: var(--mgw-off-white);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9375rem;
+  letter-spacing: 0.06em;
+}
+
+/* ---- Buttons ---- */
+.mgw-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.mgw-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 52px;
+  padding: 0.95rem 1.6rem;
+  border: 0;
+  border-radius: 999px;
+  font-family: var(--mgw-body);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--mgw-black);
+  background-image: var(--mgw-plume);
+  background-size: 160% 100%;
+  background-position: 0 0;
+  transition: background-position 500ms ease, transform 200ms ease;
+}
+
+.mgw-cta:hover,
+.mgw-cta:focus-visible {
+  background-position: 100% 0;
+  transform: translateY(-1px);
+}
+
+/* The voting phase gets the loud version. */
+.mgw[data-phase="voting"] .mgw-cta--primary {
+  font-family: var(--mgw-display);
+  font-weight: 700;
+  font-size: clamp(1.0625rem, 4.6vw, 1.375rem);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 1.1rem 2rem;
+  min-height: 58px;
+}
+
+.mgw-cta--ghost {
+  color: var(--mgw-off-white);
+  background: transparent;
+  background-image: none;
+  border: 1px solid var(--mgw-line);
+  font-weight: 500;
+}
+
+.mgw-cta--ghost:hover,
+.mgw-cta--ghost:focus-visible {
+  border-color: rgba(216, 218, 222, 0.5);
+  background: rgba(216, 218, 222, 0.06);
+}
+
+/* Full-width buttons on the narrowest phones so nothing wraps awkwardly. */
+@media (max-width: 24rem) {
+  .mgw-cta { width: 100%; }
+}
+
+/* ---- Hero image frame. Keeps the silver/mesh placeholder visible behind the
+   photo, so a missing or still-loading image never reads as broken. ---- */
+.mgw-hero-media {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: 2px;
+  overflow: hidden;
+  background-image: var(--mgw-plume);
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.9);
+}
+
+.mgw-hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    var(--mgw-line-soft) 0 1px,
+    transparent 1px 6px
+  );
+}
+
+.mgw-hero-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* If the file is missing, hide the <img> and let the gradient stand in. */
+.mgw-hero-media.is-missing img { display: none; }
+
+@media (min-width: 56rem) {
+  .mgw-hero-media { aspect-ratio: 4 / 5; }
+}
+
+/* The "see the full story" link, overlay mode only. */
+.mgw-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1.5rem;
+  font-family: var(--mgw-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mgw-gray);
+  text-decoration: none;
+  border-bottom: 1px solid var(--mgw-line);
+  padding-bottom: 0.2rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.mgw-more:hover,
+.mgw-more:focus-visible {
+  color: var(--mgw-off-white);
+  border-color: rgba(216, 218, 222, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   10. The persistent pill, left behind after dismissal
+   -------------------------------------------------------------------------- */
+.mgw-pill {
+  position: fixed;
+  z-index: 60;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
+  right: calc(env(safe-area-inset-right, 0px) + 1rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  max-width: calc(100vw - 2rem);
+  min-height: 44px;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid rgba(216, 218, 222, 0.22);
+  border-radius: 999px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: left;
+  color: #f4f4f1;
+  background: rgba(13, 15, 18, 0.82);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.8);
+  animation: mgw-pill-in 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.mgw-pill:hover,
+.mgw-pill:focus-visible {
+  border-color: rgba(216, 218, 222, 0.5);
+  background: rgba(13, 15, 18, 0.95);
+}
+
+/* A small glinting dot, the only "live" element on the normal homepage. */
+.mgw-pill-dot {
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #eef0f3;
+  box-shadow: 0 0 0 0 rgba(238, 240, 243, 0.6);
+  animation: mgw-pulse 2.4s ease-out infinite;
+}
+
+@keyframes mgw-pill-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes mgw-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(238, 240, 243, 0.55); }
+  70% { box-shadow: 0 0 0 10px rgba(238, 240, 243, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(238, 240, 243, 0); }
+}
+
+/* On small phones the pill shrinks to a short label. */
+@media (max-width: 30rem) {
+  .mgw-pill { font-size: 0.75rem; padding: 0.65rem 0.95rem; }
+}
+
+/* --------------------------------------------------------------------------
+   11. Scroll sections — standalone route only
+   -------------------------------------------------------------------------- */
+.mgw-section {
+  position: relative;
+  padding: clamp(4rem, 12vw, 7.5rem) 0;
+  border-top: 1px solid var(--mgw-line-soft);
+}
+
+.mgw-wrap {
+  width: 100%;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding-left: max(clamp(1.25rem, 6vw, 3rem), var(--mgw-sa-l));
+  padding-right: max(clamp(1.25rem, 6vw, 3rem), var(--mgw-sa-r));
+}
+
+.mgw-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: clamp(2rem, 6vw, 3rem);
+}
+
+.mgw-h2 {
+  font-family: var(--mgw-display);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 8vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--mgw-off-white);
+}
+
+.mgw-hint {
+  font-family: var(--mgw-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mgw-gray-dim);
+}
+
+/* ---- IntersectionObserver reveal ---- */
+.mgw-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms ease, transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--mgw-i, 0) * 70ms);
+}
+
+.mgw-reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- The film strip ---- */
+.mgw-strip {
+  display: flex;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--mgw-gray-dim) transparent;
+  /* Bleed to the viewport edges, with the first frame still aligned to the
+     text column above it. */
+  padding: 0 max(clamp(1.25rem, 6vw, 3rem), var(--mgw-sa-l))
+    1.25rem max(clamp(1.25rem, 6vw, 3rem), var(--mgw-sa-l));
+}
+
+.mgw-strip::-webkit-scrollbar { height: 6px; }
+.mgw-strip::-webkit-scrollbar-thumb {
+  background: var(--mgw-gray-dim);
+  border-radius: 3px;
+}
+
+.mgw-frame {
+  flex: 0 0 clamp(15rem, 76vw, 19rem);
+  scroll-snap-align: center;
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+  min-height: 13rem;
+  padding: 2rem 1.25rem;
+  background: linear-gradient(180deg, rgba(216, 218, 222, 0.045), transparent);
+  border: 1px solid var(--mgw-line);
+  border-radius: 2px;
+}
+
+/* Sprocket holes, top and bottom, so a frame reads as film. */
+.mgw-frame::before,
+.mgw-frame::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--mgw-line) 0 8px,
+    transparent 8px 20px
+  );
+  opacity: 0.8;
+}
+
+.mgw-frame::before { top: 7px; }
+.mgw-frame::after { bottom: 7px; }
+
+.mgw-frame-date {
+  font-family: var(--mgw-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mgw-gray);
+}
+
+.mgw-frame-title {
+  font-family: var(--mgw-display);
+  font-weight: 600;
+  font-size: 1.375rem;
+  line-height: 1.1;
+  color: var(--mgw-off-white);
+}
+
+.mgw-frame-line {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--mgw-silver);
+}
+
+/* The greenlit frame is the one the whole story turns on — mark it. */
+.mgw-frame--key {
+  border-color: rgba(216, 218, 222, 0.35);
+  background: linear-gradient(180deg, rgba(216, 218, 222, 0.1), transparent);
+}
+
+.mgw-frame--key .mgw-frame-title {
+  background-image: var(--mgw-plume);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .mgw-frame--key .mgw-frame-title { color: var(--mgw-off-white); }
+}
+
+/* ---- Itinerary: a route line that draws itself on scroll ---- */
+.mgw-route-list {
+  display: grid;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mgw-stop {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  column-gap: 1.25rem;
+  padding: 0 0 2.25rem 2rem;
+}
+
+.mgw-stop:last-child { padding-bottom: 0; }
+
+/* The vertical line, drawn with a scaling pseudo-element. */
+.mgw-stop::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0.55rem;
+  bottom: -0.55rem;
+  width: 1px;
+  background: var(--mgw-line);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 900ms ease;
+  transition-delay: calc(var(--mgw-i, 0) * 180ms);
+}
+
+.mgw-stop:last-child::before { display: none; }
+
+.mgw-stop.is-in::before { transform: scaleY(1); }
+
+/* The dot at each stop. */
+.mgw-stop::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--mgw-gray-dim);
+  transition: background 500ms ease, box-shadow 500ms ease;
+  transition-delay: calc(var(--mgw-i, 0) * 180ms);
+}
+
+.mgw-stop.is-in::after {
+  background: var(--mgw-silver);
+  box-shadow: 0 0 0 4px rgba(216, 218, 222, 0.1);
+}
+
+.mgw-stop-code {
+  font-family: var(--mgw-mono);
+  font-size: clamp(1.125rem, 5vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--mgw-off-white);
+}
+
+.mgw-stop-meta {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.mgw-stop-place {
+  font-size: 0.9375rem;
+  color: var(--mgw-silver);
+}
+
+.mgw-stop-note {
+  font-family: var(--mgw-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mgw-gray);
+}
+
+/* ---- Partners ---- */
+.mgw-partners {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: 1fr;
+  background: var(--mgw-line-soft);
+  border: 1px solid var(--mgw-line-soft);
+}
+
+@media (min-width: 40rem) {
+  .mgw-partners { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 60rem) {
+  .mgw-partners { grid-template-columns: repeat(4, 1fr); }
+}
+
+.mgw-partner {
+  display: grid;
+  align-content: center;
+  gap: 0.4rem;
+  min-height: 7.5rem;
+  padding: 1.5rem 1.25rem;
+  background: var(--mgw-black);
+  text-align: center;
+}
+
+.mgw-partner-name {
+  font-family: var(--mgw-display);
+  font-weight: 500;
+  font-size: 1.0625rem;
+  line-height: 1.2;
+  color: var(--mgw-off-white);
+}
+
+.mgw-partner-role {
+  font-family: var(--mgw-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mgw-gray-dim);
+}
+
+.mgw-partner--empty .mgw-partner-name {
+  color: var(--mgw-gray-dim);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.mgw-note {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--mgw-gray);
+}
+
+/* ---- Footer CTA repeat ---- */
+.mgw-footer {
+  border-top: 1px solid var(--mgw-line);
+  padding: clamp(4rem, 12vw, 7rem) 0 calc(clamp(3rem, 8vw, 5rem) + var(--mgw-sa-b));
+  text-align: center;
+}
+
+.mgw-footer .mgw-h2 { margin-bottom: 2rem; }
+
+.mgw-footer .mgw-actions { justify-content: center; }
+
+.mgw-footer-meta {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+  font-family: var(--mgw-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mgw-gray-dim);
+}
+
+.mgw-footer-meta a {
+  color: var(--mgw-gray);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.mgw-footer-meta a:hover,
+.mgw-footer-meta a:focus-visible {
+  color: var(--mgw-off-white);
+  border-bottom-color: var(--mgw-line);
+}
+
+/* Screen-reader-only helper. */
+.mgw-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   12. Reduced motion
+   mgw.js already jumps straight to scene 4 and skips the particles; this
+   strips the remaining ambient movement for anyone who asked for calm.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .mgw *,
+  .mgw *::before,
+  .mgw *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .mgw-grain { animation: none; }
+  .mgw-pill-dot { animation: none; }
+  .mgw-caret { animation: none; }
+
+  /* Reveals must not leave content invisible if the observer never fires. */
+  .mgw-reveal { opacity: 1; transform: none; }
+  .mgw-stop::before { transform: scaleY(1); }
+  .mgw-strip { scroll-snap-type: none; }
+}

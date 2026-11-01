@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kyepa — Life Experience Designer</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- GREENLIT campaign pop-up (Mr Gay World 2026). Everything it needs lives
+       in /mgw/ — see the README. Fonts are only for the pop-up; they load
+       after the page's own styles so they never block the homepage. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/mgw/mgw.css">
 </head>
 <body>
 
@@ -557,5 +565,12 @@
   </footer>
 
   <script src="script.js"></script>
+
+  <!-- GREENLIT campaign pop-up mounts here. Shows the full intro film on a
+       first visit, then leaves a pill in the corner that reopens it.
+       Add ?mgw to any homepage link to force it open for repeat visitors. -->
+  <div id="mgw-root"></div>
+  <script src="/mgw/mgw.config.js" defer></script>
+  <script src="/mgw/mgw.js" defer></script>
 </body>
 </html>

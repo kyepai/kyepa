@@ -1,2 +1,129 @@
 # kyepa
+
 38 multipurpose website
+
+A static site: plain HTML, CSS and JavaScript, no build step. To view it
+locally, serve the folder from the repo root so that root-absolute paths
+resolve:
+
+```sh
+python3 -m http.server
+```
+
+Then open <http://localhost:8000/>.
+
+---
+
+## GREENLIT — the Mr Gay World 2026 campaign
+
+The campaign experience lives entirely in **`mgw/`** plus the images in
+`assets/mgw/`. It appears in two places:
+
+- **A pop-up on the homepage.** Plays the full intro film on someone's first
+  visit. Once dismissed it leaves a small pill in the bottom corner
+  ("Sint Maarten @ Mr Gay World — Vote") that reopens it, skipping the film.
+- **A standalone page at `/mgw/`** — <http://localhost:8000/mgw/> locally,
+  `kyepa.com/mgw/` live. This is the one to put in the Instagram bio and in
+  stories. It has its own title, description and share card, and continues
+  below the hero into the story, the itinerary and the partners strip.
+
+Add `?mgw` to any homepage link (`kyepa.com/?mgw`) to force the pop-up open
+even for people who have already dismissed it. Handy for campaign links, and
+for retesting it yourself without clearing your browser storage.
+
+### Everything is driven by one file
+
+**`mgw/mgw.config.js`** is the only file you need for day-to-day changes. It
+holds every piece of copy and every switch. Save the file, reload the page —
+there is nothing to build or compile.
+
+#### Switching phase
+
+Change `PHASE` to one of four values. Each one re-cuts the film and swaps the
+headline and the main button:
+
+| `PHASE`       | What the visitor gets |
+|---------------|-----------------------|
+| `"greenlit"`  | The celebration. Main button: "Get notified when voting opens" (opens an email). Shows "Voting opens soon." |
+| `"voting"`    | The ask. Big **VOTE FOR SINT MAARTEN** button, plus a live countdown to `VOTING_CLOSES_AT`. The film re-cuts itself: scene 1 reads "Votes: pending." and the word that slams in becomes "YOUR VOTE". |
+| `"competing"` | "Live from Cebu." Pushes people to Instagram. Keeps the vote button if voting is still open. |
+| `"results"`   | Thank-you state. Drop the outcome into `strings.en.phases.results.status`. |
+
+#### Opening voting
+
+1. Paste the official link into `VOTING_URL`.
+2. Set `PHASE: "voting"`.
+3. Bump `CAMPAIGN_VERSION` to something new, e.g. `"voting-2026-11"`.
+
+Step 3 matters: the "already dismissed" flag in each visitor's browser is
+keyed to `CAMPAIGN_VERSION`, so changing it makes the pop-up appear again for
+everyone — including people who closed it during the greenlit phase.
+
+If `VOTING_URL` is still empty, the vote button falls back to the Instagram
+link rather than being a dead end.
+
+**Scheduling it instead:** set `VOTING_OPENS_AT` to an ISO datetime, e.g.
+`"2026-11-24T12:00:00Z"`. Once that moment passes, `"greenlit"` promotes
+itself to `"voting"` in the visitor's browser, with nothing to deploy at the
+time. Set `VOTING_CLOSES_AT` the same way to drive the live countdown.
+
+#### Changing wording
+
+All text is under `strings.en` in the config — the headline, the buttons, the
+timeline frames, the partners, the film's type-on lines. Nothing is hardcoded
+in the markup.
+
+To add Dutch later: copy the whole `en` block to `nl`, translate the values,
+and set `LANG: "nl"`. No other file changes.
+
+#### Replacing images
+
+See [`assets/mgw/README.md`](assets/mgw/README.md). The three files there are
+generated placeholders; overwrite them with the same filenames and they are
+picked up automatically.
+
+#### Timing of the film
+
+`INTRO` in the config holds the scene start times in milliseconds. Lower them
+to tighten the edit, raise them to let it breathe. `particles` caps the
+glitter count (halved automatically on phones).
+
+### How it is put together
+
+| File | What it does |
+|------|--------------|
+| `mgw/mgw.config.js` | All copy and all switches. The only file to edit. |
+| `mgw/mgw.css` | Every style, scoped under `.mgw-*` so it cannot leak into the rest of the site. |
+| `mgw/mgw.js` | The scene engine, the countdown, the glitter, the pop-up, the scroll reveals. No dependencies. |
+| `mgw/index.html` | The standalone `/mgw/` page: meta tags, share card, and a no-JavaScript fallback. |
+| `assets/mgw/` | The three image slots. |
+
+The homepage ([`index.html`](index.html)) was touched in two places only: four
+lines in `<head>` for the fonts and stylesheet, and a mount `<div>` plus two
+`<script>` tags before `</body>`. Nothing existing was moved.
+
+The pop-up is a native `<dialog>` opened with `showModal()`, the same approach
+the site's other modals already use — which is what gives it a working focus
+trap, Escape-to-close, and focus returning where it was.
+
+### Accessibility and performance notes
+
+- `prefers-reduced-motion` skips the film entirely and lands on the hero, with
+  no particles and no screen shake.
+- The animated text is real text in the DOM from the first frame; only widths
+  and a caret are animated, so screen readers get whole sentences.
+- Glitter particles pause when the browser tab is hidden and tear themselves
+  down once the burst is spent.
+- Uses `svh` units and `env(safe-area-inset-*)`, so it behaves on notched
+  iPhones and does not jump when mobile browser chrome appears.
+- No tracking script is installed. `mgw.js` fires a `mgw:track` DOM event for
+  the vote button, the Instagram button, skip intro, and dismiss. If analytics
+  is ever added, listen for that event:
+  ```js
+  document.addEventListener("mgw:track", (e) => console.log(e.detail));
+  ```
+
+### Taking it down afterwards
+
+Delete the `mgw/` and `assets/mgw/` folders, then remove the two commented
+blocks from `index.html`. Nothing else references it.
