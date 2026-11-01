@@ -2,15 +2,19 @@
 
 38 multipurpose website
 
-A static site: plain HTML, CSS and JavaScript, no build step. To view it
-locally, serve the folder from the repo root so that root-absolute paths
-resolve:
+A static site: plain HTML, CSS and JavaScript, no build step.
+
+To view it locally, just **open `index.html` in your browser** — double-click
+it, and everything works, including the campaign pop-up.
+
+If you would rather view it the way a visitor will, serve the folder instead:
 
 ```sh
 python3 -m http.server
 ```
 
-Then open <http://localhost:8000/>.
+Then open <http://localhost:8000/>. This is the closer match to the live site,
+and it gives you the tidy `/mgw/` address rather than a long file path.
 
 ---
 
@@ -22,7 +26,8 @@ The campaign experience lives entirely in **`mgw/`** plus the images in
 - **A pop-up on the homepage.** Plays the full intro film on someone's first
   visit. Once dismissed it leaves a small pill in the bottom corner
   ("Sint Maarten @ Mr Gay World — Vote") that reopens it, skipping the film.
-- **A standalone page at `/mgw/`** — <http://localhost:8000/mgw/> locally,
+- **A standalone page at `/mgw/`** — open `mgw/index.html` from disk, or
+  <http://localhost:8000/mgw/> if you are serving the folder;
   `kyepa.com/mgw/` live. This is the one to put in the Instagram bio and in
   stories. It has its own title, description and share card, and continues
   below the hero into the story, the itinerary and the partners strip.

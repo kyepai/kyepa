@@ -46,6 +46,56 @@
   var T = CFG.INTRO;
 
   var IG_URL = "https://instagram.com/" + CFG.INSTAGRAM_HANDLE;
+
+  /* ------------------------------------------------------------------------
+     Asset paths, resolved against this script's own URL.
+     The homepage lives at / and the standalone route at /mgw/, so a single
+     hardcoded path cannot be right for both — and a root-absolute one breaks
+     entirely when index.html is opened straight from disk over file://.
+     mgw.js always sits in mgw/, so ../assets/mgw/ relative to itself is
+     correct everywhere.
+     ------------------------------------------------------------------------ */
+  var SCRIPT_URL = (function () {
+    if (document.currentScript && document.currentScript.src) {
+      return document.currentScript.src;
+    }
+    /* Fallback for any browser that does not set currentScript. */
+    var tags = document.getElementsByTagName("script");
+    for (var i = tags.length - 1; i >= 0; i--) {
+      if (/mgw\.js(\?|#|$)/.test(tags[i].src || "")) return tags[i].src;
+    }
+    return "";
+  })();
+
+  function assetUrl(name) {
+    try {
+      return new URL("../assets/mgw/" + name, SCRIPT_URL).href;
+    } catch (err) {
+      return "../assets/mgw/" + name;
+    }
+  }
+
+  /* Opened from disk there is no web root, and a file:// directory URL lists
+     files rather than serving index.html — so point straight at the file.
+     Served normally, the tidy CFG.ROUTE path is used. */
+  var onDisk = window.location.protocol === "file:";
+
+  function fileRelative(relative, fallback) {
+    try {
+      return new URL(relative, SCRIPT_URL).href;
+    } catch (err) {
+      return fallback;
+    }
+  }
+
+  function routeUrl() {
+    return onDisk ? fileRelative("index.html", CFG.ROUTE) : CFG.ROUTE;
+  }
+
+  function homeUrl() {
+    return onDisk ? fileRelative("../index.html", "/") : "/";
+  }
+
   var reduceMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
@@ -225,7 +275,7 @@
 
     /* ---- Scene 4: the hero ---- */
     var heroImg = el("img", {
-      src: "/assets/mgw/hero.jpg",
+      src: assetUrl("hero.jpg"),
       alt: S.heroAlt,
       loading: "lazy",
       decoding: "async",
@@ -273,7 +323,7 @@
     if (mode === "overlay") {
       var more = el("a", {
         class: "mgw-more mgw-rise",
-        href: CFG.ROUTE,
+        href: routeUrl(),
         style: "--mgw-i:6",
         text: S.fullStory + " →"
       });
@@ -688,7 +738,7 @@
       href: "mailto:" + CFG.CONTACT_EMAIL,
       text: S.contactCta
     });
-    var home = el("a", { href: "/", text: S.backHome });
+    var home = el("a", { href: homeUrl(), text: S.backHome });
 
     return el("footer", { class: "mgw-footer" }, [
       el("div", { class: "mgw-wrap" }, [
@@ -770,7 +820,7 @@
 
     function open(opts) {
       if (!supported) {
-        window.location.href = CFG.ROUTE;
+        window.location.href = routeUrl();
         return;
       }
       document.documentElement.classList.add("mgw-locked");

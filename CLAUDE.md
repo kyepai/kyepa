@@ -18,11 +18,14 @@ manager, framework, or test suite**.
 
 ## Working with this repo
 
-- **No build step.** Serve the directory from the repo root:
-  `python3 -m http.server`, then open <http://localhost:8000/>.
-- **Opening `index.html` directly via `file://` no longer works fully.** The
-  campaign assets are referenced by root-absolute paths (`/mgw/mgw.css`), which
-  only resolve when served. Use a server.
+- **No build step.** Either open `index.html` straight from disk, or serve the
+  directory (`python3 -m http.server`, then <http://localhost:8000/>).
+- **Keep asset paths relative, not root-absolute.** Both working from disk and
+  being served has to keep working, so `href="/mgw/mgw.css"` is wrong —
+  `file://` resolves it to the filesystem root and it silently fails to load.
+  Paths are relative to the referencing file. `mgw/mgw.js` resolves its own
+  asset URLs against `document.currentScript.src` for the same reason, since
+  it is loaded from two different directory depths.
 - There is no linter, formatter, or test runner. Don't assume `npm`/`node`
   tooling exists — `.gitignore` has boilerplate Node entries but there is no
   `package.json`.
