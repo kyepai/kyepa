@@ -81,20 +81,18 @@
   box-sizing: border-box;
 }
 
-.mgw h1,
-.mgw h2,
-.mgw h3,
-.mgw p,
-.mgw ul,
-.mgw ol,
-.mgw li,
-.mgw figure {
+/* Wrapped in :where() so the reset carries ZERO specificity. Written plainly
+   as `.mgw p { margin: 0 }` it scores 0-1-1 and silently beats every single
+   -class rule below it (`.mgw-subline` is only 0-1-0), which quietly threw
+   away the margins on the headline, subline and status and left the hero
+   copy with no vertical rhythm at all. :where() keeps the reset as a floor
+   that any component rule can override. */
+:where(.mgw h1, .mgw h2, .mgw h3, .mgw p, .mgw ul, .mgw ol, .mgw li, .mgw figure) {
   margin: 0;
   padding: 0;
 }
 
-.mgw ul,
-.mgw ol {
+:where(.mgw ul, .mgw ol) {
   list-style: none;
 }
 
