@@ -124,9 +124,10 @@ remove the card entirely.
 See [`assets/mgw/README.md`](assets/mgw/README.md). Overwrite a file with the
 same filename and it is picked up automatically — no code change needed.
 
-`hero.jpg`, `hero-wide.jpg` and `og.jpg` are still generated placeholders and
-need replacing. `cod.jpg` (the "Captains of our own Destinies" card) and
-`stonewall.jpg` (the photograph it is built from) are real.
+`hero-wide.jpg` and `og.jpg` are still generated placeholders and need
+replacing — `og.jpg` is the share card, so it is the one that matters.
+`hero.jpg` (the official candidate card), `cod.jpg` and `stonewall.jpg` are
+real.
 
 #### Timing of the film
 

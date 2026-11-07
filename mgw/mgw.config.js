@@ -55,9 +55,10 @@ window.MGW_CONFIG = {
   VOTING_CLOSES_AT: null,
 
   /* Two accounts, both linked everywhere the campaign offers a follow:
-     the portfolio (kye_pai) leads, the main account (kye_pa) sits beside it. */
-  INSTAGRAM_HANDLE: "kye_pai",
-  INSTAGRAM_HANDLE_ALT: "kye_pa",
+     the journey account (kye_pa) leads, because that is where the campaign
+     is being documented; the portfolio (kye_pai) sits beside it. */
+  INSTAGRAM_HANDLE: "kye_pa",
+  INSTAGRAM_HANDLE_ALT: "kye_pai",
 
   /* Where the hero image itself links. Point it at the ballot instead if you
      would rather the photo drive votes directly. Set to "" to make the hero
@@ -135,9 +136,10 @@ window.MGW_CONFIG = {
       /* Shared hero furniture. */
       eyebrow: "MR GAY WORLD 2026 · CEBU, PHILIPPINES · 22 NOV – 1 DEC",
       heroAlt:
-        "Kyle “Kyepa” Patrick mid-movement, inverted black-and-white, hair reading as a halo",
-      instagramCta: "Follow the journey @kye_pai",
-      instagramAltCta: "@kye_pa",
+        "Kyle Patrick, official candidate for Mr Gay World Sint Maarten 2026, " +
+        "on the Mr Gay World stage card for Cebu City, Philippines",
+      instagramCta: "Follow the journey @kye_pa",
+      instagramAltCta: "@kye_pai",
       heroLinkAria: "See the official candidate announcement on Instagram",
 
       /* The featured Instagram carousel, shown as a card under the CTAs. */
@@ -178,7 +180,7 @@ window.MGW_CONFIG = {
           word: "LIVE",
           headline: "Live from Cebu.",
           subline: "Filming it all myself. Come watch it happen.",
-          ctaPrimary: "Follow it live @kye_pai",
+          ctaPrimary: "Follow it live @kye_pa",
           status: "On the ground in Cebu."
         },
         results: {
@@ -187,7 +189,7 @@ window.MGW_CONFIG = {
           word: "THANK YOU",
           headline: "That’s a wrap on Cebu.",
           subline: "Sint Maarten showed up. Thank you for carrying us there.",
-          ctaPrimary: "Follow what’s next @kye_pai",
+          ctaPrimary: "Follow what’s next @kye_pa",
           /* TODO(Kyle): drop the result in here when you are home. */
           status: "Full story coming soon."
         }
