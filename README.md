@@ -106,6 +106,13 @@ plays every single time:
 
 Set `ALWAYS_OPEN` back to `false` once the competition is over.
 
+#### Links out of the hero
+
+`HERO_LINK_URL` makes the hero photo itself clickable — it currently opens the
+official candidate announcement on Instagram. Point it at `VOTING_URL` instead
+if you would rather the photo drive votes directly, or set it to `""` to make
+the hero a plain image again.
+
 #### The featured Instagram post
 
 `FEATURE_POST_URL` is the carousel linked by the card under the buttons, using

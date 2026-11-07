@@ -895,6 +895,38 @@ html.mgw-locked body {
   box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.9);
 }
 
+/* The hero photo as a link. Fills the frame exactly, and lifts a little on
+   hover so it reads as clickable rather than as a dead image. */
+.mgw-hero-link {
+  display: block;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.mgw-hero-link img {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+}
+
+.mgw-hero-link:hover img,
+.mgw-hero-link:focus-visible img {
+  transform: scale(1.025);
+  opacity: 0.94;
+}
+
+.mgw-hero-link:focus-visible {
+  outline: 2px solid var(--mgw-silver);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mgw-hero-link img { transition: none; }
+  .mgw-hero-link:hover img,
+  .mgw-hero-link:focus-visible img { transform: none; }
+}
+
 .mgw-hero-media::after {
   content: "";
   position: absolute;

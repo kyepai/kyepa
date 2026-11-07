@@ -339,8 +339,25 @@
       width: "1200",
       height: "1600"
     });
+    /* The hero photo doubles as a link when HERO_LINK_URL is set. The anchor
+       goes inside the frame so the existing aspect-ratio, grain overlay and
+       is-missing fallback all keep working untouched. */
+    var heroInner = heroImg;
+    if (CFG.HERO_LINK_URL) {
+      heroInner = el("a", {
+        class: "mgw-hero-link",
+        href: CFG.HERO_LINK_URL,
+        target: "_blank",
+        rel: "noopener",
+        "aria-label": S.heroLinkAria
+      }, [heroImg]);
+      heroInner.addEventListener("click", function () {
+        track("hero_link", CFG.HERO_LINK_URL);
+      });
+    }
+
     var heroMedia = el("div", { class: "mgw-hero-media mgw-rise", style: "--mgw-i:4" }, [
-      heroImg
+      heroInner
     ]);
 
     /* A missing file falls back to the silver gradient on the frame rather

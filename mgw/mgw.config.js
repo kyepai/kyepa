@@ -59,6 +59,11 @@ window.MGW_CONFIG = {
   INSTAGRAM_HANDLE: "kye_pai",
   INSTAGRAM_HANDLE_ALT: "kye_pa",
 
+  /* Where the hero image itself links. Point it at the ballot instead if you
+     would rather the photo drive votes directly. Set to "" to make the hero
+     a plain, non-clickable image again. */
+  HERO_LINK_URL: "https://www.instagram.com/p/DfceDdSSc6F/?obrf=OTBuejJzMDZtN3hz",
+
   /* The campaign carousel on Instagram — the card below the CTAs links here.
      Set to "" to hide that card entirely. */
   FEATURE_POST_URL: "https://www.instagram.com/p/DfceDdSSc6F/?cplk=OTBuejJzMDZtN3hz",
@@ -133,6 +138,7 @@ window.MGW_CONFIG = {
         "Kyle “Kyepa” Patrick mid-movement, inverted black-and-white, hair reading as a halo",
       instagramCta: "Follow the journey @kye_pai",
       instagramAltCta: "@kye_pa",
+      heroLinkAria: "See the official candidate announcement on Instagram",
 
       /* The featured Instagram carousel, shown as a card under the CTAs. */
       featureKicker: "On Instagram",
