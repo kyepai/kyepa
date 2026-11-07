@@ -946,6 +946,105 @@ html.mgw-locked body {
   border-color: rgba(216, 218, 222, 0.5);
 }
 
+/* ---- Second Instagram account ----
+   A quiet text link beside the follow button, so both handles are reachable
+   without the action row carrying two equal-weight buttons. */
+.mgw-alt-ig {
+  font-family: var(--mgw-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  color: var(--mgw-gray);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.15rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.mgw-alt-ig:hover,
+.mgw-alt-ig:focus-visible {
+  color: var(--mgw-silver);
+  border-color: rgba(216, 218, 222, 0.4);
+}
+
+/* ---- Featured Instagram post ----
+   The campaign carousel, as a thumbnail card under the CTAs. */
+.mgw-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 1.75rem;
+  padding: 0.6rem 1.1rem 0.6rem 0.6rem;
+  max-width: 23rem;
+  border: 1px solid var(--mgw-line);
+  border-radius: 12px;
+  background: rgba(244, 244, 241, 0.03);
+  text-decoration: none;
+  transition: border-color 0.25s ease, background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.mgw-feature:hover,
+.mgw-feature:focus-visible {
+  border-color: rgba(216, 218, 222, 0.34);
+  background: rgba(244, 244, 241, 0.07);
+  transform: translateY(-2px);
+}
+
+.mgw-feature-thumb {
+  flex: none;
+  width: 54px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 7px;
+  display: block;
+  background: #15171a;
+}
+
+.mgw-feature-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  min-width: 0;
+}
+
+.mgw-feature-kicker {
+  font-family: var(--mgw-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--mgw-gray);
+}
+
+.mgw-feature-title {
+  font-family: var(--mgw-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--mgw-off-white);
+}
+
+.mgw-feature-cta {
+  font-family: var(--mgw-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--mgw-silver);
+}
+
+/* The card is decoration on top of the CTAs; at phone width the hero is
+   already tall, so it keeps its place but loses some of its padding. */
+@media (max-width: 30rem) {
+  .mgw-feature {
+    margin-top: 1.35rem;
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mgw-feature { transition: none; }
+  .mgw-feature:hover,
+  .mgw-feature:focus-visible { transform: none; }
+}
+
 /* --------------------------------------------------------------------------
    10. The persistent pill, left behind after dismissal
    -------------------------------------------------------------------------- */

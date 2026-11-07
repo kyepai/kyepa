@@ -19,8 +19,22 @@
 window.MGW_CONFIG = {
   /* Bump this string whenever you want the pop-up to appear again for people
      who already dismissed it (e.g. when voting opens). The dismissal flag in
-     localStorage is keyed to this value, so changing it resets everyone. */
+     localStorage is keyed to this value, so changing it resets everyone.
+     While ALWAYS_OPEN is true this has nothing to do — it matters again the
+     moment you turn that off. */
   CAMPAIGN_VERSION: "greenlit-2026-11",
+
+  /* true  — the pop-up opens on EVERY visit, dismissal is not remembered.
+     false — it opens once, and closing it is remembered (the pill reopens it).
+     Set this back to false after the competition. */
+  ALWAYS_OPEN: true,
+
+  /* Only relevant while ALWAYS_OPEN is true.
+     true  — the full intro film plays every single time.
+     false — the film plays once per browser session; later loads in the same
+             session open straight at the hero, which is kinder to anyone
+             clicking around the site. */
+  REPLAY_INTRO: false,
 
   /* "greenlit" | "voting" | "competing" | "results"
      Drives the headline, the primary button, and how the intro film re-cuts
@@ -40,8 +54,14 @@ window.MGW_CONFIG = {
   VOTING_OPENS_AT: null,
   VOTING_CLOSES_AT: null,
 
-  /* Portfolio account — note this is kye_pai, not the main site's kye_pa. */
+  /* Two accounts, both linked everywhere the campaign offers a follow:
+     the portfolio (kye_pai) leads, the main account (kye_pa) sits beside it. */
   INSTAGRAM_HANDLE: "kye_pai",
+  INSTAGRAM_HANDLE_ALT: "kye_pa",
+
+  /* The campaign carousel on Instagram — the card below the CTAs links here.
+     Set to "" to hide that card entirely. */
+  FEATURE_POST_URL: "https://www.instagram.com/p/DfNHOscFo7I/?psln=MTM3YzcxM290NjBvZA==",
   CONTACT_EMAIL: "info@kyepa.com",
 
   /* Competition facts, reused across eyebrow, meta tags and the itinerary. */
@@ -112,6 +132,15 @@ window.MGW_CONFIG = {
       heroAlt:
         "Kyle “Kyepa” Patrick mid-movement, inverted black-and-white, hair reading as a halo",
       instagramCta: "Follow the journey @kye_pai",
+      instagramAltCta: "@kye_pa",
+
+      /* The featured Instagram carousel, shown as a card under the CTAs. */
+      featureKicker: "On Instagram",
+      featureTitle: "Captains of our own Destinies",
+      featureCta: "See the carousel",
+      featureAlt:
+        "Captains of our own Destinies — Kyle Patrick, Mr Gay Sint Maarten, " +
+        "Mr Gay World 2026 in Cebu",
       fullStory: "See the full story",
 
       /* ---- Phase-dependent copy. One block per PHASE value. ---- */

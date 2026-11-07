@@ -81,11 +81,37 @@ in the markup.
 To add Dutch later: copy the whole `en` block to `nl`, translate the values,
 and set `LANG: "nl"`. No other file changes.
 
+#### How often the pop-up appears
+
+| Setting | Effect |
+| --- | --- |
+| `ALWAYS_OPEN: true` | **Current setting.** The pop-up opens on *every* visit. Closing it is not remembered. |
+| `ALWAYS_OPEN: false` | It opens once. After someone closes it, they get the small corner pill instead, and `CAMPAIGN_VERSION` is what brings it back. |
+
+While `ALWAYS_OPEN` is on, `REPLAY_INTRO` decides whether the ~8-second film
+plays every single time:
+
+| Setting | Effect |
+| --- | --- |
+| `REPLAY_INTRO: false` | **Current setting.** The film plays once per browser session. Clicking around the site afterwards opens the pop-up straight at the hero. |
+| `REPLAY_INTRO: true` | The full film plays on every page load. |
+
+Set `ALWAYS_OPEN` back to `false` once the competition is over.
+
+#### The featured Instagram post
+
+`FEATURE_POST_URL` is the carousel linked by the card under the buttons, using
+[`assets/mgw/cod.jpg`](assets/mgw/cod.jpg) as its thumbnail. Set it to `""` to
+remove the card entirely.
+
 #### Replacing images
 
-See [`assets/mgw/README.md`](assets/mgw/README.md). The three files there are
-generated placeholders; overwrite them with the same filenames and they are
-picked up automatically.
+See [`assets/mgw/README.md`](assets/mgw/README.md). Overwrite a file with the
+same filename and it is picked up automatically — no code change needed.
+
+`hero.jpg`, `hero-wide.jpg` and `og.jpg` are still generated placeholders and
+need replacing. `cod.jpg` (the "Captains of our own Destinies" card) and
+`stonewall.jpg` (the photograph it is built from) are real.
 
 #### Timing of the film
 
@@ -101,7 +127,7 @@ glitter count (halved automatically on phones).
 | `mgw/mgw.css` | Every style, scoped under `.mgw-*` so it cannot leak into the rest of the site. |
 | `mgw/mgw.js` | The scene engine, the countdown, the glitter, the pop-up, the scroll reveals. No dependencies. |
 | `mgw/index.html` | The standalone `/mgw/` page: meta tags, share card, and a no-JavaScript fallback. |
-| `assets/mgw/` | The three image slots. |
+| `assets/mgw/` | Campaign images: the hero slots, the share card, and the featured-post thumbnail. |
 
 The homepage ([`index.html`](index.html)) was touched in two places only: four
 lines in `<head>` for the fonts and stylesheet, and a mount `<div>` plus two

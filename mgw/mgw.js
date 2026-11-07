@@ -46,6 +46,9 @@
   var T = CFG.INTRO;
 
   var IG_URL = "https://instagram.com/" + CFG.INSTAGRAM_HANDLE;
+  var IG_ALT_URL = CFG.INSTAGRAM_HANDLE_ALT
+    ? "https://instagram.com/" + CFG.INSTAGRAM_HANDLE_ALT
+    : "";
 
   /* ------------------------------------------------------------------------
      Asset paths, resolved against this script's own URL.
@@ -66,6 +69,45 @@
     }
     return "";
   })();
+
+  /* ------------------------------------------------------------------------
+     Featured-post card — the "Captains of our own Destinies" carousel.
+     A thumbnail that opens the Instagram post. Returns null when
+     FEATURE_POST_URL is blank, so clearing the config removes the card.
+     ------------------------------------------------------------------------ */
+  function featurePost() {
+    if (!CFG.FEATURE_POST_URL) return null;
+
+    var thumb = el("img", {
+      class: "mgw-feature-thumb",
+      src: assetUrl("cod.jpg"),
+      alt: S.featureAlt,
+      loading: "lazy",
+      decoding: "async",
+      width: "1080",
+      height: "1350"
+    });
+
+    var card = el("a", {
+      class: "mgw-feature mgw-rise",
+      href: CFG.FEATURE_POST_URL,
+      target: "_blank",
+      rel: "noopener",
+      style: "--mgw-i:6"
+    }, [
+      thumb,
+      el("span", { class: "mgw-feature-text" }, [
+        el("span", { class: "mgw-feature-kicker", text: S.featureKicker }),
+        el("span", { class: "mgw-feature-title", text: S.featureTitle }),
+        el("span", { class: "mgw-feature-cta", text: S.featureCta + " →" })
+      ])
+    ]);
+
+    card.addEventListener("click", function () {
+      track("feature_post", CFG.FEATURE_POST_URL);
+    });
+    return card;
+  }
 
   function assetUrl(name) {
     try {
@@ -140,11 +182,26 @@
   }
 
   function rememberDismissal() {
+    /* With ALWAYS_OPEN set, dismissal is deliberately not remembered — the
+       pop-up is meant to greet every visit for the length of the campaign. */
+    if (CFG.ALWAYS_OPEN) return;
     try {
       window.localStorage.setItem(STORE_KEY, "1");
     } catch (err) {
       /* Private browsing: the pop-up simply shows again next visit. */
     }
+  }
+
+  /* Has the film already played in this tab? sessionStorage, so it resets
+     when the browser is closed and the next real visit gets the full film. */
+  function introSeenThisSession() {
+    try {
+      if (window.sessionStorage.getItem("mgw:intro-seen") === "1") return true;
+      window.sessionStorage.setItem("mgw:intro-seen", "1");
+    } catch (err) {
+      /* No session storage: play the film, which is the better failure. */
+    }
+    return false;
   }
 
   /* ------------------------------------------------------------------------
@@ -310,12 +367,30 @@
     var primaryCta = ctaLink(primary, "mgw-cta--primary");
     primaryCta.style.setProperty("--mgw-i", "4");
 
+    /* The second account sits beside the first as a quieter text link, so
+       both are reachable without the row carrying two equal-weight buttons. */
+    var altIg = null;
+    if (IG_ALT_URL) {
+      altIg = el("a", {
+        class: "mgw-alt-ig mgw-rise",
+        href: IG_ALT_URL,
+        target: "_blank",
+        rel: "noopener",
+        style: "--mgw-i:5",
+        text: S.instagramAltCta
+      });
+      altIg.addEventListener("click", function () {
+        track("instagram_cta", CFG.INSTAGRAM_HANDLE_ALT);
+      });
+    }
+
     var heroCopy = el("div", { class: "mgw-hero-copy" }, [
       el("p", { class: "mgw-eyebrow mgw-rise", text: S.eyebrow, style: "--mgw-i:0" }),
       el("h1", { class: "mgw-headline mgw-rise", text: P.headline, style: "--mgw-i:1" }),
       el("p", { class: "mgw-subline mgw-rise", text: P.subline, style: "--mgw-i:2" }),
       status,
-      el("div", { class: "mgw-actions" }, [primaryCta, igCta])
+      el("div", { class: "mgw-actions" }, [primaryCta, igCta, altIg]),
+      featurePost()
     ]);
 
     /* Overlay mode points at the standalone route for the full story;
@@ -740,6 +815,21 @@
     });
     var home = el("a", { href: homeUrl(), text: S.backHome });
 
+    /* Both accounts again in the footer meta line. */
+    var altIg = IG_ALT_URL
+      ? el("a", {
+          href: IG_ALT_URL,
+          target: "_blank",
+          rel: "noopener",
+          text: S.instagramAltCta
+        })
+      : null;
+    if (altIg) {
+      altIg.addEventListener("click", function () {
+        track("instagram_cta", CFG.INSTAGRAM_HANDLE_ALT);
+      });
+    }
+
     return el("footer", { class: "mgw-footer" }, [
       el("div", { class: "mgw-wrap" }, [
         el("h2", { class: "mgw-h2 mgw-reveal", text: S.footerTitle }),
@@ -749,6 +839,7 @@
         ]),
         el("div", { class: "mgw-footer-meta" }, [
           el("span", {}, [mail]),
+          altIg ? el("span", {}, [altIg]) : null,
           el("span", {}, [home]),
           el("span", { text: S.route })
         ])
@@ -883,8 +974,11 @@
 
     if (!supported) {
       showPill();
-    } else if (forced || !wasDismissed()) {
-      open({ skipIntro: false });
+    } else if (forced || CFG.ALWAYS_OPEN || !wasDismissed()) {
+      /* With ALWAYS_OPEN set, the film itself is still only replayed as
+         REPLAY_INTRO allows — otherwise someone clicking through several
+         pages would sit through the whole thing each time. */
+      open({ skipIntro: CFG.ALWAYS_OPEN && !CFG.REPLAY_INTRO && introSeenThisSession() });
     } else {
       showPill();
     }
