@@ -56,6 +56,14 @@ headline and the main button:
 
 #### Opening voting
 
+> **Live now.** `PHASE` is `"voting"` and `VOTING_URL` points at the official
+> ballot, `https://mrgayworld2026.sqors.com`.
+>
+> No closing date is published yet, so `VOTING_CLOSES_AT` is still `null` and
+> the status line reads "Voting is open now." Set `VOTING_CLOSES_AT` to an ISO
+> datetime once the organisation announces one, and the line becomes
+> "Voting closes in" followed by a live countdown.
+
 1. Paste the official link into `VOTING_URL`.
 2. Set `PHASE: "voting"`.
 3. Bump `CAMPAIGN_VERSION` to something new, e.g. `"voting-2026-11"`.

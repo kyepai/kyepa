@@ -22,7 +22,7 @@ window.MGW_CONFIG = {
      localStorage is keyed to this value, so changing it resets everyone.
      While ALWAYS_OPEN is true this has nothing to do — it matters again the
      moment you turn that off. */
-  CAMPAIGN_VERSION: "greenlit-2026-11",
+  CAMPAIGN_VERSION: "voting-2026-11",
 
   /* true  — the pop-up opens on EVERY visit, dismissal is not remembered.
      false — it opens once, and closing it is remembered (the pill reopens it).
@@ -39,12 +39,12 @@ window.MGW_CONFIG = {
   /* "greenlit" | "voting" | "competing" | "results"
      Drives the headline, the primary button, and how the intro film re-cuts
      itself. See strings.en.phases below for what each one says. */
-  PHASE: "greenlit",
+  PHASE: "voting",
 
   /* Paste the official voting link here the moment Mr Gay World publishes it.
      While this is empty, the vote button falls back to the Instagram link so
      it can never be a dead end. */
-  VOTING_URL: "",
+  VOTING_URL: "https://mrgayworld2026.sqors.com",
 
   /* Optional ISO datetimes. If VOTING_OPENS_AT is set and has already passed,
      phase "greenlit" flips itself to "voting" in the browser — so you can set
@@ -61,7 +61,7 @@ window.MGW_CONFIG = {
 
   /* The campaign carousel on Instagram — the card below the CTAs links here.
      Set to "" to hide that card entirely. */
-  FEATURE_POST_URL: "https://www.instagram.com/p/DfceDdSSc6F/?dlrf=OTBuejJzMDZtN3hz",
+  FEATURE_POST_URL: "https://www.instagram.com/p/DfceDdSSc6F/?cplk=OTBuejJzMDZtN3hz",
   CONTACT_EMAIL: "info@kyepa.com",
 
   /* Competition facts, reused across eyebrow, meta tags and the itinerary. */
@@ -161,7 +161,10 @@ window.MGW_CONFIG = {
           headline: "Sint Maarten needs your vote.",
           subline: "One island, one delegate, one tap. Make it count.",
           ctaPrimary: "VOTE FOR SINT MAARTEN",
-          status: "Voting closes in"
+          status: "Voting closes in",
+          /* Used instead of the line above while VOTING_CLOSES_AT is unset,
+             so the status never reads as an unfinished sentence. */
+          statusOpen: "Voting is open now."
         },
         competing: {
           typeA: "Status: landed.",

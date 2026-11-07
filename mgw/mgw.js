@@ -350,11 +350,20 @@
       heroMedia.classList.add("is-missing");
     });
 
+    /* The voting status line is written to be completed by the countdown
+       ("Voting closes in" + clock). With no VOTING_CLOSES_AT there is no
+       clock, so fall back to a line that stands on its own rather than
+       leaving a sentence hanging. */
+    var countsDown = PHASE === "voting" && !!parseDate(CFG.VOTING_CLOSES_AT);
+    var statusText = (PHASE === "voting" && !countsDown && P.statusOpen)
+      ? P.statusOpen
+      : P.status;
+
     var statusClock = el("span", { class: "mgw-status-clock" });
     var status = el("p", { class: "mgw-status mgw-rise", style: "--mgw-i:3" }, [
-      el("span", { text: P.status })
+      el("span", { text: statusText })
     ]);
-    if (PHASE === "voting" && parseDate(CFG.VOTING_CLOSES_AT)) {
+    if (countsDown) {
       status.appendChild(statusClock);
     }
 
