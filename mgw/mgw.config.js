@@ -61,7 +61,7 @@ window.MGW_CONFIG = {
 
   /* The campaign carousel on Instagram — the card below the CTAs links here.
      Set to "" to hide that card entirely. */
-  FEATURE_POST_URL: "https://www.instagram.com/p/DfNHOscFo7I/?psln=MTM3YzcxM290NjBvZA==",
+  FEATURE_POST_URL: "https://www.instagram.com/p/DfceDdSSc6F/?dlrf=OTBuejJzMDZtN3hz",
   CONTACT_EMAIL: "info@kyepa.com",
 
   /* Competition facts, reused across eyebrow, meta tags and the itinerary. */
