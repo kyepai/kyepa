@@ -804,17 +804,34 @@
   function buildPartners() {
     var cards = S.partners.map(function (partner) {
       var empty = !partner.name;
-      return el(
-        "li",
-        { class: "mgw-partner mgw-reveal" + (empty ? " mgw-partner--empty" : "") },
-        [
-          el("p", {
-            class: "mgw-partner-name",
-            text: empty ? S.partnerEmpty : partner.name
-          }),
-          el("p", { class: "mgw-partner-role", text: partner.role })
-        ]
-      );
+
+      /* A partner with a url gets its name linked; everyone else stays as
+         plain text, which is what the brief asks for until each partner has
+         given permission for anything more. */
+      var label;
+      if (!empty && partner.url) {
+        label = el("a", {
+          class: "mgw-partner-link",
+          href: partner.url,
+          target: "_blank",
+          rel: "noopener",
+          text: partner.name
+        });
+        label.addEventListener("click", function () {
+          track("partner_link", partner.name);
+        });
+      } else {
+        label = el("span", { text: empty ? S.partnerEmpty : partner.name });
+      }
+
+      var cls = "mgw-partner mgw-reveal";
+      if (empty) cls += " mgw-partner--empty";
+      if (partner.wide) cls += " mgw-partner--wide";
+
+      return el("li", { class: cls }, [
+        el("p", { class: "mgw-partner-name" }, [label]),
+        el("p", { class: "mgw-partner-role", text: partner.role })
+      ]);
     });
 
     return el("section", { class: "mgw-section", id: "partners" }, [

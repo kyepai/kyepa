@@ -1384,10 +1384,17 @@ html.mgw-locked body {
 
 @media (min-width: 40rem) {
   .mgw-partners { grid-template-columns: repeat(2, 1fr); }
+  /* A double-width card. Only from here up: in the single-column layout
+     every card is already full width, and a span of 2 would overflow. */
+  .mgw-partner--wide { grid-column: span 2; }
 }
 
 @media (min-width: 60rem) {
   .mgw-partners { grid-template-columns: repeat(4, 1fr); }
+  /* Four columns and a double-width card leaves the open slots short of a
+     full row, which shows as a gap in the grid's hairline background. Give
+     them two columns each so both rows close: 1 + 1 + 2, then 2 + 2. */
+  .mgw-partner--empty { grid-column: span 2; }
 }
 
 .mgw-partner {
@@ -1420,6 +1427,21 @@ html.mgw-locked body {
   color: var(--mgw-gray-dim);
   font-style: italic;
   font-weight: 400;
+}
+
+/* A linked partner name. Underlined on hover only, so the strip still reads
+   as a quiet credit line rather than a row of links. */
+.mgw-partner-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.1rem;
+  transition: border-color 0.2s ease;
+}
+
+.mgw-partner-link:hover,
+.mgw-partner-link:focus-visible {
+  border-color: rgba(216, 218, 222, 0.5);
 }
 
 .mgw-note {

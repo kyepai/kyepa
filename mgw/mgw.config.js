@@ -252,6 +252,14 @@ window.MGW_CONFIG = {
       partners: [
         { name: "St. Maarten Tourism Bureau", role: "Supporting partner" },
         { name: "INDISU Dance Theater St. Maarten", role: "Routing partner" },
+        /* `wide` gives a card two columns instead of one. `url` turns the
+           name into a link; leave it off and the name stays plain text. */
+        {
+          name: "Safe French Side",
+          role: "Endorsing partner",
+          wide: true,
+          url: "https://www.instagram.com/p/DffIxBulkVl/"
+        },
         { name: "", role: "Open slot" },
         { name: "", role: "Open slot" }
       ],
