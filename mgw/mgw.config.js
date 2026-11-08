@@ -258,7 +258,7 @@ window.MGW_CONFIG = {
           name: "Safe French Side",
           role: "Endorsing partner",
           wide: true,
-          url: "https://www.instagram.com/p/DffIxBulkVl/"
+          url: "https://www.instagram.com/p/DffIxBulkVl/?utm_source=ig_web_copy_link&xtok=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
         },
         { name: "", role: "Open slot" },
         { name: "", role: "Open slot" }
