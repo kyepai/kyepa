@@ -18,6 +18,21 @@ and it gives you the tidy `/mgw/` address rather than a long file path.
 
 ---
 
+## Styled in Motion — the styling service line
+
+The styling consultations page lives entirely in **`styling/`**. Open
+`styling/index.html` from disk, or <http://localhost:8000/styling/> if you
+are serving the folder; `kyepa.com/styling/` live. It is linked from the
+main nav and from a teaser block near the bottom of the homepage.
+
+Everything you would want to change — prices, offer wording, case studies,
+FAQ answers, the reel link, where the waitlist form sends to — is in
+**`styling/styling.config.js`**. See `styling/README.md`, which also covers
+setting up the form and what is still waiting on you (photos, the reel, the
+Malta title, final prices).
+
+---
+
 ## GREENLIT — the Mr Gay World 2026 campaign
 
 The campaign experience lives entirely in **`mgw/`** plus the images in

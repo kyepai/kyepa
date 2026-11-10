@@ -15,6 +15,10 @@ manager, framework, or test suite**.
 - `script.js` — all behaviour for the main page.
 - `mgw/` — the self-contained "GREENLIT" Mr Gay World 2026 campaign (a pop-up
   on the homepage plus a standalone route at `/mgw/`). See the README.
+- `styling/` — the "Styled in Motion" styling service line at `/styling/`.
+  Same shape as `mgw/`: a config file holds every string and price, a
+  renderer builds the page, and a stylesheet layers on top of `style.css`.
+  See its README.
 
 ## Working with this repo
 
@@ -34,6 +38,12 @@ manager, framework, or test suite**.
 
 ### Conventions worth matching
 
+- **There is one shared `<nav class="site-nav">`**, hand-written into each
+  page's HTML (there is no templating). It is a **sibling of `.hero`, never
+  a child** — the hero is a full-viewport `role="button"`, so a nav nested
+  inside it would send every nav click into the Offers modal. Its plate
+  fades in with `--progress`. Add a page to the site and you add its link to
+  this list in both `index.html` and `styling/index.html`.
 - **Modals are native `<dialog>` elements** opened with `.showModal()`. Every
   one follows the same pattern in `script.js`: a trigger listener, a close-button
   listener, and a backdrop click handler that closes when `event.target` is the
@@ -52,6 +62,17 @@ manager, framework, or test suite**.
   **no CSS custom properties for design tokens** and **no web fonts** — the
   main page is `system-ui` throughout. (The campaign in `mgw/` is the exception
   and defines its own scoped tokens and Google Fonts.)
+- **Watch specificity against `style.css`.** `.content p` (0-1-1) and
+  `.content p + p` (0-1-2) set colour and margins on every paragraph inside
+  `<main class="content">`. A single-class rule like `.my-thing` (0-1-0)
+  silently loses to them, which reads as "my CSS did nothing". Prefix the
+  selector (`.styling-content .my-thing`) rather than reaching for
+  `!important` — `styling/styling.css` does this throughout and explains why.
+- **Forms post off-site or not at all.** There is no server and no build
+  step, so no environment variable can ever be substituted in. The waitlist
+  form in `styling/` posts to a public Formspree endpoint committed in the
+  config, and falls back to a pre-filled `mailto:` when that is unset. Do
+  not add anything to this repo that needs a real secret.
 - **`TODO(Kyle):` comments** mark content the user still needs to supply or
   verify. There are a few in `index.html`, including a commented-out
   placeholder testimonials section. Leave them alone unless asked.
@@ -64,6 +85,8 @@ Site assets sit flat at the repo root (`logo.svg`, `Portrait2.jpg`,
 - `book-covers/` — the five cover images actually used by the Reading List
   modal, with short filenames (`hwt.jpg`, `tes.jpg`, …).
 - `assets/mgw/` — campaign image slots.
+- `assets/styling/` — image slots for the styling page. Does not exist yet:
+  every slot on that page currently renders a labelled placeholder.
 
 Some files at the root are **not referenced by the site** and should be left
 alone: `portrait.jpg`, `Kyle_Patrick_CV_2026.pdf`, and the `book covers/`
