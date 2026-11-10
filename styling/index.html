@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ======================================================================
+       The page's own meta tags. These three lines are the only copy on this
+       page that does NOT live in styling.config.js — a search engine has to
+       read them without running JavaScript. Edit them here.
+       ====================================================================== -->
+  <title>Styling Consultations — Styled in Motion | Kyepa</title>
+  <meta name="description" content="Styling for people who move, present and perform. Nineteen years on stage, from opera houses to the Tomorrowland main stage, turned into a five-step styling method. Every look passes a movement test.">
+  <link rel="canonical" href="https://kyepa.com/styling/">
+
+  <!-- Open Graph / Twitter: what WhatsApp, Instagram and iMessage read when
+       this page is shared. Absolute URLs are required here.
+       TODO(Kyle): /assets/styling/og.jpg does not exist yet. Until you add
+       it, shared links preview without an image — the text still works. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kyepa">
+  <meta property="og:url" content="https://kyepa.com/styling/">
+  <meta property="og:title" content="Styled in Motion — styling for people who move">
+  <meta property="og:description" content="Every look passes a movement test before it's approved: walk, sit, turn, gesture, heat. Styling consultations with Kyepa.">
+  <meta property="og:image" content="https://kyepa.com/assets/styling/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Styled in Motion — styling consultations with Kyepa">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Styled in Motion — styling for people who move">
+  <meta name="twitter:description" content="Styling for people who move, present and perform. Every look passes a movement test.">
+  <meta name="twitter:image" content="https://kyepa.com/assets/styling/og.jpg">
+
+  <link rel="icon" href="../logo.svg" type="image/svg+xml">
+
+  <!-- The main site's stylesheet first, then this page's additions on top.
+       Same palette, same type scale, same components — no new fonts. -->
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="styling.css">
+</head>
+<body class="styling-page">
+
+  <!-- Same fixed video background and scroll-driven blur as the homepage, so
+       the two pages feel like one site. Decorative only. -->
+  <video class="bg-video bg-video-a is-active" src="../background.mov" autoplay muted loop playsinline aria-hidden="true"></video>
+  <div class="blur-layer" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#styling-main">Skip to content</a>
+
+  <!-- Site navigation. Lives outside <header> on the homepage so clicks
+       never reach the hero's own button; kept identical here. -->
+  <nav class="site-nav" aria-label="Main">
+    <a class="site-nav-brand" href="../index.html">
+      <img src="../logo.svg" alt="Kyepa — home" width="368" height="151">
+    </a>
+    <ul class="site-nav-list">
+      <li><a href="index.html" aria-current="page">Styling</a></li>
+      <li><a href="mailto:info@kyepa.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="content styling-content" id="styling-main">
+
+    <!-- Every section below is rendered from styling.config.js by
+         styling.js. The order here is the order on the page. -->
+    <div id="styling-hero"></div>
+    <div id="styling-idea"></div>
+    <div id="styling-method"></div>
+    <div id="styling-offers"></div>
+    <div id="styling-portfolio"></div>
+    <div id="styling-reel"></div>
+    <div id="styling-credentials"></div>
+    <div id="styling-waitlist"></div>
+    <div id="styling-faq"></div>
+    <div id="styling-closing"></div>
+
+    <noscript>
+      <!-- Everything essential with no JavaScript: real text, real prices,
+           a real way to reach me. -->
+      <section class="styling-noscript">
+        <h1>Styled in Motion</h1>
+        <p>
+          Styling for people who move, present and perform: designed for the
+          life you're stepping into.
+        </p>
+        <p>
+          Most stylists dress a body standing still. I spent 19 years on
+          stage, from opera houses to the Tomorrowland main stage, learning
+          how clothes move, breathe and photograph under light. Every look I
+          design passes a movement test before it's approved: walk, sit,
+          turn, gesture, heat.
+        </p>
+        <h2>Offers</h2>
+        <ul>
+          <li><strong>Style Sprint</strong> — 2–3 hours, remote or in person. From €250</li>
+          <li><strong>Full Image Sprint</strong> — 5 sessions over 3–5 weeks. From €1,200</li>
+          <li><strong>Stage &amp; Event Styling</strong> — project fee from €500, garments billed separately</li>
+          <li><strong>Design Partner add-on</strong> — seasonal refresh for existing clients. Ask me</li>
+        </ul>
+        <p>Indicative pricing. Every project gets a proper quote first.</p>
+        <p>
+          <a class="contact-button" href="mailto:info@kyepa.com?subject=Style%20Sprint%20list">Join the Style Sprint list</a>
+        </p>
+        <p>
+          <a href="https://www.instagram.com/kye_pa" target="_blank" rel="noopener">@kye_pa</a> ·
+          <a href="mailto:info@kyepa.com">info@kyepa.com</a> ·
+          <a href="../index.html">kyepa.com</a>
+        </p>
+      </section>
+    </noscript>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Work. Play. Stay Curious.</p>
+    <p class="site-footer-credit">Styled &amp; designed by KYEPA.</p>
+  </footer>
+
+  <!-- Both deferred: deferred scripts run in document order, so the config
+       is always in place before the renderer boots.
+
+       The homepage's script.js is deliberately NOT loaded here: it hands the
+       background over to a second video at 67% scroll, and this page only
+       carries the one (the lighter of the two — most visitors arrive from
+       Instagram on mobile). styling.js sets --progress itself instead.
+       The GREENLIT campaign pop-up is also left off — see styling/README.md. -->
+  <script src="styling.config.js" defer></script>
+  <script src="styling.js" defer></script>
+</body>
+</html>

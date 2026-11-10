@@ -1,0 +1,697 @@
+/* ==========================================================================
+   STYLED IN MOTION — additions for /styling/
+   ==========================================================================
+   Loaded AFTER ../style.css, which supplies the palette, the type scale, the
+   reset, the video background, the .modal plate and the .contact-button
+   pill. Nothing here redefines any of that — these are the few components
+   the main site did not already have.
+
+   No new fonts and no custom properties, matching the main page: the one
+   variable in play is --progress, set by styling.js.
+
+   Palette, for reference (all from ../style.css):
+     #f5f5f5  primary text        #e2e2e2  body copy
+     #cfcfcf  muted              rgba(245,245,245,.6)  dimmest
+     rgba(20,20,20,.88)  card plate (from .hover-plate)
+     rgba(245,245,245,.12–.2)  hairlines
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Page frame
+   -------------------------------------------------------------------------- */
+
+/* Clears the fixed nav. The homepage does not need this — its hero is a
+   full viewport tall and the nav sits over it. */
+.styling-page .styling-content {
+  padding-top: 3.5rem;
+}
+
+/* The main site caps every section at 640px. Prose keeps that measure;
+   the grids need more room, so they opt out. */
+.styling-content section {
+  padding: 4rem 1.5rem;
+}
+
+.styling-wide {
+  max-width: min(1100px, 100%);
+}
+
+/* Shared intro line under a section heading. */
+.styling-content .styling-section-intro {
+  margin-top: 0.5rem;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   2. Hero
+   -------------------------------------------------------------------------- */
+.styling-content .styling-hero {
+  text-align: center;
+  padding-top: 3rem;
+}
+
+.styling-hero-title {
+  font-size: clamp(2.5rem, 12vw, 5.5rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+
+.styling-content .styling-hero-subline {
+  margin: 1.25rem auto 0;
+  max-width: 34ch;
+  font-size: clamp(1rem, 4vw, 1.25rem);
+  line-height: 1.55;
+  color: #cfcfcf;
+}
+
+.styling-content .styling-hero-cta {
+  margin-top: 2rem;
+}
+
+/* Full-width opener frame. Portrait on a phone, letterbox on a desktop —
+   most of the source material is shot vertically. */
+.styling-hero-frame {
+  margin-top: 3rem;
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+}
+
+.styling-hero-media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   3. Placeholder tiles
+   --------------------------------------------------------------------------
+   Same gradient plate as the homepage's .testimonial-photo, so an unshot
+   slot reads as deliberate rather than as a broken image.
+   -------------------------------------------------------------------------- */
+.styling-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(155deg, rgba(245, 245, 245, 0.14), rgba(245, 245, 245, 0.04));
+  border: 1px solid rgba(245, 245, 245, 0.18);
+  border-radius: 8px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(245, 245, 245, 0.55);
+}
+
+.styling-placeholder--hero {
+  border-radius: 10px;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.styling-placeholder--card {
+  aspect-ratio: 4 / 5;
+  height: auto;
+}
+
+/* --------------------------------------------------------------------------
+   4. The method
+   --------------------------------------------------------------------------
+   A real <ol>, numbered with a CSS counter so the digits are decoration and
+   the list semantics stay intact.
+   -------------------------------------------------------------------------- */
+.styling-steps {
+  counter-reset: step;
+  list-style: none;
+  margin-top: 2rem;
+  display: grid;
+  gap: 1px;
+  background: rgba(245, 245, 245, 0.12);
+  border: 1px solid rgba(245, 245, 245, 0.12);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.styling-step {
+  counter-increment: step;
+  position: relative;
+  padding: 1.5rem 1.5rem 1.5rem 4rem;
+  background: rgba(20, 20, 20, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.styling-step::before {
+  content: counter(step);
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(245, 245, 245, 0.55);
+  font-variant-numeric: tabular-nums;
+}
+
+.styling-step-name {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.styling-content .styling-step-line {
+  margin-top: 0.2rem;
+  font-size: 0.95rem;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   5. Offers
+   -------------------------------------------------------------------------- */
+.styling-offer-grid {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.styling-offer {
+  padding: 1.5rem;
+  border: 1px solid rgba(245, 245, 245, 0.12);
+  border-radius: 10px;
+  background: rgba(20, 20, 20, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* .offer-name and .offer-price come from ../style.css — the same row the
+   homepage's Suite of Offers uses. Only the heading size needs setting,
+   since here it is an <h3> rather than a <p>. */
+.styling-offer .offer-name {
+  font-size: 1.0625rem;
+}
+
+.styling-content .styling-offer-meta {
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+.styling-offer p:not(.styling-offer-meta) {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.styling-content .styling-offer-note {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   6. Lookbook
+   -------------------------------------------------------------------------- */
+.styling-card-grid {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.styling-card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+}
+
+.styling-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(245, 245, 245, 0.18);
+}
+
+.styling-card-title {
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.styling-content .styling-card-thinking {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+/* Only the clickable cards get affordances. */
+.styling-card--button {
+  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.25s ease;
+}
+
+.styling-card--button .styling-card-image,
+.styling-card--button .styling-placeholder {
+  transition: opacity 0.25s ease;
+}
+
+.styling-card--button:hover,
+.styling-card--button:focus-visible {
+  transform: translateY(-3px);
+}
+
+.styling-card--button:hover .styling-card-image,
+.styling-card--button:focus-visible .styling-card-image,
+.styling-card--button:hover .styling-placeholder,
+.styling-card--button:focus-visible .styling-placeholder {
+  opacity: 0.82;
+}
+
+.styling-card--button:focus-visible {
+  outline: 2px solid rgba(245, 245, 245, 0.6);
+  outline-offset: 6px;
+}
+
+.styling-card--button .styling-card-title::after {
+  content: " →";
+  color: rgba(245, 245, 245, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   7. The reel
+   --------------------------------------------------------------------------
+   Instagram's /embed/ route renders in a plain iframe, so no Instagram
+   JavaScript — and no third-party tracking — is loaded onto the site.
+   -------------------------------------------------------------------------- */
+.styling-reel-frame {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 9 / 16;
+  max-width: 420px;
+  margin-inline: auto;
+  border: 1px solid rgba(245, 245, 245, 0.18);
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(155deg, rgba(245, 245, 245, 0.14), rgba(245, 245, 245, 0.04));
+}
+
+.styling-reel-embed {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.styling-content .styling-reel-placeholder {
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+.styling-content .styling-reel-cta {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* --------------------------------------------------------------------------
+   8. Credentials strip
+   -------------------------------------------------------------------------- */
+.styling-content .styling-credentials {
+  padding-top: 0;
+}
+
+.styling-credential-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(245, 245, 245, 0.12);
+  border-bottom: 1px solid rgba(245, 245, 245, 0.12);
+}
+
+.styling-credential {
+  padding: 0 1rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+/* Interpuncts between items, like the campaign's eyebrow line. */
+.styling-credential + .styling-credential {
+  border-left: 1px solid rgba(245, 245, 245, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   9. Waitlist form
+   -------------------------------------------------------------------------- */
+.styling-form {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.styling-field label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.4rem;
+}
+
+.styling-content .styling-field-hint {
+  margin: -0.2rem 0 0.4rem;
+  font-size: 0.8rem;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+.styling-field input[type="text"],
+.styling-field input[type="email"],
+.styling-field select,
+.styling-field textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font: inherit;
+  /* 1rem keeps iOS Safari from zooming the page in on focus. */
+  font-size: 1rem;
+  color: #f5f5f5;
+  background: rgba(10, 10, 10, 0.7);
+  border: 1px solid rgba(245, 245, 245, 0.25);
+  border-radius: 8px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.styling-field textarea {
+  resize: vertical;
+  min-height: 5.5rem;
+}
+
+.styling-field input:focus,
+.styling-field select:focus,
+.styling-field textarea:focus {
+  outline: none;
+  border-color: #f5f5f5;
+  background: rgba(10, 10, 10, 0.9);
+}
+
+/* A visible invalid state, but only once the field has been interacted
+   with — :invalid alone would flag every empty required field on load. */
+.styling-field input:user-invalid,
+.styling-field select:user-invalid,
+.styling-field textarea:user-invalid {
+  border-color: #e4a0a0;
+}
+
+.styling-field--consent {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.styling-field--consent input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.15rem;
+  accent-color: #f5f5f5;
+}
+
+.styling-field--consent label {
+  margin-bottom: 0;
+  font-weight: 400;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #e2e2e2;
+}
+
+/* Spam honeypot: off-screen rather than display:none, because some bots
+   skip hidden fields. Not in the tab order (tabindex="-1" in the markup). */
+.styling-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.styling-content .styling-form-actions {
+  margin-top: 0.25rem;
+}
+
+.styling-submit {
+  /* .contact-button is an <a> on the rest of the site; as a <button> it
+     needs these few resets to match. */
+  font: inherit;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  background: none;
+}
+
+.styling-submit:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.styling-content .styling-form-status {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.styling-content .styling-form-status:empty {
+  display: none;
+}
+
+.styling-content .styling-form-status--ok {
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(245, 245, 245, 0.25);
+  border-radius: 10px;
+  background: rgba(20, 20, 20, 0.88);
+  font-size: 1.0625rem;
+  color: #f5f5f5;
+}
+
+.styling-content .styling-form-status--error {
+  color: #e4a0a0;
+}
+
+.styling-content .styling-form-alt {
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   10. FAQ
+   --------------------------------------------------------------------------
+   <details>/<summary>: an accordion that is keyboard-operable and works
+   with JavaScript switched off, with no script of our own.
+   -------------------------------------------------------------------------- */
+.styling-faq-list {
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(245, 245, 245, 0.12);
+}
+
+.styling-faq-item {
+  border-bottom: 1px solid rgba(245, 245, 245, 0.12);
+}
+
+.styling-faq-q {
+  position: relative;
+  /* Padded out to a comfortable 44px-plus tap target. */
+  padding: 1.1rem 2.5rem 1.1rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  cursor: pointer;
+  list-style: none;
+}
+
+/* Hide the native disclosure marker in both engines. */
+.styling-faq-q-text {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  display: inline;
+}
+
+.styling-faq-q::-webkit-details-marker {
+  display: none;
+}
+
+.styling-faq-q::marker {
+  content: "";
+}
+
+.styling-faq-q::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 0.25rem;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: rgba(245, 245, 245, 0.5);
+  transition: transform 0.2s ease;
+}
+
+.styling-faq-item[open] .styling-faq-q::after {
+  content: "–";
+}
+
+.styling-faq-q:focus-visible {
+  outline: 2px solid rgba(245, 245, 245, 0.6);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.styling-faq-a {
+  padding: 0 2.5rem 1.4rem 0;
+}
+
+.styling-faq-a p {
+  font-size: 0.95rem;
+}
+
+/* --------------------------------------------------------------------------
+   11. Closing CTA
+   -------------------------------------------------------------------------- */
+.styling-closing {
+  text-align: center;
+}
+
+.styling-content .styling-closing-title {
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  max-width: 24ch;
+  margin: 0 auto 2rem;
+}
+
+/* --------------------------------------------------------------------------
+   12. No-JavaScript fallback
+   -------------------------------------------------------------------------- */
+.styling-noscript h1 {
+  font-size: clamp(2rem, 9vw, 3.5rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.styling-noscript h2 {
+  margin-top: 2.5rem;
+}
+
+.styling-noscript ul {
+  margin: 1rem 0 0 1.25rem;
+  line-height: 1.9;
+  color: #e2e2e2;
+}
+
+.styling-noscript p {
+  margin-top: 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   13. Wider screens
+   -------------------------------------------------------------------------- */
+@media (min-width: 40rem) {
+  .styling-content section {
+    padding: 5rem 2rem;
+  }
+
+  .styling-hero-frame {
+    aspect-ratio: 3 / 2;
+  }
+
+  .styling-offer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .styling-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .styling-credential-list {
+    gap: 0.75rem 0;
+  }
+
+  .styling-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Side-by-side fields are not the same height — the Instagram field
+     carries a hint line and its neighbour does not. Pushing each control
+     to the bottom of its own cell keeps the inputs on a shared baseline
+     instead of stepping down the row. The consent row is excluded: it is
+     a checkbox-and-label grid, not a label-above-control stack. */
+  .styling-form > .styling-field:not(.styling-field--consent) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .styling-form > .styling-field:not(.styling-field--consent) > input,
+  .styling-form > .styling-field:not(.styling-field--consent) > select,
+  .styling-form > .styling-field:not(.styling-field--consent) > textarea {
+    margin-top: auto;
+  }
+
+  /* The long answers and the single-column rows span the full width. */
+  .styling-form > .styling-field--wide,
+  .styling-form > .styling-field--consent,
+  .styling-form > .styling-form-actions,
+  .styling-form > .styling-form-status {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 60rem) {
+  .styling-hero-frame {
+    aspect-ratio: 16 / 9;
+  }
+
+  .styling-steps {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .styling-card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   14. Reduced motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .styling-card--button,
+  .styling-card--button .styling-card-image,
+  .styling-card--button .styling-placeholder,
+  .styling-faq-q::after,
+  .styling-field input,
+  .styling-field select,
+  .styling-field textarea {
+    transition: none;
+  }
+
+  .styling-card--button:hover,
+  .styling-card--button:focus-visible {
+    transform: none;
+  }
+}
