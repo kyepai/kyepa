@@ -20,6 +20,19 @@
   <video class="bg-video bg-video-b" src="background2.mov" autoplay muted loop playsinline></video>
   <div class="blur-layer" aria-hidden="true"></div>
 
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Site navigation. Deliberately a sibling of .hero, not a child: the
+       hero is a full-viewport role="button", so a nav nested inside it
+       would send every nav click into the Offers modal. The bar is bare
+       text over the video and gains its plate as --progress rises. -->
+  <nav class="site-nav" aria-label="Main">
+    <ul class="site-nav-list">
+      <li><a href="styling/index.html">Styling</a></li>
+      <li><a href="mailto:info@kyepa.com">Contact</a></li>
+    </ul>
+  </nav>
+
   <header class="hero" id="hero-banner" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="offers-modal">
     <div class="hero-copy">
       <img class="hero-logo" src="logo.svg" alt="Kyepa">
@@ -35,7 +48,7 @@
     </div>
   </header>
 
-  <main class="content">
+  <main class="content" id="main-content">
 
     <section class="led-explainer">
       <h2>Your mind, mapped. Your path, designed. Your moment, produced.</h2>
@@ -474,6 +487,17 @@
 
     <!-- TODO(Kyle): bullets 6 (CBT & UX Design certificates) and 7 (services offered) still need drafting — no source notes yet, needs your input -->
 
+    <!-- Teaser for the styling service line. A real link, not a modal
+         trigger, so it needs no keydown handler of its own. -->
+    <a class="styling-teaser" href="styling/index.html">
+      <p class="styling-teaser-eyebrow">New service line</p>
+      <h2>Styled in Motion</h2>
+      <p class="styling-teaser-line">
+        Styling for people who move, present and perform.
+      </p>
+      <p class="styling-teaser-cta">See styling consultations</p>
+    </a>
+
     <div class="closing-line">
       <p>Be transformed by what moves you</p>
       <p class="closing-line-cta">
@@ -562,6 +586,7 @@
 
   <footer class="site-footer">
     <p>Work. Play. Stay Curious.</p>
+    <p class="site-footer-credit">Styled &amp; designed by KYEPA.</p>
   </footer>
 
   <script src="script.js"></script>

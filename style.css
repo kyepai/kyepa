@@ -804,3 +804,205 @@ body {
   letter-spacing: 0.05em;
   color: #cfcfcf;
 }
+
+/* --------------------------------------------------------------------------
+   Site navigation
+   --------------------------------------------------------------------------
+   The site's first nav. It sits OUTSIDE .hero in the markup on purpose: the
+   hero is a full-viewport role="button", so a nav nested inside it would
+   send every nav click straight into the Offers modal.
+
+   Over the hero it is bare text on video; the plate fades in as the page
+   scrolls, driven by the same --progress variable as .blur-layer. Kept
+   below the campaign pop-up, which is a <dialog> in the browser's top
+   layer and so covers it regardless.
+   -------------------------------------------------------------------------- */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+}
+
+/* Separate layer so the blur fades in by opacity, rather than animating a
+   backdrop-filter radius on every scroll frame. */
+.site-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: var(--progress, 0);
+  pointer-events: none;
+}
+
+.site-nav-brand {
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s ease;
+}
+
+.site-nav-brand:hover,
+.site-nav-brand:focus-visible {
+  opacity: 0.7;
+}
+
+.site-nav-brand img {
+  display: block;
+  height: 1.5rem;
+  width: auto;
+}
+
+/* No brand mark on the homepage — the hero logo is already right there, so
+   the list simply takes the full width. */
+.site-nav-list {
+  position: relative;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-left: auto;
+}
+
+.site-nav-list a {
+  display: block;
+  /* 44px tall tap target without making the bar any deeper. */
+  padding: 0.6rem 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #f5f5f5;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.site-nav-list a:hover,
+.site-nav-list a:focus-visible {
+  border-bottom-color: #f5f5f5;
+}
+
+.site-nav-list a[aria-current="page"] {
+  color: rgba(245, 245, 245, 0.55);
+}
+
+@media (min-width: 40rem) {
+  .site-nav {
+    padding: 1rem 2rem;
+  }
+
+  .site-nav-list {
+    gap: 2rem;
+  }
+}
+
+/* Keyboard-only shortcut past the nav, visible only while focused. */
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 40;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  background: #f5f5f5;
+  color: #111;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-150%);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   Homepage teaser for /styling/
+   --------------------------------------------------------------------------
+   Echoes the .section-break treatment, but it is a real <a> rather than a
+   role="button" div, since it goes to a page instead of opening a modal —
+   so it needs no keydown handler of its own.
+   -------------------------------------------------------------------------- */
+.styling-teaser {
+  display: block;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.styling-teaser:hover,
+.styling-teaser:focus-visible {
+  background: rgba(245, 245, 245, 0.06);
+  outline: none;
+}
+
+.styling-teaser-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 245, 0.55);
+}
+
+.content .styling-teaser h2 {
+  margin-top: 0.6rem;
+  margin-bottom: 0;
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.content .styling-teaser-line {
+  margin-top: 0.6rem;
+  font-style: italic;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+.content .styling-teaser-cta {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #f5f5f5;
+  text-decoration: underline;
+  text-decoration-color: rgba(245, 245, 245, 0.4);
+  text-underline-offset: 0.15em;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.styling-teaser:hover .styling-teaser-cta,
+.styling-teaser:focus-visible .styling-teaser-cta {
+  text-decoration-color: currentColor;
+}
+
+/* Footer credit line, under the existing footer motto. */
+.site-footer-credit {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: rgba(207, 207, 207, 0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav-brand,
+  .site-nav-list a,
+  .styling-teaser,
+  .content .styling-teaser-cta,
+  .skip-link {
+    transition: none;
+  }
+}
