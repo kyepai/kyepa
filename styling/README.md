@@ -209,8 +209,8 @@ permission. Three real sentences beat thirty invented ones.
       and `credentials`
 - [ ] **Workbook price** — currently "Price TBC"
 - [ ] **Personal Shopper price** — currently "Ask me", never specified
-- [ ] **Ceremonies & Stage price** — "From €500" carried over from Stage &
-      Event; check it still fits now weddings are in scope
+- [x] **Ceremonies & Stage price** — settled at "From €800", replacing
+      the €500 carried over from Stage & Event
 - [ ] **Confirm the remaining price** — €1,800 for the Full Image
       Sprint, and what its three monthly payments actually come to
       (Style Sprint €240 and Delegate Look Package €3,800 are settled)

@@ -188,7 +188,7 @@ if (homeStylingMount && stylingOffers && stylingOffers.items) {
     name.className = "offer-name";
     name.appendChild(document.createTextNode(item.name + " "));
 
-    // A link card (Ceremonies & Stage) carries no price of its own.
+    // Not every card carries a price — a name-your-price one may not.
     if (item.price) {
       const price = document.createElement("span");
       price.className = "offer-price";

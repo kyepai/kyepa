@@ -312,12 +312,12 @@ window.STYLING_CONFIG = {
           cta: ""
         },
         {
-          /* A link card: `link` sends the button to another page instead of
-             the form, and the card renders without a price. */
+          /* A link card: `link` sends the button to another page instead
+             of the form. It still carries a price like any other card. */
           tier: "Ceremonies",
           name: "Ceremonies & Stage",
-          price: "",
-          priceNote: "",
+          price: "From €800",
+          priceNote: "garments billed separately",
           badge: "",
           meta: "Queer-first, every couple welcome",
           body:
