@@ -259,6 +259,8 @@
   object-fit: cover;
   border-radius: 8px;
   margin-left: auto;
+  /* Held back 12%, so it sits in the page rather than on top of it. */
+  opacity: 0.88;
 }
 
 .wed-content .wed-memory-copy h2 {
