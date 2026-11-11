@@ -35,6 +35,7 @@
 
 .aw-content .aw-contact {
   margin-top: 2rem;
+  text-align: center;
 }
 
 /* Shown for a missing key, a wrong key and a corrupted file alike, so a
