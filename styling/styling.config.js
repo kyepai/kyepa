@@ -84,6 +84,21 @@ window.STYLING_CONFIG = {
   REEL_URL: "https://www.instagram.com/reel/DHq7m-_s_E6/?mdxt=MjlscDRqb2kyNmp1",
 
   /* ----------------------------------------------------------------------
+     The reel's poster frame
+     ----------------------------------------------------------------------
+     A still from the reel, cropped to 9:16. When this is set the page shows
+     the still with a play button and opens the reel on Instagram when it is
+     tapped, instead of embedding Instagram's player.
+
+     That is the better way round: the crop is exactly what you chose rather
+     than whatever their card does, it loads in a fraction of the weight,
+     and the page makes no request to Instagram at all until someone
+     actually taps it — so visitors who never do are not seen by them.
+
+     Clear this and the page falls back to the embedded player. */
+  REEL_POSTER: "../assets/styling/reel-poster.jpg",
+
+  /* ----------------------------------------------------------------------
      5. The founding-client banner
      ----------------------------------------------------------------------
      A strip at the top of the page. It is driven by a real date and it
@@ -436,7 +451,11 @@ window.STYLING_CONFIG = {
       title: "In motion",
       intro: "Because a still photograph cannot show you a movement test.",
       placeholder: "Reel slot — paste a link into REEL_URL to fill this.",
-      cta: "Watch on Instagram"
+      cta: "Watch on Instagram",
+      posterAlt:
+        "Kyle Patrick mid-movement in a green bomber jacket, in front of a " +
+        "watching audience",
+      playLabel: "Play the reel on Instagram"
     },
 
     /* ---- 9. Credentials strip ---- */

@@ -182,14 +182,14 @@ permission. Three real sentences beat thirty invented ones.
   (the lighter of the two — most visitors arrive from Instagram on a phone).
 - **The FAQ is `<details>`/`<summary>`** — keyboard-operable, works with
   JavaScript off, no script of our own.
-- **The reel embeds via Instagram's own `/embed/` route**, which renders in
-  a plain iframe, so no Instagram JavaScript runs on the page and nothing of
-  theirs can read the rest of it. Be precise about what that buys you,
-  though: the iframe is still a request to Instagram, so they see the
-  visitor's IP and can set cookies inside that frame. It is meaningfully
-  more private than their official embed script, which runs on your page —
-  but it is not "no tracking". If you ever need that, swap the embed for a
-  still image that links out.
+- **The reel is a poster, not an embed.** `REEL_POSTER` is a still cropped
+  to 9:16 that links out to the reel. That makes the crop exactly what you
+  chose rather than whatever Instagram's card does, cuts the weight to one
+  small image, and means **no request reaches Instagram until someone
+  actually taps it** — so visitors who never do are never seen by them.
+  Clearing `REEL_POSTER` falls back to the `/embed/` iframe, which renders
+  without Instagram's JavaScript but is still a request to them on every
+  page load.
 - **Paths are relative, never root-absolute**, so the page works both from
   disk and served. See the main `CLAUDE.md`.
 

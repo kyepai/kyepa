@@ -550,7 +550,37 @@ function buildReel() {
   const embed = CFG.REEL_URL ? embedUrl(CFG.REEL_URL) : "";
 
   let slot;
-  if (embed) {
+  if (CFG.REEL_POSTER && CFG.REEL_URL) {
+    // A still we control, opening the reel on Instagram when tapped. No
+    // request reaches Instagram until someone actually asks for it.
+    const play = svg("svg", {
+      class: "styling-reel-play", viewBox: "0 0 48 48",
+      width: "64", height: "64", fill: "none", stroke: "currentColor",
+      "stroke-width": "1.5", "stroke-linejoin": "round",
+      "aria-hidden": "true", focusable: "false"
+    }, [
+      svg("circle", { cx: "24", cy: "24", r: "22" }),
+      svg("path", { d: "M20 16.5v15l13-7.5z", fill: "currentColor", stroke: "none" })
+    ]);
+
+    const link = el("a", {
+      class: "styling-reel-link",
+      href: CFG.REEL_URL,
+      target: "_blank",
+      rel: "noopener",
+      "aria-label": reel.playLabel || "Play the reel on Instagram"
+    }, [
+      el("img", {
+        class: "styling-reel-poster",
+        src: CFG.REEL_POSTER,
+        alt: reel.posterAlt || "",
+        loading: "lazy",
+        decoding: "async"
+      }),
+      play
+    ]);
+    slot = el("div", { class: "styling-reel-frame" }, [link]);
+  } else if (embed) {
     slot = el("div", { class: "styling-reel-frame" }, [
       el("iframe", {
         class: "styling-reel-embed",
