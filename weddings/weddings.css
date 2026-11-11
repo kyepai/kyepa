@@ -1,0 +1,637 @@
+/* ==========================================================================
+   KYEPA WEDDINGS — additions for /weddings/
+   ==========================================================================
+   Loaded AFTER ../style.css, which supplies the palette, type scale, reset,
+   video background, .contact-button pill and .site-nav. Nothing here
+   redefines any of that.
+
+   One thing to know before adding a rule: style.css sets `.content p`
+   (0-1-1) and `.content p + p` (0-1-2) on every paragraph inside <main>.
+   A bare `.my-class` is 0-1-0 and loses to both — which reads as "my CSS
+   did nothing". Prefixing with `.wed-content` lifts it to 0-2-0 and wins.
+   Every paragraph rule below is prefixed for exactly that reason.
+   ========================================================================== */
+
+.wed-page .wed-content {
+  padding-top: 3.5rem;
+}
+
+.wed-content section {
+  padding: 4rem 1.5rem;
+}
+
+.wed-content .wed-wide {
+  max-width: min(1100px, 100%);
+}
+
+.wed-content .wed-section-intro {
+  margin-top: 0.5rem;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   Banner
+   -------------------------------------------------------------------------- */
+.wed-banner {
+  max-width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.wed-content .wed-banner-text {
+  margin: 0;
+  padding: 0.8rem 1.25rem;
+  border: 1px solid rgba(245, 245, 245, 0.25);
+  border-radius: 999px;
+  background: rgba(20, 20, 20, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #f5f5f5;
+}
+
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+.wed-content .wed-hero {
+  text-align: center;
+  padding-top: 3rem;
+}
+
+.wed-hero-title {
+  font-size: clamp(2.25rem, 9vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+.wed-content .wed-hero-subline {
+  margin: 1.25rem auto 0;
+  max-width: 38ch;
+  font-size: clamp(1rem, 4vw, 1.25rem);
+  line-height: 1.55;
+  color: #cfcfcf;
+}
+
+.wed-content .wed-hero-cta {
+  margin-top: 2rem;
+}
+
+.wed-hero-frame {
+  margin-top: 3rem;
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+}
+
+.wed-hero-media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   Placeholder tiles — same gradient plate as the homepage's testimonials
+   -------------------------------------------------------------------------- */
+.wed-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(155deg, rgba(245, 245, 245, 0.14), rgba(245, 245, 245, 0.04));
+  border: 1px solid rgba(245, 245, 245, 0.18);
+  border-radius: 8px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(245, 245, 245, 0.55);
+}
+
+.wed-placeholder--hero {
+  border-radius: 10px;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.wed-placeholder--card {
+  aspect-ratio: 4 / 5;
+  height: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Ways to work together
+   --------------------------------------------------------------------------
+   A card's status comes from the config. "Coming soon" is dimmed and
+   dashed so it reads as genuinely not-yet rather than as a quieter sell.
+   -------------------------------------------------------------------------- */
+.wed-way-grid {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.wed-way {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border: 1px solid rgba(245, 245, 245, 0.12);
+  border-radius: 10px;
+  background: rgba(20, 20, 20, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.wed-way--soon {
+  border-style: dashed;
+  border-color: rgba(245, 245, 245, 0.22);
+}
+
+/* Dimmed, but never below the contrast floor — a "coming soon" card still
+   has to be readable, including its button. */
+.wed-way--soon .wed-way-name,
+.wed-way--soon .wed-way-body {
+  color: rgba(245, 245, 245, 0.72);
+}
+
+.wed-way-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.wed-content .wed-way-place {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+.wed-content .wed-way-badge {
+  margin: 0;
+  margin-left: auto;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid rgba(245, 245, 245, 0.3);
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f5f5f5;
+  white-space: nowrap;
+}
+
+.wed-way-name {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.wed-content .wed-way-body {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.wed-content .wed-way-price {
+  margin-top: 0.9rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+.wed-content .wed-way-cta {
+  margin-top: auto;
+  padding-top: 1.25rem;
+}
+
+.wed-way-button {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.85rem;
+}
+
+/* --------------------------------------------------------------------------
+   Prose sections
+   -------------------------------------------------------------------------- */
+/* Sits directly under "Who I work with", so it loses its own top
+   padding. Prefixed to outrank `.wed-content section` (0-1-1) on
+   specificity rather than by force. */
+.wed-content .wed-prose--legal {
+  padding-top: 0;
+}
+
+/* --------------------------------------------------------------------------
+   The safe promise
+   -------------------------------------------------------------------------- */
+.wed-safe-plate {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  max-width: min(1100px, 100%);
+  padding: 1.75rem;
+  border: 1px solid rgba(245, 245, 245, 0.25);
+  border-radius: 10px;
+  background: rgba(20, 20, 20, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.wed-safe-seal {
+  flex: 0 0 auto;
+  color: #f5f5f5;
+}
+
+.wed-content .wed-safe-title {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.wed-content .wed-safe-body {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.wed-content .wed-safe-badge {
+  display: inline-block;
+  margin-top: 0.9rem;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid rgba(245, 245, 245, 0.3);
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   First dance
+   -------------------------------------------------------------------------- */
+.wed-dance-frame {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(245, 245, 245, 0.18);
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(155deg, rgba(245, 245, 245, 0.14), rgba(245, 245, 245, 0.04));
+}
+
+.wed-dance-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wed-content .wed-dance-placeholder {
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   Portfolio
+   -------------------------------------------------------------------------- */
+.wed-card-grid {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.wed-card {
+  margin: 0;
+}
+
+.wed-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(245, 245, 245, 0.18);
+}
+
+.wed-card-title {
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.wed-content .wed-card-thinking {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   FAQ — <details>/<summary>, keyboard-usable with no JavaScript
+   -------------------------------------------------------------------------- */
+.wed-faq-list {
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(245, 245, 245, 0.12);
+}
+
+.wed-faq-item {
+  border-bottom: 1px solid rgba(245, 245, 245, 0.12);
+}
+
+.wed-faq-q {
+  position: relative;
+  padding: 1.1rem 2.5rem 1.1rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  cursor: pointer;
+  list-style: none;
+}
+
+.wed-faq-q-text {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  display: inline;
+}
+
+.wed-faq-q::-webkit-details-marker { display: none; }
+.wed-faq-q::marker { content: ""; }
+
+.wed-faq-q::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 0.25rem;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+.wed-faq-item[open] .wed-faq-q::after { content: "–"; }
+
+.wed-faq-q:focus-visible {
+  outline: 2px solid rgba(245, 245, 245, 0.6);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.wed-faq-a {
+  padding: 0 2.5rem 1.4rem 0;
+}
+
+.wed-content .wed-faq-a p {
+  font-size: 0.95rem;
+}
+
+/* --------------------------------------------------------------------------
+   Enquiry form
+   -------------------------------------------------------------------------- */
+.wed-form {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.wed-field label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.wed-content .wed-field-hint {
+  margin: -0.2rem 0 0.4rem;
+  font-size: 0.8rem;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+.wed-field input[type="text"],
+.wed-field input[type="email"],
+.wed-field input[type="number"],
+.wed-field select,
+.wed-field textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font: inherit;
+  /* 1rem stops iOS Safari zooming the page in on focus. */
+  font-size: 1rem;
+  color: #f5f5f5;
+  background: rgba(10, 10, 10, 0.7);
+  border: 1px solid rgba(245, 245, 245, 0.25);
+  border-radius: 8px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.wed-field textarea {
+  resize: vertical;
+  min-height: 5.5rem;
+}
+
+.wed-field input:focus,
+.wed-field select:focus,
+.wed-field textarea:focus {
+  outline: none;
+  border-color: #f5f5f5;
+  background: rgba(10, 10, 10, 0.9);
+}
+
+/* Only flag a field once it has been interacted with — :invalid alone
+   would mark every empty required field on load. */
+.wed-field input:user-invalid,
+.wed-field select:user-invalid,
+.wed-field textarea:user-invalid {
+  border-color: #e4a0a0;
+}
+
+.wed-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.wed-fieldset legend {
+  padding: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.wed-check-grid {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.wed-check {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.wed-check input {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: #f5f5f5;
+}
+
+.wed-check label {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: #e2e2e2;
+}
+
+.wed-field--consent {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.wed-field--consent input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.15rem;
+  accent-color: #f5f5f5;
+}
+
+.wed-field--consent label {
+  margin-bottom: 0;
+  font-weight: 400;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #e2e2e2;
+}
+
+.wed-content .wed-form-actions {
+  margin-top: 0.25rem;
+}
+
+.wed-submit {
+  font: inherit;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  background: none;
+}
+
+.wed-submit:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.wed-content .wed-form-status {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.wed-content .wed-form-status:empty { display: none; }
+
+.wed-content .wed-form-status--ok {
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(245, 245, 245, 0.25);
+  border-radius: 10px;
+  background: rgba(20, 20, 20, 0.88);
+}
+
+.wed-content .wed-success-line {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #f5f5f5;
+}
+
+.wed-content .wed-success-tail {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  color: #e2e2e2;
+}
+
+.wed-content .wed-form-status--error { color: #e4a0a0; }
+
+.wed-content .wed-form-alt {
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   No-JavaScript fallback
+   -------------------------------------------------------------------------- */
+.wed-noscript h1 {
+  font-size: clamp(2rem, 9vw, 3.5rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.wed-noscript h2 { margin-top: 2.5rem; }
+
+.wed-noscript ul {
+  margin: 1rem 0 0 1.25rem;
+  line-height: 1.9;
+  color: #e2e2e2;
+}
+
+.wed-content .wed-noscript p { margin-top: 1.25rem; }
+
+/* --------------------------------------------------------------------------
+   Wider screens
+   -------------------------------------------------------------------------- */
+@media (min-width: 40rem) {
+  .wed-content section { padding: 5rem 2rem; }
+  .wed-banner { padding: 0 2rem; }
+  .wed-hero-frame { aspect-ratio: 3 / 2; }
+  .wed-card-grid { grid-template-columns: repeat(2, 1fr); }
+  .wed-check-grid { grid-template-columns: repeat(2, 1fr); }
+  .wed-safe-plate { align-items: center; padding: 2rem 2.25rem; }
+
+  .wed-form { grid-template-columns: repeat(2, 1fr); }
+
+  .wed-form > .wed-field--wide,
+  .wed-form > .wed-fieldset,
+  .wed-form > .wed-field--consent,
+  .wed-form > .wed-form-actions,
+  .wed-form > .wed-form-status {
+    grid-column: 1 / -1;
+  }
+
+  /* Side-by-side fields are not the same height — some carry a hint line.
+     Pushing each control to the bottom of its cell keeps the inputs on a
+     shared baseline. The consent row is a checkbox grid, so it opts out. */
+  .wed-form > .wed-field:not(.wed-field--consent) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wed-form > .wed-field:not(.wed-field--consent) > input,
+  .wed-form > .wed-field:not(.wed-field--consent) > select,
+  .wed-form > .wed-field:not(.wed-field--consent) > textarea {
+    margin-top: auto;
+  }
+}
+
+@media (min-width: 60rem) {
+  .wed-hero-frame { aspect-ratio: 16 / 9; }
+  .wed-way-grid { grid-template-columns: repeat(3, 1fr); }
+  .wed-card-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wed-field input,
+  .wed-field select,
+  .wed-field textarea { transition: none; }
+}

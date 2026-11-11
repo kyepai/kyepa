@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ======================================================================
+       The page's own meta tags. The only copy on this page that does NOT
+       live in weddings.config.js — a search engine has to read these
+       without running JavaScript. Edit them here.
+       ====================================================================== -->
+  <title>LGBTQ Wedding Planner, St. Martin — KYEPA Weddings</title>
+  <meta name="description" content="A queer-led wedding planner on Saint-Martin. Gay destination weddings on St. Martin, plus wedding styling, personal shopping and first-dance choreography wherever you live. Queer couples first, every couple welcome.">
+  <link rel="canonical" href="https://kyepa.com/weddings/">
+
+  <!-- Open Graph / Twitter: what WhatsApp, Instagram and iMessage read.
+       Absolute URLs are required here.
+       TODO(Kyle): /assets/weddings/og.jpg does not exist yet. Until it
+       does, shared links preview without an image — the text still works. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kyepa">
+  <meta property="og:url" content="https://kyepa.com/weddings/">
+  <meta property="og:title" content="Married exactly as yourselves.">
+  <meta property="og:description" content="Queer-first weddings, with every couple welcome. Destination weddings on St. Martin and wedding styling wherever you live.">
+  <meta property="og:image" content="https://kyepa.com/assets/weddings/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="KYEPA Weddings — queer-first weddings on St. Martin">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Married exactly as yourselves.">
+  <meta name="twitter:description" content="An LGBTQ wedding planner on St. Martin. Queer couples first, every couple welcome.">
+  <meta name="twitter:image" content="https://kyepa.com/assets/weddings/og.jpg">
+
+  <link rel="icon" href="../logo.svg" type="image/svg+xml">
+
+  <!-- The main site's stylesheet first, then this page's additions on top.
+       Same palette, same type scale, same components — no new fonts. -->
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="weddings.css">
+</head>
+<body class="wed-page">
+
+  <video class="bg-video bg-video-a is-active" src="../background.mov" autoplay muted loop playsinline aria-hidden="true"></video>
+  <div class="blur-layer" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#wed-main">Skip to content</a>
+
+  <nav class="site-nav" aria-label="Main">
+    <a class="site-nav-brand" href="../index.html">
+      <img src="../logo.svg" alt="Kyepa — home" width="368" height="151">
+    </a>
+    <ul class="site-nav-list">
+      <li><a href="../styling/index.html">Styling</a></li>
+      <li><a href="index.html" aria-current="page">Weddings</a></li>
+      <li><a href="mailto:info@kyepa.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="content wed-content" id="wed-main">
+
+    <!-- Rendered from weddings.config.js by weddings.js. The order here is
+         the order on the page. A section whose data is empty or switched
+         off renders nothing and leaves no gap. -->
+    <div id="wed-banner"></div>
+    <div id="wed-hero"></div>
+    <div id="wed-ways-mount"></div>
+    <div id="wed-who"></div>
+    <div id="wed-legal"></div>
+    <div id="wed-safe"></div>
+    <div id="wed-dance"></div>
+    <div id="wed-portfolio"></div>
+    <div id="wed-faq"></div>
+    <div id="wed-enquiry-mount"></div>
+
+    <noscript>
+      <section class="wed-noscript">
+        <h1>Married exactly as yourselves.</h1>
+        <p>
+          Queer-first weddings, with every couple welcome. Destination
+          weddings on St. Martin and wedding styling wherever you live.
+        </p>
+        <h2>Ways to work together</h2>
+        <ul>
+          <li><strong>Destination weddings — French side (Saint-Martin)</strong>
+              — planning, venues, vendor team, guest experience.</li>
+          <li><strong>Destination weddings — Dutch side (Sint Maarten)</strong>
+              — coming soon.</li>
+          <li><strong>Wedding styling, anywhere</strong> — couple and groom
+              styling, personal shopping, and first-dance choreography.
+              Remote or in person.</li>
+        </ul>
+        <p>Price on request.</p>
+        <p>
+          My speciality is queer weddings: grooms, brides, couples beyond the
+          binary, and the families who show up for them. Every couple who
+          wants a day that truly feels like them is welcome.
+        </p>
+        <p>
+          <a class="contact-button" href="mailto:info@kyepa.com?subject=Wedding%20enquiry">Plan a conversation</a>
+        </p>
+        <p>
+          <a href="https://www.instagram.com/kye_pa" target="_blank" rel="noopener">@kye_pa</a> ·
+          <a href="mailto:info@kyepa.com">info@kyepa.com</a> ·
+          <a href="../index.html">kyepa.com</a>
+        </p>
+      </section>
+    </noscript>
+
+  </main>
+
+  <footer class="site-footer">
+    <p data-wed-brand>KYEPA Weddings</p>
+    <p class="site-footer-credit">Styled &amp; designed by KYEPA.</p>
+  </footer>
+
+  <!-- Both deferred: deferred scripts run in document order, so the config
+       is always in place before the renderer boots. -->
+  <script src="weddings.config.js" defer></script>
+  <script src="weddings.js" defer></script>
+</body>
+</html>
