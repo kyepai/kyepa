@@ -158,7 +158,18 @@ function buildHero() {
     el("div", { class: "styling-hero-copy" }, [
       el("h1", { class: "styling-hero-title", text: hero.headline || "" }),
       el("p", { class: "styling-hero-subline", text: hero.subline || "" }),
-      el("p", { class: "styling-hero-cta" }, [ctaLink(hero.cta || "")])
+      el("p", { class: "styling-hero-cta" }, [
+        ctaLink(hero.cta || ""),
+        // Secondary route for anyone who came to see prices, not to
+        // download anything. #styling-offers is the mount div in index.html.
+        hero.ctaSecondary
+          ? el("a", {
+              class: "styling-hero-cta-secondary",
+              href: "#styling-offers",
+              text: hero.ctaSecondary
+            })
+          : null
+      ])
     ]),
     el("div", { class: "styling-hero-frame" }, [media])
   ]);
@@ -541,6 +552,15 @@ function field(id, labelText, control, hint, extraClass = "") {
   ]);
 }
 
+/* The "Interested in" choices are DERIVED from the offers rather than typed
+   out again, so adding an offer can never leave its own CTA pointing at a
+   dropdown entry that does not exist. */
+function interestChoices(w) {
+  const names = ((S.offers || {}).items || []).map((o) => o.name).filter(Boolean);
+  const fallback = w.interestFallback || "";
+  return fallback ? names.concat([fallback]) : names;
+}
+
 function selectField(id, name, options, required = true) {
   return el("select", { id, name, required: required ? "" : null },
     [el("option", { value: "", text: "Choose one" })].concat(
@@ -598,7 +618,7 @@ function buildWaitlist() {
 
   const locationSelect = selectField("sl-location", "location", w.locationOptions);
   const preparingSelect = selectField("sl-preparing", "preparing", w.preparingOptions);
-  const interestSelect = selectField("sl-interest", "interest", w.interestOptions);
+  const interestSelect = selectField("sl-interest", "interest", interestChoices(w));
 
   const goalInput = el("textarea", { id: "sl-goal", name: "goal", rows: "3" });
 

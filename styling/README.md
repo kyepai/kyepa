@@ -2,11 +2,20 @@
 
 "Styled in Motion", the styling service line.
 
-The page talks to **one person first**: a queer man stepping onto a stage —
-a pageant delegate, a performer, someone becoming publicly visible — who
-wants to look unforgettable and move like he owns it. Everyone else is
-welcome and the copy never shuts them out, but when a sentence has to
-choose, it chooses him. Keep that in mind when editing.
+Styling, personal shopping and wedding styling — "for the stage, the aisle
+and every day".
+
+**Write remote-first.** Most clients live outside the Caribbean, in Europe
+and North America. "Wherever you live" is the default; in person on Sint
+Maarten is the second option, never the assumption. Don't imply a hot
+climate in general copy either — heat belongs to stage lights, crowded
+venues, summer and destination events, not to the reader's Tuesday.
+
+Two readers come first: **queer men stepping onto a stage** (pageant
+delegates, performers, emerging public figures), and **couples planning a
+wedding**, at home or as a destination wedding on St. Martin. Every couple
+and every kind of wedding is welcome — queer couples are the priority and
+the speciality, so they lead every wedding section, in copy and in imagery.
 
 Open `styling/index.html` from disk, or serve the repo
 (`python3 -m http.server`) and go to <http://localhost:8000/styling/>, which
@@ -60,13 +69,19 @@ card — the claim arrives with its evidence attached. The id must match an
 A price with no digits in it ("Price TBC", "Ask me") is simply published
 without a price in the structured data, rather than guessing a number.
 
-### Two parked offers
+The **"Interested in"** dropdown on the form is built from these offer
+names automatically, plus `waitlist.interestFallback` on the end. Add an
+offer and it appears in the dropdown in the same order — there is no second
+list to keep in sync, which is what stopped two offers' buttons from
+preselecting anything when they were first added.
 
-**Stage & Event Styling** (from €500) and the **Design Partner add-on** are
-not on the page any more — the four tiers replaced them. They are kept as a
-commented block at the bottom of `offers` rather than deleted. Move either
-back into `items` to restore it. Worth a thought: weddings, red carpets and
-festival artists no longer have a home on this page.
+### One parked offer
+
+The **Design Partner add-on** is not on the page; it sits as a commented
+block at the bottom of `offers`. Move it into `items` to bring it back.
+
+Stage & Event Styling came back as **Weddings & Stage**, now covering
+couples as well as delegates and performers.
 
 ---
 
@@ -92,12 +107,14 @@ plain `badge` string: **only keep it while it is literally true.**
 
 The form's offer is **The 5-Point Movement Test**, a free PDF.
 
-Put the file somewhere public and paste its path into `LEAD_MAGNET_URL`
-(relative to this folder, e.g. `../assets/styling/five-point-movement-test.pdf`).
+**The PDF is live.** It is committed at
+`assets/styling/KYEPA_5-Point_Movement_Test.pdf` (9 pages) and wired into
+`LEAD_MAGNET_URL`, so the thank-you shows a download button straight away
+and it works from disk as well as served.
 
-- **With** a path set: the thank-you shows a download button straight away.
-- **Without** one: the thank-you says you'll email it — which means *you
-  have to*, by hand. Worth filling in early.
+To swap in a new version, replace that file and keep the name — or change
+the name in both places. Empty the setting and the thank-you falls back to
+promising the PDF by email, which means *you* sending it by hand.
 
 One thing to know about Formspree's free tier: it emails **you** the
 submission, it does not email **them** the PDF. That is why the download
@@ -177,15 +194,20 @@ permission. Three real sentences beat thirty invented ones.
 
 - [ ] **Hero image or video** — `strings.hero.media` + `mediaAlt`. Ideally
       you mid-movement on a stage, not a standing portrait
-- [ ] **The 5-Point Movement Test PDF** — write it, then set `LEAD_MAGNET_URL`
+- [x] ~~The 5-Point Movement Test PDF~~ — done, committed and wired up
 - [ ] **Three real client quotes** — `styling.testimonials.js`, with
       permission, replacing the placeholders
 - [ ] **Case-study photos** — `portfolio.cards[].image` and `alt`
 - [ ] **The Malta title** — exact name and year, in both `portfolio.cards`
       and `credentials`
 - [ ] **Workbook price** — currently "Price TBC"
-- [ ] **Confirm the new prices** — €250 / €1,800 / €3,500, and what the
+- [ ] **Personal Shopper price** — currently "Ask me", never specified
+- [ ] **Weddings & Stage price** — "From €500" carried over from Stage &
+      Event; check it still fits now weddings are in scope
+- [ ] **Confirm the other prices** — €250 / €1,800 / €3,500, and what the
       three monthly payments actually come to
+- [ ] **Decide whether Delegate Look Package stays** — it is not in the
+      PDF's own list of offers, and may be covered by Weddings & Stage
 - [ ] **Reel URL** — `REEL_URL`
 - [ ] **Formspree endpoint** — `FORM_ENDPOINT`, see above
 - [ ] **Share card** — `assets/styling/og.jpg`, 1200×630. Until it exists,

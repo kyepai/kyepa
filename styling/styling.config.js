@@ -71,8 +71,9 @@ window.STYLING_CONFIG = {
      While this is empty the form still works and still collects the signup;
      the thank-you simply promises the PDF by email instead of linking it.
      That means YOU have to send it by hand, so it is worth filling in.
-     TODO(Kyle): write the PDF and drop it in. */
-  LEAD_MAGNET_URL: "",
+     The file is committed at assets/styling/, so this works offline and
+     from disk as well as live. */
+  LEAD_MAGNET_URL: "../assets/styling/KYEPA_5-Point_Movement_Test.pdf",
 
   /* ----------------------------------------------------------------------
      4. The Instagram reel
@@ -109,9 +110,11 @@ window.STYLING_CONFIG = {
     hero: {
       headline: "Styled in Motion",
       subline:
-        "For the delegate, the performer, the man stepping into the " +
-        "spotlight — become the one everyone remembers.",
-      cta: "Get the 5-Point Movement Test",
+        "For the stage, the aisle and every day — become the one everyone " +
+        "remembers.",
+      cta: "Get the free Movement Test",
+      /* Sits beside the primary button and jumps to the offers. */
+      ctaSecondary: "See the offers",
       /* Full-width opener. Set `media` to an image path relative to this
          folder (e.g. "../assets/styling/hero.jpg") or an .mp4/.mov for video.
          Leave "" and a marked placeholder frame shows instead.
@@ -124,22 +127,24 @@ window.STYLING_CONFIG = {
     /* ---- 2. The idea ----
        Kyle's own words. Left exactly as written. */
     idea: {
-      title: "Why a stage changes everything",
+      title: "Why a moment changes everything",
       body:
         "Most stylists dress a body standing still. I spent 19 years on " +
         "stage, from opera houses to the Tomorrowland main stage, learning " +
         "how clothes move, breathe and photograph under light. Every look I " +
-        "design passes a movement test before it's approved: walk, sit, " +
-        "turn, gesture, heat. Styling is the part of Life Experience Design " +
-        "you can see the moment you walk into a room."
+        "design passes a movement test before you wear it: walk, sit, " +
+        "embrace, heat, lens. Styling is the part of Life Experience Design " +
+        "people see the moment you walk into a room."
     },
 
     /* ---- 3. The method ---- */
     method: {
       title: "The method",
       intro:
-        "Five steps, whether you're walking a pageant stage in Cebu or a " +
-        "room full of people who have never taken you seriously before.",
+        "Five steps, whether you're walking a pageant stage, an aisle, or " +
+        "into a room full of people who have never taken you seriously " +
+        "before. Run remotely wherever you live, or in person on Sint " +
+        "Maarten.",
       steps: [
         { name: "Discover", line: "Who you're becoming" },
         { name: "Define",   line: "Your written style identity" },
@@ -166,23 +171,10 @@ window.STYLING_CONFIG = {
     offers: {
       title: "Ways to work together",
       intro:
-        "Four ways in, from a workbook you run yourself to a complete " +
-        "package delivered to your door before you fly.",
+        "Grouped by how much you want to do yourself. All of it works " +
+        "remotely, wherever you live; in person on Sint Maarten if you'd " +
+        "rather.",
       items: [
-        {
-          tier: "Start here",
-          name: "Style Sprint",
-          price: "From €250",
-          priceNote: "",
-          badge: "",
-          meta: "2–3 hours · remote or in person",
-          body:
-            "An identity read, a video wardrobe audit, look direction, and " +
-            "the edit and shopping list that comes out of it. The fastest " +
-            "way to see what I do before committing to anything bigger.",
-          bonuses: [],
-          cta: ""
-        },
         {
           tier: "Do it yourself",
           name: "Style Identity Workbook",
@@ -200,21 +192,53 @@ window.STYLING_CONFIG = {
           cta: "Tell me when it's ready"
         },
         {
+          tier: "Start here",
+          name: "Style Sprint",
+          price: "From €250",
+          priceNote: "",
+          badge: "",
+          meta: "2–3 hours · fully remote, or in person on Sint Maarten",
+          body:
+            "One focused session: an identity read, a wardrobe audit by " +
+            "video and a clear look direction. Fully remote wherever you " +
+            "live, or in person on Sint Maarten. The fastest way to see " +
+            "what I do before committing to anything bigger.",
+          bonuses: [],
+          cta: ""
+        },
+        {
+          tier: "Done for you",
+          name: "Personal Shopper",
+          /* TODO(Kyle): this one has no price yet — your brief cut off
+             before it. "Ask me" is holding the slot. */
+          price: "Ask me",
+          priceNote: "",
+          badge: "",
+          meta: "A shortlist to your door, or a shopping day together",
+          body:
+            "I find the pieces so you don't have to: a curated shortlist " +
+            "from brands that deliver to your door, or a guided shopping " +
+            "day together, in your city or mine. Every pick is chosen to " +
+            "pass all five tests.",
+          bonuses: [],
+          cta: ""
+        },
+        {
           tier: "Done with you",
           name: "Full Image Sprint",
           price: "From €1,800",
           priceNote: "or 3 monthly payments",
           badge: "",
-          meta: "5 sessions over 3–5 weeks",
+          meta: "5 sessions over 3–5 weeks · remote, wherever you live",
           body:
-            "The full method, one step at a time, with room to live in the " +
-            "changes between sessions. This is the one that changes how a " +
-            "room reads you before you have said anything.",
+            "Five sessions, from who you're becoming to a capsule " +
+            "wardrobe that has passed every test in the guide. This is " +
+            "the one that changes how a room reads you before you have " +
+            "said anything.",
           bonuses: [
             {
               name: "The Microscopic Budget Method",
               line: "How to build a stage-worthy look on almost nothing.",
-              /* Opens the pelican card in the lookbook below. */
               caseStudy: "pelican"
             },
             {
@@ -223,9 +247,27 @@ window.STYLING_CONFIG = {
             },
             {
               name: "Remote Video Audit Process",
-              line: "My wardrobe audit, run over video from wherever you are."
+              line: "My wardrobe audit, run over video from wherever you live."
             }
           ],
+          cta: ""
+        },
+        {
+          tier: "Done for you",
+          name: "Weddings & Stage",
+          /* TODO(Kyle): carried over from the Stage & Event Styling figure
+             you confirmed. Check it still fits now weddings are in scope. */
+          price: "From €500",
+          priceNote: "garments billed separately",
+          badge: "",
+          meta: "Remote for a wedding at home · in person for a destination one",
+          body:
+            "Queer couples first, and every couple welcome. Looks, " +
+            "styling and first-dance choreography for the two of you — " +
+            "and the same for delegates and performers taking a stage. " +
+            "Styled remotely for a wedding where you live, or planned in " +
+            "person for a destination wedding on Sint Maarten / St. Martin.",
+          bonuses: [],
           cta: ""
         },
         {
@@ -253,7 +295,7 @@ window.STYLING_CONFIG = {
             },
             {
               name: "Remote Video Audit Process",
-              line: "My wardrobe audit, run over video from wherever you are."
+              line: "My wardrobe audit, run over video from wherever you live."
             }
           ],
           cta: ""
@@ -303,7 +345,7 @@ window.STYLING_CONFIG = {
        rename `pelican` without updating the bonuses that point at it. */
     portfolio: {
       title: "Lookbook",
-      intro: "Built for stages. More as they're shot.",
+      intro: "Built for stages and aisles. More as they're shot.",
       cards: [
         {
           id: "mgw",
@@ -377,7 +419,7 @@ window.STYLING_CONFIG = {
       "Mr Gay World — sole Sint Maarten titleholder",
       /* TODO(Kyle): confirm the exact wording of the Malta win. */
       "Fashion show winner, Malta",
-      "Based on Sint Maarten, working worldwide"
+      "Working remotely worldwide, in person on Sint Maarten"
     ],
 
     /* ---- 10. The signup form and its lead magnet ---- */
@@ -401,13 +443,10 @@ window.STYLING_CONFIG = {
       preparingLabel: "I'm preparing for",
       preparingOptions: ["A pageant", "A performance", "An event", "Everyday"],
       interestLabel: "Interested in",
-      interestOptions: [
-        "Style Sprint",
-        "Style Identity Workbook",
-        "Full Image Sprint",
-        "Delegate Look Package",
-        "Not sure yet"
-      ],
+      /* The offers themselves fill this dropdown — add one above and it
+         appears here automatically, in the same order. This is only the
+         extra choice tacked on the end. Set to "" to drop it. */
+      interestFallback: "Not sure yet",
       goalLabel: "What's the occasion, or the goal?",
       goalHint: "A sentence is plenty.",
       consentLabel:
@@ -486,11 +525,12 @@ window.STYLING_CONFIG = {
         {
           q: "What's the movement test?",
           a:
-            "Five things, every look, before I approve it: walk, sit, " +
-            "turn, gesture, heat. Clothes behave differently on a moving " +
-            "body than on a hanger, and a look that only works standing " +
-            "still isn't finished. Nineteen years on stage taught me that " +
-            "the expensive way. The free PDF above walks you through it."
+            "Five tests, every look, before you wear it: the walk, the " +
+            "sit, the reach and embrace, the heat and the lens. Clothes " +
+            "behave differently on a moving body than on a hanger, and a " +
+            "look that only works standing still isn't finished. Nineteen " +
+            "years on stage taught me that the expensive way. The free " +
+            "guide above walks you through all five, with a scorecard."
         },
         {
           q: "What if it doesn't feel right?",
@@ -514,7 +554,7 @@ window.STYLING_CONFIG = {
     /* ---- 12. Closing CTA ---- */
     closing: {
       headline: "Ready to look like the life you're designing?",
-      cta: "Get the 5-Point Movement Test"
+      cta: "Get the free Movement Test"
     },
 
     /* ---- Shared furniture ----

@@ -182,6 +182,11 @@
 }
 
 .styling-offer {
+  /* Column layout so the CTA can be pushed to the bottom of every card —
+     grid already makes the cards equal height, but without this the
+     buttons sit at different heights across a row. */
+  display: flex;
+  flex-direction: column;
   padding: 1.5rem;
   border: 1px solid rgba(245, 245, 245, 0.12);
   border-radius: 10px;
@@ -778,7 +783,8 @@
 }
 
 .styling-content .styling-offer-cta {
-  margin-top: 1.25rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
 }
 
 /* A quieter pill than the hero's: there are four of these on one screen,
@@ -1086,4 +1092,34 @@
   .styling-bonus-link .styling-bonus-name {
     transition: none;
   }
+}
+
+/* Secondary hero route, for anyone who came for prices rather than a
+   download. A quiet text link beside the pill, never a second button. */
+.styling-content .styling-hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1.5rem;
+}
+
+.styling-hero-cta-secondary {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #f5f5f5;
+  text-decoration: underline;
+  text-decoration-color: rgba(245, 245, 245, 0.4);
+  text-underline-offset: 0.15em;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.styling-hero-cta-secondary:hover,
+.styling-hero-cta-secondary:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .styling-hero-cta-secondary { transition: none; }
 }
