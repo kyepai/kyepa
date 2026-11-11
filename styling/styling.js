@@ -154,6 +154,25 @@ function buildHero() {
     media = placeholderTile("", "styling-placeholder--hero");
   }
 
+  // A supplied ratio pins the frame to the image's own shape instead of
+  // letting the responsive crop take the edges off it.
+  const frame = el("div", {
+    class: `styling-hero-frame${hero.mediaRatio ? " styling-hero-frame--fixed" : ""}`
+  }, [
+    hero.linkUrl
+      ? el("a", {
+          class: "styling-hero-link",
+          href: hero.linkUrl,
+          target: "_blank",
+          rel: "noopener",
+          "aria-label": hero.linkAria || ""
+        }, [media])
+      : media
+  ]);
+  if (hero.mediaRatio) {
+    frame.style.setProperty("--styling-hero-ratio", hero.mediaRatio);
+  }
+
   return el("section", { class: "styling-hero styling-wide" }, [
     el("div", { class: "styling-hero-copy" }, [
       el("h1", { class: "styling-hero-title", text: hero.headline || "" }),
@@ -171,7 +190,7 @@ function buildHero() {
           : null
       ])
     ]),
-    el("div", { class: "styling-hero-frame" }, [media])
+    frame
   ]);
 }
 

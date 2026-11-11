@@ -635,3 +635,25 @@
   .wed-field select,
   .wed-field textarea { transition: none; }
 }
+
+/* A hero image with its own ratio set in the config. Higher specificity
+   than the responsive .wed-hero-frame rules in the media queries above, so
+   the supplied shape wins at every width instead of being cropped. */
+.wed-content .wed-hero-frame--fixed {
+  aspect-ratio: var(--wed-hero-ratio, 1 / 1);
+  max-width: min(620px, 100%);
+  margin-inline: auto;
+}
+
+/* Same as the styling page: the card buttons centre under their card. */
+.wed-content .wed-way-cta {
+  text-align: center;
+}
+
+/* Same treatment as the styling page: placeholder wording is blurred and
+   dimmed, with the meaning carried by the tile's aria-label. */
+.wed-placeholder span,
+.wed-content .wed-dance-placeholder {
+  filter: blur(1.5px);
+  opacity: 0.6;
+}

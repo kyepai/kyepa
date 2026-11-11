@@ -161,3 +161,58 @@ if (heroBanner && offersModal) {
     }
   });
 }
+
+// Suite of Offers: the Styled in Motion offers are rendered here from
+// styling/styling.config.js rather than written into index.html, so the
+// prices in this modal can never drift from the ones on /styling/.
+// Edit them in that config file.
+const homeStylingMount = document.getElementById("home-styling-offers");
+const stylingOffers =
+  window.STYLING_CONFIG &&
+  window.STYLING_CONFIG.strings &&
+  window.STYLING_CONFIG.strings.offers;
+
+if (homeStylingMount && stylingOffers && stylingOffers.items) {
+  const heading = document.createElement("h3");
+  heading.className = "offer-group-title";
+  heading.textContent = "Styled in Motion";
+
+  const list = document.createElement("div");
+  list.className = "offer-list";
+
+  stylingOffers.items.forEach((item) => {
+    const wrap = document.createElement("div");
+    wrap.className = "offer-item";
+
+    const name = document.createElement("p");
+    name.className = "offer-name";
+    name.appendChild(document.createTextNode(item.name + " "));
+
+    // A link card (Weddings & Stage) carries no price of its own.
+    if (item.price) {
+      const price = document.createElement("span");
+      price.className = "offer-price";
+      price.textContent = item.price;
+      name.appendChild(price);
+    }
+
+    const body = document.createElement("p");
+    body.textContent = item.body || "";
+
+    wrap.appendChild(name);
+    wrap.appendChild(body);
+    list.appendChild(wrap);
+  });
+
+  // One link through to the full page, rather than repeating it per offer.
+  const more = document.createElement("p");
+  more.className = "offer-note";
+  const link = document.createElement("a");
+  link.href = "styling/index.html";
+  link.textContent = "See the styling offers in full";
+  more.appendChild(link);
+
+  homeStylingMount.appendChild(heading);
+  homeStylingMount.appendChild(list);
+  homeStylingMount.appendChild(more);
+}

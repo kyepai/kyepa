@@ -77,14 +77,19 @@ window.WEDDINGS_CONFIG = {
         "Queer-first weddings, with every couple welcome. Destination " +
         "weddings on St. Martin and wedding styling wherever you live.",
       cta: "Plan a conversation",
-      /* TODO(Kyle): the hero image should lead with a queer couple — two
-         grooms, two brides, or a couple beyond the binary. This is the
-         first thing a visitor sees, and it is what tells them whether this
-         page is for them before they read a word. Set `media` to a path
-         relative to this folder. */
-      media: "",
+      media: "../assets/weddings/hero.jpg",
+      /* Describes what is actually in the frame. It is deliberately two
+         shirts rather than two faces: it reads as two grooms without
+         casting anybody, and it will not date. */
       mediaAlt:
-        "A queer couple on their wedding day on St. Martin"
+        "Two white dress shirts laid side by side on deep red cloth, each " +
+        "bordered by a different paisley print",
+      /* The hero frame normally widens to 16:9 on a desktop. This image is
+         square, and the two paisley borders at its edges are the whole
+         point of the composition, so the frame keeps the image's own ratio
+         instead of cropping them off. Remove this line and the frame goes
+         back to being responsive. */
+      mediaRatio: "1 / 1"
     },
 
     /* ---- 2. Ways to work together ----
@@ -184,38 +189,48 @@ window.WEDDINGS_CONFIG = {
     },
 
     /* ---- 7. Portfolio ----
-       TODO(Kyle): the first entries should be queer couples. That is the
-       single clearest signal that this page means what it says. */
+       Kyle's own wedding, Amsterdam 2017, pulled from @kye_pai.
+       TODO(Kyle): two things to confirm before this stays up for long.
+       (1) Petr is clearly identifiable in all three — he should be happy
+       about appearing on a commercial page, which is different from
+       appearing on your Instagram. (2) These were extracted from phone
+       screenshots, so they are only ~390–470px wide. If you still have the
+       originals they will look markedly better on a retina screen. */
     portfolio: {
       title: "The work",
-      intro: "A styled shoot first, real weddings as they happen.",
+      intro: "Starting where I have to start: my own.",
       cards: [
         {
-          title: "Styled shoot — two grooms, French side",
-          initials: "SS1",
+          title: "The rings — Amsterdam, 2017",
+          initials: "",
           thinking:
-            "Placeholder: two grooms, golden hour, looks built to survive " +
-            "an outdoor ceremony.",
-          image: "",
-          alt: ""
+            "My own wedding day. Two hands, two rings, and the only " +
+            "styling detail anybody photographed up close.",
+          image: "../assets/weddings/rings.jpg",
+          alt:
+            "Two hands clasped together, both wearing plain wedding " +
+            "bands, on a street in Amsterdam"
         },
         {
-          title: "Styled shoot — two brides, beachside",
-          initials: "SS2",
+          title: "Two grooms, two white shirts",
+          initials: "",
           thinking:
-            "Placeholder: two brides, and what a dress has to do when " +
-            "there's sand and a breeze.",
-          image: "",
-          alt: ""
+            "White shirts photograph brutally in window light. These " +
+            "were chosen to hold their shape through a long, warm day.",
+          image: "../assets/weddings/grooms.jpg",
+          alt:
+            "Two grooms in open white shirts kissing at a table by a window"
         },
         {
-          title: "First dance — choreography",
-          initials: "FD",
+          title: "Museumplein — the shoot after",
+          initials: "",
           thinking:
-            "Placeholder: the three minutes everyone films, built around " +
-            "how this couple actually moves.",
-          image: "",
-          alt: ""
+            "Amsterdam, days later, for an editorial collection. The " +
+            "same two people, styled for a camera instead of a ceremony.",
+          image: "../assets/weddings/museumplein.jpg",
+          alt:
+            "A couple standing together in front of the I amsterdam " +
+            "letters at Museumplein, with the Rijksmuseum behind them"
         }
       ]
     },

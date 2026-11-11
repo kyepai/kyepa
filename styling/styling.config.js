@@ -115,13 +115,21 @@ window.STYLING_CONFIG = {
       cta: "Get the free Movement Test",
       /* Sits beside the primary button and jumps to the offers. */
       ctaSecondary: "See the offers",
-      /* Full-width opener. Set `media` to an image path relative to this
-         folder (e.g. "../assets/styling/hero.jpg") or an .mp4/.mov for video.
-         Leave "" and a marked placeholder frame shows instead.
-         TODO(Kyle): hero image or video still to come. Ideally you on a
-         stage, mid-movement, rather than a standing portrait. */
-      media: "",
-      mediaAlt: ""
+      /* Set `media` to an image path relative to this folder, or an
+         .mp4/.mov for video. Leave "" and a marked placeholder shows. */
+      media: "../assets/styling/hero.jpg",
+      mediaAlt:
+        "Kyle Patrick mid-leap in bold sportswear against a pale backdrop, " +
+        "one arm raised and both feet off the ground",
+      /* The hero frame normally widens to 16:9 on a desktop, which would
+         cut off the raised arm and the trailing leg. Pinning the image's
+         own ratio keeps the whole leap in frame at every width. Remove
+         this line to go back to the responsive crop. */
+      mediaRatio: "591 / 789",
+      /* Makes the hero image a link. Leave "" for a plain image. */
+      linkUrl:
+        "https://thefutureclub.berlin/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleAVhXZlleHRuA2FlbQIxMQBwZG9mAmZkaWQWUSDrO0Xxi5lM-ZiOtDU926Pif7-yinNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABpys85zvmnWIHXv1E17FzL2kjnZEYPBOX4rcIYF0a5yPZ5Aj2hp5UV_s-5AAo_aem_sxZHVzsKminPDHFxwIdHUQ",
+      linkAria: "The Future Club Berlin — the shoot this image is from"
     },
 
     /* ---- 2. The idea ----
@@ -241,11 +249,6 @@ window.STYLING_CONFIG = {
             "the one that changes how a room reads you before you have " +
             "said anything.",
           bonuses: [
-            {
-              name: "The Microscopic Budget Method",
-              line: "How to build a stage-worthy look on almost nothing.",
-              caseStudy: "pelican"
-            },
             {
               name: "Walk & Movement Coaching",
               line: "Nineteen years of stage craft, pointed at your walk."
@@ -387,13 +390,24 @@ window.STYLING_CONFIG = {
         },
         {
           id: "malta",
-          /* TODO(Kyle): confirm the exact title and year of this one. */
+          /* TODO(Kyle): TWO things to fix here.
+             (1) The exact title and year of the Malta win.
+             (2) The photo now attached is captioned, on your own account,
+                 "Suit-look for @faconastyle at @messe_dornbirn" — Dornbirn,
+                 Austria, April 2018. That is not Malta. Either the title
+                 needs to change to match the photo, or this is the wrong
+                 photo for this card. The copy below claims no location, so
+                 nothing false is published until you decide. */
           title: "Fashion show winner — Malta",
           initials: "MLT",
           thinking:
-            "Placeholder: the exact title is still to be confirmed.",
-          image: "",
-          alt: "",
+            "A suit built to be walked in: the jacket holds its line " +
+            "through a full stride, and the shoes were chosen to be seen " +
+            "mid-step.",
+          image: "../assets/styling/suit-look.jpg",
+          alt:
+            "Kyle Patrick in a navy three-piece suit and bow tie, " +
+            "mid-stride against a white building with louvred shutters",
           detail: ""
         }
       ]
@@ -511,8 +525,8 @@ window.STYLING_CONFIG = {
           q: "I'm on a tight budget.",
           a:
             "Then you are exactly who the Microscopic Budget Method is " +
-            "for — it's included in the Full Image Sprint and the Delegate " +
-            "Look Package. I built a national costume out of mesh, tulle, " +
+            "for — it comes with the Delegate Look Package. I built a " +
+            "national costume out of mesh, tulle, " +
             "glitter and patience; the pelican is in the lookbook above. " +
             "The Full Image Sprint also splits into three monthly " +
             "payments, and the Style Sprint starts at €250 so you can " +

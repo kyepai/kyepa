@@ -1220,3 +1220,42 @@
 @media (prefers-reduced-motion: reduce) {
   .styling-info { transition: none; }
 }
+
+/* Card CTAs sit centred under their card. They already bottom-align across
+   a row, so centring gives a tidy line of buttons rather than a ragged
+   left edge under text blocks of different lengths. */
+.styling-content .styling-offer-cta {
+  text-align: center;
+}
+
+/* Placeholder text, blurred and dimmed. The meaning is carried by the
+   tile's aria-label, so the visible wording is decorative here and losing
+   legibility costs a screen-reader user nothing. */
+.styling-placeholder span,
+.styling-content .styling-reel-placeholder {
+  filter: blur(1.5px);
+  opacity: 0.6;
+}
+
+/* A hero image with its own ratio set in the config: higher specificity
+   than the responsive .styling-hero-frame rules in the media queries, so
+   the supplied shape wins at every width rather than being cropped. */
+.styling-content .styling-hero-frame--fixed {
+  aspect-ratio: var(--styling-hero-ratio, 4 / 5);
+  max-width: min(560px, 100%);
+  margin-inline: auto;
+}
+
+/* Clickable hero. Fills the frame and keeps a visible focus ring. */
+.styling-hero-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.styling-hero-link:focus-visible {
+  outline: 2px solid rgba(245, 245, 245, 0.7);
+  outline-offset: 4px;
+}

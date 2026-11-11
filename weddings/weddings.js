@@ -101,6 +101,15 @@ function buildHero() {
       })
     : placeholderTile("", "wed-placeholder--hero");
 
+  // A supplied ratio pins the frame to the image's own shape rather than
+  // letting the responsive crop take the edges off it.
+  const frame = el("div", {
+    class: `wed-hero-frame${hero.mediaRatio ? " wed-hero-frame--fixed" : ""}`
+  }, [media]);
+  if (hero.mediaRatio) {
+    frame.style.setProperty("--wed-hero-ratio", hero.mediaRatio);
+  }
+
   return el("section", { class: "wed-hero wed-wide" }, [
     el("div", { class: "wed-hero-copy" }, [
       el("h1", { class: "wed-hero-title", text: hero.headline || "" }),
@@ -109,7 +118,7 @@ function buildHero() {
         el("a", { class: "contact-button", href: "#wed-enquiry", text: hero.cta || "" })
       ])
     ]),
-    el("div", { class: "wed-hero-frame" }, [media])
+    frame
   ]);
 }
 

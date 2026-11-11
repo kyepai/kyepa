@@ -529,6 +529,7 @@
           feature. Personal Training is the one purely physical track.
           Choose whichever matches what you're ready to work on.
         </p>
+        <h3 class="offer-group-title">Life Experience Design</h3>
         <div class="offer-list">
           <div class="offer-item">
             <p class="offer-name">Discovery Call <span class="offer-price">Free</span></p>
@@ -566,6 +567,24 @@
             </p>
           </div>
         </div>
+        <!-- Styled in Motion offers, rendered from styling/styling.config.js
+             by script.js so the prices here can never drift from the ones
+             on /styling/. Edit them there, not in this file. -->
+        <div id="home-styling-offers"></div>
+
+        <h3 class="offer-group-title">Weddings</h3>
+        <div class="offer-list">
+          <div class="offer-item">
+            <p class="offer-name">KYEPA Weddings <span class="offer-price">Price on request</span></p>
+            <p>
+              Queer-first wedding planning and styling: destination weddings
+              on St. Martin, and styling, personal shopping and first-dance
+              choreography wherever you live.
+              <a href="weddings/index.html">See the wedding pages</a>.
+            </p>
+          </div>
+        </div>
+
         <p class="offer-note">
           Indicative pricing.
           <a href="mailto:info@kyepa.com">Get in touch</a> for a discovery call.
@@ -600,6 +619,9 @@
     <p class="site-footer-credit">Styled &amp; designed by KYEPA.</p>
   </footer>
 
+  <!-- Not deferred: script.js is not either, and a deferred script would
+       run after it, leaving the offers modal empty. -->
+  <script src="styling/styling.config.js"></script>
   <script src="script.js"></script>
 
   <!-- GREENLIT campaign pop-up mounts here. Shows the full intro film on a

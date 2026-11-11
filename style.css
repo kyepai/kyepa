@@ -1027,3 +1027,22 @@ body {
     max-width: none;
   }
 }
+
+/* Group headings inside the Suite of Offers modal, now that it carries
+   three families of offers rather than one flat list. */
+.offer-group-title {
+  margin-top: 2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.offer-group-title:first-of-type {
+  margin-top: 1.75rem;
+}
+
+#home-styling-offers .offer-note {
+  margin-top: 0.9rem;
+}
