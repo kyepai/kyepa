@@ -52,7 +52,8 @@ Four cards, in `offers.items`, read as a ladder: **Start here** →
 | Field | What it does |
 | --- | --- |
 | `tier` | Small label above the name |
-| `price` | Anything — "From €250", "Price TBC", "Ask me" |
+| `price` | Anything — "From €240", "TBYD", "You ask me…" |
+| `priceInfo` | Explains a price that is a joke. Adds an info dot beside it, here **and** in the homepage Suite of Offers |
 | `priceNote` | Small line under the price, e.g. payment plans |
 | `badge` | Pill on the card, e.g. "Coming soon" |
 | `meta` | Duration / format line |

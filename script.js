@@ -180,7 +180,7 @@ if (homeStylingMount && stylingOffers && stylingOffers.items) {
   const list = document.createElement("div");
   list.className = "offer-list";
 
-  stylingOffers.items.forEach((item) => {
+  stylingOffers.items.forEach((item, index) => {
     const wrap = document.createElement("div");
     wrap.className = "offer-item";
 
@@ -188,12 +188,44 @@ if (homeStylingMount && stylingOffers && stylingOffers.items) {
     name.className = "offer-name";
     name.appendChild(document.createTextNode(item.name + " "));
 
-    // Not every card carries a price — a name-your-price one may not.
+    // Not every offer carries a price.
     if (item.price) {
       const price = document.createElement("span");
       price.className = "offer-price";
       price.textContent = item.price;
-      name.appendChild(price);
+
+      // A price that is a joke — "TBYD", "You ask me…" — carries its own
+      // explanation in the config. Same affordance as /styling/: a real
+      // button, the shared hover plate, and aria-describedby so the
+      // answer is available without a mouse.
+      if (item.priceInfo) {
+        const priceWrap = document.createElement("span");
+        priceWrap.className = "offer-price-wrap plate-trigger";
+
+        const infoId = "home-priceinfo-" + index;
+
+        const info = document.createElement("button");
+        info.type = "button";
+        info.className = "offer-info";
+        info.setAttribute("aria-describedby", infoId);
+        info.setAttribute("aria-label", "What \u201C" + item.price + "\u201D means");
+        const glyph = document.createElement("span");
+        glyph.setAttribute("aria-hidden", "true");
+        glyph.textContent = "i";
+        info.appendChild(glyph);
+
+        const plate = document.createElement("span");
+        plate.className = "hover-plate offer-info-plate";
+        plate.id = infoId;
+        plate.textContent = item.priceInfo;
+
+        priceWrap.appendChild(price);
+        priceWrap.appendChild(info);
+        priceWrap.appendChild(plate);
+        name.appendChild(priceWrap);
+      } else {
+        name.appendChild(price);
+      }
     }
 
     const body = document.createElement("p");

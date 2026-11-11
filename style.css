@@ -707,6 +707,76 @@ body {
   white-space: nowrap;
 }
 
+/* Price explainer in the Suite of Offers, for the two prices that are a
+   joke with a straight answer behind them — "TBYD" and "You ask me…".
+   Reuses the shared .plate-trigger/.hover-plate pair, so it needs no new
+   show/hide logic. The dot is a real <button>, so the plate opens on
+   keyboard focus as well as hover, and aria-describedby means a screen
+   reader gets the explanation either way.
+
+   Mirrors .styling-info on /styling/. The colours differ because this
+   modal is plated cream with black text, not the dark palette. */
+.offer-price-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.offer-info {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Visually small, but the tap target below brings it to 44px. */
+  width: 1.15rem;
+  height: 1.15rem;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.45);
+  border-radius: 50%;
+  background: none;
+  color: rgba(0, 0, 0, 0.75);
+  font: inherit;
+  font-size: 0.7rem;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1;
+  cursor: help;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+/* Invisible 44px tap target, so this works on a phone without making the
+   dot itself clumsy. */
+.offer-info::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+.offer-info:hover,
+.offer-info:focus-visible {
+  border-color: #000;
+  color: #000;
+}
+
+/* The shared plate is left-anchored, but the price sits at the right edge
+   of .offer-name, so this one opens leftwards to stay inside the modal. */
+.offer-info-plate {
+  left: auto;
+  right: 0;
+  width: min(20rem, 72vw);
+  white-space: normal;
+  font-size: 0.85rem;
+  /* The site plate is tuned for an italic link context; reset for a price. */
+  font-style: normal;
+  font-weight: 400;
+  text-align: left;
+}
+
 .offer-note {
   margin-top: 1.5rem;
   font-size: 0.85rem;

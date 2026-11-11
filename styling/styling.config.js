@@ -427,7 +427,7 @@ window.STYLING_CONFIG = {
              The sash itself is Kyle's own account; the rest is on the
              public record.
              TODO(Kyle): confirm the sash's exact name if it had one. */
-          title: "Fashion show sash — Mr Gay World 2016, Malta",
+          title: "Fashion show sash WINNER! — Mr Gay World 2016, Valletta, Malta",
           initials: "MLT",
           thinking:
             "A suit built to be walked in: the jacket holds its line " +
@@ -438,10 +438,10 @@ window.STYLING_CONFIG = {
             "Kyle Patrick in a navy three-piece suit and bow tie, " +
             "mid-stride against a white building with louvred shutters",
           detail:
-            "Mr Gay World 2016 in Malta: I went third runner-up for Sint " +
-            "Maarten and took the fashion show sash. The sash existed " +
-            "because one of the contest's own producers, Dieter Sapper of " +
-            "Nouba Events, had started it — and he also staged the " +
+            "Mr Gay World 2016 in Valletta, Malta: I went third runner-up " +
+            "for Sint Maarten and won the fashion show sash. The sash " +
+            "existed because one of the contest's own producers, Dieter " +
+            "Sapper of Nouba Events, had started it — and he also staged the " +
             "Modeschauen for Messe Dornbirn. So the prize was not a " +
             "trophy. It was walking his shows in his region. This suit is " +
             "that prize being collected, two years later in Austria: a " +
@@ -482,7 +482,7 @@ window.STYLING_CONFIG = {
     credentials: [
       "19 years in professional performance",
       "Mr Gay World — Sint Maarten titleholder",
-      "Fashion show sash — Mr Gay World 2016, Malta",
+      "Fashion show sash WINNER! — Mr Gay World 2016, Valletta, Malta",
       "Working remotely worldwide, based on Sint Maarten",
       "English · Nederlands · Deutsch"
     ],
