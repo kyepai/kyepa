@@ -306,6 +306,21 @@
    Instagram, so it is not "no tracking" — see styling/README.md.
    -------------------------------------------------------------------------- */
 .styling-reel-frame {
+  /* Instagram's embed card is header + video + footer stacked. At frame
+     width W a vertical reel's video is exactly W * 16/9 tall — the full
+     height of this frame — so the header pushes the clip down and the
+     overflow clips the same amount off its bottom.
+
+     These two values are the height of that chrome. The iframe is made
+     taller by both and shifted up by the header, so the visible window
+     lands exactly on the video and the chrome is what gets cropped
+     instead of the clip. Both are fixed pixel heights in Instagram's own
+     layout, so this holds at every frame width.
+
+     If the crop sits slightly high or low, nudge --ig-header. */
+  --ig-header: 54px;
+  --ig-footer: 96px;
+
   margin-top: 2rem;
   display: flex;
   align-items: center;
@@ -320,8 +335,12 @@
 }
 
 .styling-reel-embed {
+  display: block;
   width: 100%;
-  height: 100%;
+  /* Tall enough to hold the whole card, then pulled up so the video fills
+     the frame. Never scaled, so the clip cannot stretch. */
+  height: calc(100% + var(--ig-header) + var(--ig-footer));
+  transform: translateY(calc(-1 * var(--ig-header)));
   border: 0;
 }
 
