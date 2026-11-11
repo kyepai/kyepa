@@ -178,8 +178,13 @@ window.STYLING_CONFIG = {
         {
           tier: "Do it yourself",
           name: "Style Identity Workbook",
-          /* TODO(Kyle): decide the price before this goes on sale. */
-          price: "Price TBC",
+          price: "TBYD",
+          /* `priceInfo` turns the price into a hover/focus tooltip, using
+             the same plate component as the homepage's Club Athleten link.
+             Leave it off and the price is plain text. */
+          priceInfo:
+            "Too Busy You Decide. It isn't priced yet — join the list and " +
+            "help me set it.",
           priceNote: "",
           badge: "Coming soon",
           meta: "Digital · work through it at your own pace",
@@ -188,8 +193,7 @@ window.STYLING_CONFIG = {
             "yourself: the questions I ask, the exercises I set, and the " +
             "written style identity you come out holding.",
           bonuses: [],
-          /* Points at the signup form rather than a checkout. */
-          cta: "Tell me when it's ready"
+          cta: "Join the waitlist"
         },
         {
           tier: "Start here",
@@ -201,18 +205,19 @@ window.STYLING_CONFIG = {
           body:
             "One focused session: an identity read, a wardrobe audit by " +
             "video and a clear look direction. Fully remote wherever you " +
-            "live, or in person on Sint Maarten. The fastest way to see " +
-            "what I do before committing to anything bigger.",
+            "live, or in person on Sint Maarten.",
           bonuses: [],
           cta: ""
         },
         {
           tier: "Done for you",
           name: "Personal Shopper",
-          /* TODO(Kyle): this one has no price yet — your brief cut off
-             before it. "Ask me" is holding the slot. */
-          price: "Ask me",
-          priceNote: "",
+          price: "You ask me…",
+          priceInfo:
+            "A mashup of “no, you go first” and “I love you”. A flat " +
+            "sourcing fee — tell me what you're working with and we'll " +
+            "build from there.",
+          priceNote: "garments billed separately",
           badge: "",
           meta: "A shortlist to your door, or a shopping day together",
           body:
@@ -254,24 +259,6 @@ window.STYLING_CONFIG = {
         },
         {
           tier: "Done for you",
-          name: "Weddings & Stage",
-          /* TODO(Kyle): carried over from the Stage & Event Styling figure
-             you confirmed. Check it still fits now weddings are in scope. */
-          price: "From €500",
-          priceNote: "garments billed separately",
-          badge: "",
-          meta: "Remote for a wedding at home · in person for a destination one",
-          body:
-            "Queer couples first, and every couple welcome. Looks, " +
-            "styling and first-dance choreography for the two of you — " +
-            "and the same for delegates and performers taking a stage. " +
-            "Styled remotely for a wedding where you live, or planned in " +
-            "person for a destination wedding on Sint Maarten / St. Martin.",
-          bonuses: [],
-          cta: ""
-        },
-        {
-          tier: "Done for you",
           name: "Delegate Look Package",
           price: "From €3,500",
           priceNote: "garments billed separately",
@@ -299,6 +286,23 @@ window.STYLING_CONFIG = {
             }
           ],
           cta: ""
+        },
+        {
+          /* A link card: `link` sends the button to another page instead of
+             the form, and the card renders without a price. */
+          tier: "Weddings",
+          name: "Weddings & Stage",
+          price: "",
+          priceNote: "",
+          badge: "",
+          meta: "Queer-first, every couple welcome",
+          body:
+            "Couple and groom styling, personal shopping for the day, and " +
+            "first-dance choreography. Destination weddings on St. Martin, " +
+            "wedding styling wherever you live.",
+          bonuses: [],
+          link: "../weddings/index.html",
+          cta: "See the wedding pages"
         }
       ],
       bonusLabel: "Included",
@@ -421,20 +425,21 @@ window.STYLING_CONFIG = {
     /* ---- 9. Credentials strip ---- */
     credentials: [
       "19 years in professional performance",
-      "Mr Gay World — sole Sint Maarten titleholder",
+      "Mr Gay World — Sint Maarten titleholder",
       /* TODO(Kyle): confirm the exact wording of the Malta win. */
       "Fashion show winner, Malta",
-      "Working remotely worldwide, in person on Sint Maarten"
+      "Working remotely worldwide, based on Sint Maarten",
+      "English · Nederlands · Deutsch"
     ],
 
     /* ---- 10. The signup form and its lead magnet ---- */
     waitlist: {
-      title: "The 5-Point Movement Test",
+      title: "Free download: The 5-Point Movement Test",
       intro:
-        "The five things every look has to survive before it goes on a " +
-        "stage: walk, sit, turn, gesture, heat. It's free, it's the test I " +
-        "run on my own costumes, and you can use it on a wardrobe you " +
-        "already own tonight.",
+        "Will your look survive the moment? Five tests every look has to " +
+        "pass before you wear it: walk, sit, embrace, heat, lens. It's the " +
+        "test I run on my own costumes, and you can use it tonight on a " +
+        "wardrobe you already own.",
       /* The small print under the button — says plainly what signing up does. */
       consequence:
         "You'll get the PDF and a place on the Style Sprint list. " +
@@ -443,10 +448,18 @@ window.STYLING_CONFIG = {
       emailLabel: "Email",
       instagramLabel: "Instagram handle",
       instagramHint: "Optional — it helps me see what you already wear.",
-      locationLabel: "Where are you?",
-      locationOptions: ["Sint Maarten", "Remote"],
+      /* Free text, not a dropdown: clients are spread across Europe and
+         North America, and a two-option list would be wrong for almost
+         everyone who fills this in. */
+      locationLabel: "Country of residence",
+      locationHint: "So I know your time zone and what ships to you.",
       preparingLabel: "I'm preparing for",
-      preparingOptions: ["A pageant", "A performance", "An event", "Everyday"],
+      preparingOptions: [
+        "A pageant",
+        "A performance",
+        "My wedding",
+        "Everyday style"
+      ],
       interestLabel: "Interested in",
       /* The offers themselves fill this dropdown — add one above and it
          appears here automatically, in the same order. This is only the
@@ -459,7 +472,11 @@ window.STYLING_CONFIG = {
         "No list-selling, no spam.",
       submit: "Send me the test",
       sending: "Sending…",
-      success: "You're on the list. I'll be in touch when Style Sprints open.",
+      success: "It's yours.",
+      /* Second line of the thank-you, under the headline. */
+      successTail:
+        "Check your inbox too — and when you're ready for a look that " +
+        "passes all five, I'm here.",
       /* Added under the success message when LEAD_MAGNET_URL is set. */
       successWithFile: "Your copy of the 5-Point Movement Test is below.",
       downloadCta: "Download the 5-Point Movement Test",
@@ -487,45 +504,39 @@ window.STYLING_CONFIG = {
             "looked at; most of my clients are not, and that is the actual " +
             "problem we are solving. None of this depends on your height, " +
             "your size or your face. It depends on knowing who you're " +
-            "becoming and then being dressed so the room reads it before " +
+            "becoming, and then being dressed so the room reads it before " +
             "you open your mouth."
-        },
-        {
-          q: "Can you really style me remotely?",
-          a:
-            "Yes, and most of it is built to work that way. The Remote " +
-            "Video Audit Process is included in both the Full Image Sprint " +
-            "and the Delegate Look Package: you walk me through your own " +
-            "wardrobe on your phone, which tells me more than a showroom " +
-            "ever would. In-person days are for the build and the shoot, " +
-            "and I travel for those."
         },
         {
           q: "I'm on a tight budget.",
           a:
             "Then you are exactly who the Microscopic Budget Method is " +
-            "for. I built a national costume out of mesh, tulle, glitter " +
-            "and patience — look at the pelican in the lookbook above. " +
+            "for — it's included in the Full Image Sprint and the Delegate " +
+            "Look Package. I built a national costume out of mesh, tulle, " +
+            "glitter and patience; the pelican is in the lookbook above. " +
             "The Full Image Sprint also splits into three monthly " +
-            "payments, and the Style Sprint exists so you can start at " +
-            "€250 instead of nothing."
+            "payments, and the Style Sprint starts at €250 so you can " +
+            "begin somewhere rather than nowhere."
         },
         {
-          q: "Do I have to buy new clothes?",
+          q: "Can you really style me remotely?",
           a:
-            "No. We start with what you already own, and the edit usually " +
-            "finds more than you expect. Most people are not missing " +
-            "clothes, they're missing a decision about who they are in " +
-            "them. If there are real gaps I'll give you a sourcing plan " +
-            "with prices, and you buy at your own pace."
+            "Yes — most of my clients have never been to the island. The " +
+            "Remote Video Audit Process is built for exactly this: you " +
+            "walk me through your own wardrobe on your phone, which tells " +
+            "me more than a showroom ever would. We work in your time " +
+            "zone. In-person days on Sint Maarten are an option, never a " +
+            "requirement."
         },
         {
-          q: "Can you style for a specific event?",
+          q: "How does personal shopping work if I live abroad?",
           a:
-            "That's what the Delegate Look Package is built for: a whole " +
-            "competition, planned as one wardrobe. For a single night — a " +
-            "performance, a red carpet, a wedding — email me and say the " +
-            "date, the venue and the light, and I'll quote it."
+            "Two ways. Either I send you a curated shortlist from brands " +
+            "that deliver to your door, with sizes, links and what to do " +
+            "if something doesn't fit — or we shop together in person, in " +
+            "your city or mine. Either way every pick is chosen to pass " +
+            "all five tests, so nothing arrives that only works standing " +
+            "still."
         },
         {
           q: "What's the movement test?",
@@ -541,17 +552,8 @@ window.STYLING_CONFIG = {
           q: "What if it doesn't feel right?",
           a:
             "Then you get your money back. If our first session doesn't " +
-            "feel right, it's a full refund — no forms, no fuss, no " +
+            "feel right, it's a full refund — no forms, no fuss, and no " +
             "conversation where I try to talk you round."
-        },
-        {
-          q: "How do I book?",
-          a:
-            "Grab the 5-Point Movement Test above and you're on the list; " +
-            "I'll come to you when the next batch of Sprints opens. If " +
-            "you're working to a date that won't wait — and pageant dates " +
-            "never do — email info@kyepa.com and say so. I'll tell you " +
-            "honestly whether I can make it."
         }
       ]
     },
@@ -559,7 +561,9 @@ window.STYLING_CONFIG = {
     /* ---- 12. Closing CTA ---- */
     closing: {
       headline: "Ready to look like the life you're designing?",
-      cta: "Get the free Movement Test"
+      cta: "Get the free Movement Test",
+      /* Mailto, for anyone who would rather just talk. */
+      ctaSecondary: "Book a conversation"
     },
 
     /* ---- Shared furniture ----

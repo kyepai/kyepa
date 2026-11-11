@@ -244,10 +244,36 @@ function bonusList(bonuses) {
   ]);
 }
 
+/* The price, optionally wrapped in the same hover plate the homepage uses
+   for its Club Athleten link. The explainer is a real <button>, so it opens
+   on keyboard focus as well as hover, and aria-describedby means a screen
+   reader gets the explanation whether or not the plate is visible. */
+function priceCell(item, index) {
+  if (!item.price) return null;
+  const price = el("span", { class: "offer-price", text: item.price });
+  if (!item.priceInfo) return price;
+
+  const infoId = `styling-priceinfo-${index}`;
+  return el("span", { class: "styling-price-wrap plate-trigger" }, [
+    price,
+    el("button", {
+      type: "button",
+      class: "styling-info",
+      "aria-describedby": infoId,
+      "aria-label": `What “${item.price}” means`
+    }, [el("span", { "aria-hidden": "true", text: "i" })]),
+    el("span", {
+      class: "hover-plate styling-info-plate",
+      id: infoId,
+      text: item.priceInfo
+    })
+  ]);
+}
+
 function buildOffers() {
   const offers = S.offers || {};
-  const items = (offers.items || []).map((item) =>
-    el("div", { class: "styling-offer" }, [
+  const items = (offers.items || []).map((item, index) =>
+    el("div", { class: `styling-offer${item.link ? " styling-offer--link" : ""}` }, [
       // Tier and badge share a row above the name.
       (item.tier || item.badge)
         ? el("div", { class: "styling-offer-head" }, [
@@ -257,7 +283,7 @@ function buildOffers() {
         : null,
       el("h3", { class: "offer-name" }, [
         el("span", { text: item.name || "" }),
-        el("span", { class: "offer-price", text: item.price || "" })
+        priceCell(item, index)
       ]),
       item.priceNote
         ? el("p", { class: "styling-offer-pricenote", text: item.priceNote })
@@ -266,8 +292,14 @@ function buildOffers() {
       el("p", { class: "styling-offer-body", text: item.body || "" }),
       bonusList(item.bonuses),
       el("p", { class: "styling-offer-cta" }, [
-        ctaLink(item.cta || offers.ctaDefault || "Enquire", item.name,
-          "styling-offer-button")
+        item.link
+          ? el("a", {
+              class: "contact-button styling-offer-button",
+              href: item.link,
+              text: item.cta || "Find out more"
+            })
+          : ctaLink(item.cta || offers.ctaDefault || "Enquire", item.name,
+              "styling-offer-button")
       ])
     ])
   );
@@ -590,12 +622,15 @@ function successBlock(w) {
     tabindex: "-1"
   }, [
     el("p", { class: "styling-success-line", text: w.success || "" }),
+    w.successTail
+      ? el("p", { class: "styling-success-tail", text: w.successTail })
+      : null,
     el("p", {
       class: "styling-success-sub",
       // Never promise a download that does not exist yet.
       text: file ? (w.successWithFile || "") : (w.successNoFile || "")
     })
-  ]);
+  ].filter(Boolean));
 
   if (file) {
     block.appendChild(el("p", { class: "styling-success-download" }, [
@@ -628,7 +663,10 @@ function buildWaitlist() {
     placeholder: "@", autocomplete: "off"
   });
 
-  const locationSelect = selectField("sl-location", "location", w.locationOptions);
+  const locationInput = el("input", {
+    type: "text", id: "sl-location", name: "location",
+    required: "", autocomplete: "country-name"
+  });
   const preparingSelect = selectField("sl-preparing", "preparing", w.preparingOptions);
   const interestSelect = selectField("sl-interest", "interest", interestChoices(w));
 
@@ -660,7 +698,8 @@ function buildWaitlist() {
     field("sl-name", w.nameLabel || "Your name", nameInput),
     field("sl-email", w.emailLabel || "Email", emailInput),
     field("sl-instagram", w.instagramLabel || "Instagram handle", igInput, w.instagramHint),
-    field("sl-location", w.locationLabel || "Where are you?", locationSelect),
+    field("sl-location", w.locationLabel || "Country of residence", locationInput,
+      w.locationHint),
     field("sl-preparing", w.preparingLabel || "I'm preparing for", preparingSelect),
     // Full width: with an odd number of fields, a two-column grid leaves
     // one alone on its row, and these are the two worth the space.
@@ -780,9 +819,19 @@ function buildFaq() {
    -------------------------------------------------------------------------- */
 function buildClosing() {
   const closing = S.closing || {};
+  const email = CFG.CONTACT_EMAIL || "info@kyepa.com";
   return el("section", { class: "styling-closing" }, [
     el("h2", { class: "styling-closing-title", text: closing.headline || "" }),
-    el("p", {}, [ctaLink(closing.cta || "")])
+    el("p", { class: "styling-closing-ctas" }, [
+      ctaLink(closing.cta || ""),
+      closing.ctaSecondary
+        ? el("a", {
+            class: "styling-hero-cta-secondary",
+            href: `mailto:${email}?subject=${encodeURIComponent("A conversation")}`,
+            text: closing.ctaSecondary
+          })
+        : null
+    ].filter(Boolean))
   ]);
 }
 

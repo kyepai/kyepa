@@ -1123,3 +1123,100 @@
 @media (prefers-reduced-motion: reduce) {
   .styling-hero-cta-secondary { transition: none; }
 }
+
+/* --------------------------------------------------------------------------
+   Price explainers ("TBYD", "You ask me…")
+   --------------------------------------------------------------------------
+   Reuses .plate-trigger / .hover-plate from ../style.css — the same
+   component as the homepage's Club Athleten link — so the plate, blur and
+   timing match the rest of the site. The trigger is a real <button>, so
+   this opens on keyboard focus as well as hover.
+   -------------------------------------------------------------------------- */
+.styling-price-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.styling-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Visually small, but the tap target below brings it to 44px. */
+  width: 1.15rem;
+  height: 1.15rem;
+  padding: 0;
+  border: 1px solid rgba(245, 245, 245, 0.45);
+  border-radius: 50%;
+  background: none;
+  color: rgba(245, 245, 245, 0.75);
+  font: inherit;
+  font-size: 0.7rem;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1;
+  cursor: help;
+  position: relative;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+/* Invisible 44px tap target, so this is usable on a phone without making
+   the dot itself clumsy. */
+.styling-info::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+.styling-info:hover,
+.styling-info:focus-visible {
+  border-color: #f5f5f5;
+  color: #f5f5f5;
+}
+
+/* The shared plate is left-anchored; the price sits at the right edge of a
+   card, so this one opens leftwards to stay inside it. */
+.styling-info-plate {
+  left: auto;
+  right: 0;
+  width: min(20rem, 72vw);
+  white-space: normal;
+  font-size: 0.85rem;
+  /* The site plate is tuned for italic link context; reset for a price. */
+  font-style: normal;
+  font-weight: 400;
+  text-align: left;
+}
+
+/* --------------------------------------------------------------------------
+   An offer card that links to another page rather than the form
+   -------------------------------------------------------------------------- */
+.styling-offer--link {
+  border-color: rgba(245, 245, 245, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   Closing CTAs, and the thank-you's second line
+   -------------------------------------------------------------------------- */
+.styling-content .styling-closing-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1.5rem;
+}
+
+.styling-content .styling-success-tail {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  color: #e2e2e2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .styling-info { transition: none; }
+}

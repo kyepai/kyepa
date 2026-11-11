@@ -34,6 +34,17 @@ PDF, real testimonials, the reel, the Malta title, final prices).
 
 ---
 
+## KYEPA Weddings — `/weddings/`
+
+Queer-first wedding planning and styling, in **`weddings/`**. Everything —
+the three service cards and their statuses, prices, FAQ, portfolio, where
+the enquiry form sends — is in `weddings/weddings.config.js`.
+
+Opening the Dutch side to bookings is one config value:
+`WEDDING_DUTCH_SIDE_STATUS: "available"`. See `weddings/README.md`.
+
+---
+
 ## GREENLIT — the Mr Gay World 2026 campaign
 
 The campaign experience lives entirely in **`mgw/`** plus the images in

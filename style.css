@@ -1006,3 +1006,24 @@ body {
     transition: none;
   }
 }
+
+/* Two teasers side by side on wider screens, stacked on a phone. They keep
+   their own max-width when alone, so removing one needs no other change. */
+.teaser-pair {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+@media (min-width: 48rem) {
+  .teaser-pair {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 900px;
+    gap: 1rem;
+  }
+
+  .teaser-pair .styling-teaser {
+    max-width: none;
+  }
+}

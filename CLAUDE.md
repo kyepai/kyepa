@@ -15,6 +15,13 @@ manager, framework, or test suite**.
 - `script.js` — all behaviour for the main page.
 - `mgw/` — the self-contained "GREENLIT" Mr Gay World 2026 campaign (a pop-up
   on the homepage plus a standalone route at `/mgw/`). See the README.
+- `weddings/` — "KYEPA Weddings" at `/weddings/`: queer-first wedding
+  planning and styling. Same self-contained shape as `mgw/` and `styling/`.
+  Its three `WEDDING_*_STATUS` switches each drive five things at once (the
+  badge, the card styling, the button label, the form's preselected option,
+  and whether the service is published in the structured data) — change the
+  switch, never the five. The legal section deliberately makes no legal
+  claims, and the SAFE Harbour seal stays hidden until the training is real.
 - `styling/` — the "Styled in Motion" styling service line at `/styling/`.
   Same shape as `mgw/`: a config file holds every string and price, a
   renderer builds the page, and a stylesheet layers on top of `style.css`.
