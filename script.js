@@ -241,7 +241,7 @@ if (homeStylingMount && stylingOffers && stylingOffers.items) {
   more.className = "offer-note";
   const link = document.createElement("a");
   link.href = "styling/index.html";
-  link.textContent = "See the styling offers in full";
+  link.textContent = "See the Styling Offers in Full";
   more.appendChild(link);
 
   homeStylingMount.appendChild(heading);

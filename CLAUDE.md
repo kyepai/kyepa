@@ -92,6 +92,13 @@ manager, framework, or test suite**.
   silently loses to them, which reads as "my CSS did nothing". Prefix the
   selector (`.styling-content .my-thing`) rather than reaching for
   `!important` — `styling/styling.css` does this throughout and explains why.
+- **Button labels are Title Case, and they say "offers", not "pages".**
+  "See the Ceremony Offers", "Plan a Conversation", "Talk to Me About
+  This" — capitals on the significant words, lowercase on articles and
+  short prepositions. Where prose quotes a button (the Dutch-side FAQ
+  quotes "Notify Me"), the quote matches the button exactly. The campaign
+  in `mgw/` is out of scope: its CTAs are campaign-voiced and one is
+  deliberately shouted.
 - **Forms post off-site or not at all.** There is no server and no build
   step, so no environment variable can ever be substituted in. The waitlist
   form in `styling/` posts to a public Formspree endpoint committed in the

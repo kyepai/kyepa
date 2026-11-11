@@ -76,7 +76,7 @@ window.WEDDINGS_CONFIG = {
       subline:
         "Queer-first weddings, with every couple welcome. Destination " +
         "ceremonies on St. Martin, and styling wherever you live.",
-      cta: "Plan a conversation",
+      cta: "Plan a Conversation",
       media: "../assets/weddings/hero.jpg",
       /* Describes what is actually in the frame. It is deliberately two
          shirts rather than two faces: it reads as two grooms without
@@ -100,8 +100,8 @@ window.WEDDINGS_CONFIG = {
       intro:
         "Three ways in, wherever in the world you're getting married.",
       comingSoonBadge: "Coming soon",
-      ctaAvailable: "Plan a conversation",
-      ctaComingSoon: "Notify me",
+      ctaAvailable: "Plan a Conversation",
+      ctaComingSoon: "Notify Me",
       priceLabel: "Price on request",
       cards: [
         {
@@ -291,7 +291,7 @@ window.WEDDINGS_CONFIG = {
             "Not yet, and I'd rather say so plainly: for the moment it " +
             "isn't possible there. I'm working on it through SAFE, who " +
             "have it among their top five prioritised action points. Tap " +
-            "“Notify me” and you'll hear from me the day that changes."
+            "“Notify Me” and you'll hear from me the day that changes."
         },
         {
           q: "Do you work with couples who aren't marrying on the island?",
@@ -353,9 +353,9 @@ window.WEDDINGS_CONFIG = {
       consentLabel:
         "Yes, you can email me about my enquiry. No list-selling, " +
         "no spam.",
-      submit: "Send it over",
+      submit: "Send It Over",
       /* Replaces the button label when the Dutch side is selected. */
-      submitNotify: "Notify me",
+      submitNotify: "Notify Me",
       sending: "Sending…",
       success: "Got it.",
       successTail:
@@ -367,7 +367,7 @@ window.WEDDINGS_CONFIG = {
       error:
         "That didn't send — the connection dropped. Try again, or email " +
         "me directly at info@kyepa.com.",
-      emailFallback: "Email me instead",
+      emailFallback: "Email Me Instead",
       mailtoHandoff: "Opening your email app with this filled in — just hit send."
     },
 

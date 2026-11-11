@@ -437,7 +437,7 @@ function buildEnquiry() {
     dateField.hidden = isNotify;
     guestsField.hidden = isNotify;
     submit.textContent = isNotify
-      ? (q.submitNotify || "Notify me")
+      ? (q.submitNotify || "Notify Me")
       : (q.submit || "Send it over");
     tag.value = isNotify ? "dutch-side-notify" : "ceremony-enquiry";
     subject.value = isNotify ? "Dutch side — notify me" : "Ceremony enquiry";

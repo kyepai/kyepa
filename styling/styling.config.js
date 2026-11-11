@@ -126,9 +126,9 @@ window.STYLING_CONFIG = {
       subline:
         "For the stage, the aisle and every day — become the one everyone " +
         "remembers.",
-      cta: "Get the free Movement Test",
+      cta: "Get the Free Movement Test",
       /* Sits beside the primary button and jumps to the offers. */
-      ctaSecondary: "See the offers",
+      ctaSecondary: "See the Offers",
       /* Set `media` to an image path relative to this folder, or an
          .mp4/.mov for video. Leave "" and a marked placeholder shows. */
       media: "../assets/styling/hero.jpg",
@@ -219,7 +219,7 @@ window.STYLING_CONFIG = {
             "yourself: the questions I ask, the exercises I set, and the " +
             "written style identity you come out holding.",
           bonuses: [],
-          cta: "Join the waitlist"
+          cta: "Join the Waitlist"
         },
         {
           tier: "Start here",
@@ -326,13 +326,13 @@ window.STYLING_CONFIG = {
             "Martin, styling wherever you live.",
           bonuses: [],
           link: "../weddings/index.html",
-          cta: "See the ceremony pages"
+          cta: "See the Ceremony Offers"
         }
       ],
       bonusLabel: "Included",
       /* Button label on a card that doesn't set its own `cta`. Every one
          of them scrolls to the form and preselects that offer in it. */
-      ctaDefault: "Talk to me about this",
+      ctaDefault: "Talk to Me About This",
       /* TODO(Kyle): confirm all four before launch. */
       note: "Indicative pricing. Every project gets a proper quote first.",
 
@@ -530,7 +530,7 @@ window.STYLING_CONFIG = {
       consentLabel:
         "Yes, you can email me the PDF and news about Style Sprints. " +
         "No list-selling, no spam.",
-      submit: "Send me the test",
+      submit: "Send Me the Test",
       sending: "Sending…",
       success: "It's yours.",
       /* Second line of the thank-you, under the headline. */
@@ -546,7 +546,7 @@ window.STYLING_CONFIG = {
       error:
         "That didn't send — the connection dropped. Try again, or email me " +
         "directly at info@kyepa.com.",
-      emailFallback: "Email me instead",
+      emailFallback: "Email Me Instead",
       mailtoHandoff: "Opening your email app with this filled in — just hit send.",
       required: "Please fill this in."
     },
@@ -621,7 +621,7 @@ window.STYLING_CONFIG = {
     /* ---- 12. Closing CTA ---- */
     closing: {
       headline: "Ready to look like the life you're designing?",
-      cta: "Get the free Movement Test",
+      cta: "Get the Free Movement Test",
       /* Mailto, for anyone who would rather just talk. */
       ctaSecondary: "Book a conversation"
     },
