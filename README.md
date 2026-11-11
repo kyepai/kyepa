@@ -26,10 +26,11 @@ are serving the folder; `kyepa.com/styling/` live. It is linked from the
 main nav and from a teaser block near the bottom of the homepage.
 
 Everything you would want to change — prices, offer wording, case studies,
-FAQ answers, the reel link, where the waitlist form sends to — is in
-**`styling/styling.config.js`**. See `styling/README.md`, which also covers
-setting up the form and what is still waiting on you (photos, the reel, the
-Malta title, final prices).
+FAQ answers, the founding-client banner, the free PDF, where the form sends
+to — is in **`styling/styling.config.js`**, with client quotes in
+**`styling/styling.testimonials.js`**. See `styling/README.md`, which also
+covers setting up the form and what is still waiting on you (photos, the
+PDF, real testimonials, the reel, the Malta title, final prices).
 
 ---
 

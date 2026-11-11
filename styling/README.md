@@ -1,7 +1,12 @@
 # Styling consultations — `/styling/`
 
-"Styled in Motion", the styling service line. Lives entirely in this folder
-plus whatever images you drop into `assets/styling/`.
+"Styled in Motion", the styling service line.
+
+The page talks to **one person first**: a queer man stepping onto a stage —
+a pageant delegate, a performer, someone becoming publicly visible — who
+wants to look unforgettable and move like he owns it. Everyone else is
+welcome and the copy never shuts them out, but when a sentence has to
+choose, it chooses him. Keep that in mind when editing.
 
 Open `styling/index.html` from disk, or serve the repo
 (`python3 -m http.server`) and go to <http://localhost:8000/styling/>, which
@@ -9,131 +14,182 @@ is the closer match to the live `kyepa.com/styling/`.
 
 ---
 
-## Everything you edit is in one file
+## The two files you edit
 
-**`styling.config.js`.** Prices, offer wording, the five method steps, case
-studies, FAQ answers, the reel link, the form destination. Save the file,
-reload the page — there is no build step.
+**`styling.config.js`** — prices, offer wording, the five method steps, case
+studies, FAQ answers, the banner, the lead magnet, the reel link, where the
+form sends to.
 
-The only copy *not* in there is the browser-tab title, the search-results
-description and the share-card text. Those sit in the `<head>` of
-`index.html`, clearly commented, because a search engine has to read them
-without running any JavaScript.
+**`styling.testimonials.js`** — client quotes, in their own file because
+that is the list that should keep growing.
 
-`styling.js` builds the page from the config and `styling.css` styles it.
-Neither contains a word a visitor reads, so you should not need to open
-either to change the page's content.
+Save either and reload. There is no build step.
 
-### Change a price
+The only copy *not* in those two files is the browser-tab title, the
+search-results description and the share-card text, which sit in the
+`<head>` of `index.html` because a search engine has to read them without
+running JavaScript.
+
+`styling.js` builds the page and `styling.css` styles it. Neither contains
+a word a visitor reads.
+
+---
+
+## The offer ladder
+
+Four cards, in `offers.items`, read as a ladder: **Start here** →
+**Do it yourself** → **Done with you** → **Done for you**.
+
+| Field | What it does |
+| --- | --- |
+| `tier` | Small label above the name |
+| `price` | Anything — "From €250", "Price TBC", "Ask me" |
+| `priceNote` | Small line under the price, e.g. payment plans |
+| `badge` | Pill on the card, e.g. "Coming soon" |
+| `meta` | Duration / format line |
+| `bonuses` | What's included on top |
+| `cta` | Button label; falls back to `ctaDefault` |
+
+Every button scrolls to the form **and preselects that offer** in its
+dropdown, so nobody answers a question their click already answered.
+
+A bonus with `caseStudy: "pelican"` becomes a link that opens that lookbook
+card — the claim arrives with its evidence attached. The id must match an
+`id` in `portfolio.cards`.
+
+A price with no digits in it ("Price TBC", "Ask me") is simply published
+without a price in the structured data, rather than guessing a number.
+
+### Two parked offers
+
+**Stage & Event Styling** (from €500) and the **Design Partner add-on** are
+not on the page any more — the four tiers replaced them. They are kept as a
+commented block at the bottom of `offers` rather than deleted. Move either
+back into `items` to restore it. Worth a thought: weddings, red carpets and
+festival artists no longer have a home on this page.
+
+---
+
+## The banner
 
 ```js
-{ name: "Style Sprint", price: "From €250", … }
+URGENCY: { enabled: true, endsAt: "2027-01-31", text: "… until {date} …" }
 ```
 
-Anything goes in `price` — "From €250", "€450", "Ask me". The structured
-data Google reads is generated from the same line, so the two can never
-disagree. A price with no number in it (like "Ask me") is simply published
-without a price attached.
+`{date}` is written out from `endsAt`, so the sentence and the date cannot
+disagree. **The banner removes itself the moment that date passes** — it
+does not need switching off manually, and it will not quietly keep claiming
+a deadline that has gone.
 
-### Add a case study
+There is no countdown clock and no "only 2 places left" counter, by design.
+Those are trivial to fake and visitors can tell. The one scarcity claim on
+the page — "3 places per pageant season" on the Delegate Look Package — is a
+plain `badge` string: **only keep it while it is literally true.**
 
-Copy a block in `portfolio.cards`:
+---
 
-```js
-{
-  title: "The piece",
-  initials: "ABC",          // shown on the placeholder tile until there is a photo
-  thinking: "One line on the thinking behind it.",
-  image: "",                // "../assets/styling/something.jpg"
-  alt: "",                  // describe the photo for screen readers
-  detail: "Longer text. Leave empty and the card simply doesn't open."
-}
-```
+## The lead magnet
 
-A card with `detail` becomes a button that opens a modal; one without is a
-plain tile. Cards with no `image` show a labelled placeholder rather than a
-broken image, so you can publish before the shoot.
+The form's offer is **The 5-Point Movement Test**, a free PDF.
 
-### Drop in the reel
+Put the file somewhere public and paste its path into `LEAD_MAGNET_URL`
+(relative to this folder, e.g. `../assets/styling/five-point-movement-test.pdf`).
 
-Paste any reel or post URL from @kye_pa into `REEL_URL` — the long
-`?utm_source=…` tail is fine, it gets ignored. It embeds through Instagram's
-own `/embed/` route, which renders in a plain iframe, so **no Instagram
-JavaScript and no third-party tracking is added to the site**. While
-`REEL_URL` is empty the slot shows a marked placeholder.
+- **With** a path set: the thank-you shows a download button straight away.
+- **Without** one: the thank-you says you'll email it — which means *you
+  have to*, by hand. Worth filling in early.
+
+One thing to know about Formspree's free tier: it emails **you** the
+submission, it does not email **them** the PDF. That is why the download
+appears on the page instead. If you later want it to arrive in their inbox
+too, Formspree's autoresponse feature is a paid plan.
 
 ---
 
 ## The waitlist form
 
-Out of the box the form works but does not collect anything centrally: on
-submit it opens the visitor's own email app with their answers filled in,
-addressed to info@kyepa.com. Nothing is lost, but they have to press send,
-and some people won't.
+Out of the box the form works but collects nothing centrally: on submit it
+opens the visitor's own email app with their answers filled in. Nothing is
+lost, but they have to press send, and some won't.
 
 To collect submissions properly:
 
-1. Create a free form at [formspree.io](https://formspree.io) and point it at
+1. Create a free form at [formspree.io](https://formspree.io) pointed at
    **info@kyepa.com**.
-2. Copy the endpoint it gives you — it looks like
-   `https://formspree.io/f/abcdwxyz`.
-3. Paste it into `FORM_ENDPOINT` in `styling.config.js`.
-4. In Formspree's own settings, restrict the form to the domain `kyepa.com`
-   so nobody else can post to it, and turn on its spam filtering.
-
-The form then posts in the background and answers inline with
-"You're on the list…" without a page change. If the network drops, it says
-so and keeps everything the visitor typed.
+2. Copy the endpoint — it looks like `https://formspree.io/f/abcdwxyz`.
+3. Paste it into `FORM_ENDPOINT`.
+4. In Formspree's settings, restrict the form to the domain `kyepa.com` and
+   turn on spam filtering.
 
 ### About "use environment variables"
 
-This is worth being straight about: **this site cannot use environment
-variables.** There is no build step and no server — the browser loads these
-files exactly as they sit in the repo, so there is nothing anywhere that
-could substitute a secret in before the page reaches a visitor.
+Worth being straight about: **this site cannot use environment variables.**
+There is no build step and no server — the browser loads these files exactly
+as they sit in the repo, so there is nothing that could substitute a secret
+in before the page reaches a visitor.
 
 That is fine here, because a Formspree endpoint is **not a secret**. It is a
-public address, the same as an email address on a contact page: it ships in
-the HTML of every site that uses Formspree, and anyone can read it by
-viewing source. Committing it is normal and safe. What protects it is the
-domain restriction and spam filtering in step 4 above, not secrecy.
+public address, like an email address on a contact page: it ships in the
+HTML of every site that uses Formspree. Committing it is normal and safe.
+What protects it is the domain restriction in step 4, not secrecy.
 
-If this ever grows into something that *does* need a real secret — a paid
-API, a database write — that needs a server or a serverless function, and
-the secret lives there, never in this repo. Worth saying out loud before it
-comes up.
+If this ever grows into something that *does* need a real secret, that needs
+a server or a serverless function, and the secret lives there — never here.
 
 Nothing in this folder contains a key, a token, or a password.
+
+---
+
+## Client results, and one thing not to do
+
+Each entry in `styling.testimonials.js` marked `placeholder: true` renders
+with a dashed border and the words **"Placeholder — not a real client"** on
+its face, and is **left out of the structured data search engines read**.
+
+That is deliberate, and it is the one guard on this page worth keeping.
+Publishing invented praise as if it were real is how a site earns a manual
+penalty from Google, quite apart from what it would do to you if a delegate
+recognised their own words in a quote they never said. Delete the
+`placeholder` line only when the quote is genuinely someone's, with their
+permission. Three real sentences beat thirty invented ones.
 
 ---
 
 ## A few deliberate choices
 
 - **The GREENLIT campaign pop-up is not loaded here.** It opens on every
-  visit on the homepage, and a Mr Gay World intro film playing over a styling
-  page would bury the thing the visitor came for. The campaign stays on the
-  homepage and at `/mgw/`.
+  visit on the homepage, and a Mr Gay World intro film playing over a
+  styling page would bury what the visitor came for.
 - **The homepage's `script.js` is not loaded here either.** It hands the
-  background over to a second video partway down the page, and this page
-  carries only one (the lighter of the two — most visitors arrive from
-  Instagram on a phone). `styling.js` sets the scroll variable itself.
-- **The FAQ is `<details>`/`<summary>`.** A native accordion: keyboard-
-  operable and working with JavaScript off, with no script of our own.
-- **Paths are relative, never root-absolute**, so the page works both opened
-  from disk and served. See the main `CLAUDE.md`.
+  background to a second video partway down, and this page carries only one
+  (the lighter of the two — most visitors arrive from Instagram on a phone).
+- **The FAQ is `<details>`/`<summary>`** — keyboard-operable, works with
+  JavaScript off, no script of our own.
+- **The reel embeds via Instagram's own `/embed/` route**, which renders in
+  a plain iframe, so no Instagram JavaScript and no third-party tracking is
+  added to the site.
+- **Paths are relative, never root-absolute**, so the page works both from
+  disk and served. See the main `CLAUDE.md`.
 
 ---
 
 ## Still to supply
 
-- [ ] **Hero image or video** — `strings.hero.media`, plus `mediaAlt`
+- [ ] **Hero image or video** — `strings.hero.media` + `mediaAlt`. Ideally
+      you mid-movement on a stage, not a standing portrait
+- [ ] **The 5-Point Movement Test PDF** — write it, then set `LEAD_MAGNET_URL`
+- [ ] **Three real client quotes** — `styling.testimonials.js`, with
+      permission, replacing the placeholders
 - [ ] **Case-study photos** — `portfolio.cards[].image` and `alt`
-- [ ] **The Malta title** — confirm the exact name and year, in both
-      `portfolio.cards` and `credentials`
-- [ ] **The reel URL** — `REEL_URL`
-- [ ] **Final prices** — confirm the four in `offers.items`
+- [ ] **The Malta title** — exact name and year, in both `portfolio.cards`
+      and `credentials`
+- [ ] **Workbook price** — currently "Price TBC"
+- [ ] **Confirm the new prices** — €250 / €1,800 / €3,500, and what the
+      three monthly payments actually come to
+- [ ] **Reel URL** — `REEL_URL`
 - [ ] **Formspree endpoint** — `FORM_ENDPOINT`, see above
-- [ ] **Share card** — `assets/styling/og.jpg`, 1200×630, referenced from
-      `index.html`. Until it exists, shared links preview without an image.
+- [ ] **Share card** — `assets/styling/og.jpg`, 1200×630. Until it exists,
+      shared links preview without an image
+- [ ] **Check the banner date** — `URGENCY.endsAt`, currently 31 Jan 2027
 
 Everything above is marked `TODO(Kyle):` in the config too.

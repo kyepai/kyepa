@@ -18,7 +18,11 @@ manager, framework, or test suite**.
 - `styling/` — the "Styled in Motion" styling service line at `/styling/`.
   Same shape as `mgw/`: a config file holds every string and price, a
   renderer builds the page, and a stylesheet layers on top of `style.css`.
-  See its README.
+  Client quotes live in their own `styling.testimonials.js`. See its README.
+  Two rules there are worth keeping: a testimonial marked `placeholder` is
+  labelled as one on the page **and** excluded from the structured data, and
+  the urgency banner is driven by a real date that removes it automatically.
+  Don't replace either with an invented quote or a resetting countdown.
 
 ## Working with this repo
 
