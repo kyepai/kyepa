@@ -80,9 +80,8 @@ window.STYLING_CONFIG = {
      ----------------------------------------------------------------------
      Paste any reel or post URL from @kye_pa — the long ?utm_source=... tail
      is fine, it gets ignored. Leave empty and the slot renders as a clearly
-     marked placeholder instead of a broken embed.
-     TODO(Kyle): choose the reel you want leading this page. */
-  REEL_URL: "",
+     marked placeholder instead of a broken embed. */
+  REEL_URL: "https://www.instagram.com/reel/DHq7m-_s_E6/?mdxt=MjlscDRqb2kyNmp1",
 
   /* ----------------------------------------------------------------------
      5. The founding-client banner

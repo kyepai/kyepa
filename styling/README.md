@@ -183,8 +183,13 @@ permission. Three real sentences beat thirty invented ones.
 - **The FAQ is `<details>`/`<summary>`** — keyboard-operable, works with
   JavaScript off, no script of our own.
 - **The reel embeds via Instagram's own `/embed/` route**, which renders in
-  a plain iframe, so no Instagram JavaScript and no third-party tracking is
-  added to the site.
+  a plain iframe, so no Instagram JavaScript runs on the page and nothing of
+  theirs can read the rest of it. Be precise about what that buys you,
+  though: the iframe is still a request to Instagram, so they see the
+  visitor's IP and can set cookies inside that frame. It is meaningfully
+  more private than their official embed script, which runs on your page —
+  but it is not "no tracking". If you ever need that, swap the embed for a
+  still image that links out.
 - **Paths are relative, never root-absolute**, so the page works both from
   disk and served. See the main `CLAUDE.md`.
 

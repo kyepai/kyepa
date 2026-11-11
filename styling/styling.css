@@ -302,7 +302,8 @@
    7. The reel
    --------------------------------------------------------------------------
    Instagram's /embed/ route renders in a plain iframe, so no Instagram
-   JavaScript — and no third-party tracking — is loaded onto the site.
+   JavaScript runs on the page. The iframe itself is still a request to
+   Instagram, so it is not "no tracking" — see styling/README.md.
    -------------------------------------------------------------------------- */
 .styling-reel-frame {
   margin-top: 2rem;

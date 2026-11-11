@@ -189,13 +189,11 @@ window.WEDDINGS_CONFIG = {
     },
 
     /* ---- 7. Portfolio ----
-       Kyle's own wedding, Amsterdam 2017, pulled from @kye_pai.
-       TODO(Kyle): two things to confirm before this stays up for long.
-       (1) Petr is clearly identifiable in all three — he should be happy
-       about appearing on a commercial page, which is different from
-       appearing on your Instagram. (2) These were extracted from phone
-       screenshots, so they are only ~390–470px wide. If you still have the
-       originals they will look markedly better on a retina screen. */
+       Kyle's own wedding, Amsterdam 2017, with his late husband Petr.
+       Handle changes here gently, and only the way Kyle asks.
+       TODO(Kyle): these came from phone screenshots, so they are only
+       ~370–470px wide. If the originals still exist they will look
+       markedly better on a retina screen. */
     portfolio: {
       title: "The work",
       intro: "Starting where I have to start: my own.",
