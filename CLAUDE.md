@@ -15,8 +15,14 @@ manager, framework, or test suite**.
 - `script.js` — all behaviour for the main page.
 - `mgw/` — the self-contained "GREENLIT" Mr Gay World 2026 campaign (a pop-up
   on the homepage plus a standalone route at `/mgw/`). See the README.
-- `weddings/` — "KYEPA Weddings" at `/weddings/`: queer-first wedding
-  planning and styling. Same self-contained shape as `mgw/` and `styling/`.
+- `weddings/` — "KYEPA Ceremonies" at `/weddings/`: queer-first weddings,
+  with every couple welcome. Same self-contained shape as `mgw/` and
+  `styling/`. **The reading copy says "ceremonies", not "weddings"** — the
+  one phrase that keeps the older word is "queer-first weddings", which is
+  the positioning. The exceptions are strings only a machine reads (the
+  `<title>`, the meta descriptions, `serviceType` in the structured data),
+  which keep "wedding planner" because that is what people search for.
+  The directory and URL stay `/weddings/`; only the words changed.
   Its three `WEDDING_*_STATUS` switches each drive five things at once (the
   badge, the card styling, the button label, the form's preselected option,
   and whether the service is published in the structured data) — change the

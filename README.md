@@ -34,9 +34,11 @@ PDF, real testimonials, the reel, the Malta title, final prices).
 
 ---
 
-## KYEPA Weddings — `/weddings/`
+## KYEPA Ceremonies — `/weddings/`
 
-Queer-first wedding planning and styling, in **`weddings/`**. Everything —
+Queer-first weddings, with every couple welcome, in **`weddings/`**. The
+page reads "ceremonies" throughout; the directory and URL keep the older
+name, and so do the handful of strings a search engine reads. Everything —
 the three service cards and their statuses, prices, FAQ, portfolio, where
 the enquiry form sends — is in `weddings/weddings.config.js`.
 

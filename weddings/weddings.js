@@ -356,9 +356,9 @@ function buildEnquiry() {
   });
 
   // Lets Dutch-side enquiries be filtered out of the inbox at a glance.
-  const tag = el("input", { type: "hidden", name: "tag", value: "wedding-enquiry" });
+  const tag = el("input", { type: "hidden", name: "tag", value: "ceremony-enquiry" });
   const subject = el("input", {
-    type: "hidden", name: "_subject", value: "Wedding enquiry"
+    type: "hidden", name: "_subject", value: "Ceremony enquiry"
   });
 
   const status = el("p", {
@@ -378,7 +378,7 @@ function buildEnquiry() {
     field("wed-names", q.namesLabel || "Your names", names, q.namesHint, "wed-field--wide"),
     field("wed-email", q.emailLabel || "Email", emailInput),
     field("wed-country", q.countryLabel || "Country of residence", country, q.countryHint),
-    field("wed-location", q.locationLabel || "Where's the wedding?", locationSelect,
+    field("wed-location", q.locationLabel || "Where's the ceremony?", locationSelect,
       null, "wed-field--wide"),
     dateField,
     guestsField,
@@ -404,8 +404,8 @@ function buildEnquiry() {
     submit.textContent = isNotify
       ? (q.submitNotify || "Notify me")
       : (q.submit || "Send it over");
-    tag.value = isNotify ? "dutch-side-notify" : "wedding-enquiry";
-    subject.value = isNotify ? "Dutch side — notify me" : "Wedding enquiry";
+    tag.value = isNotify ? "dutch-side-notify" : "ceremony-enquiry";
+    subject.value = isNotify ? "Dutch side — notify me" : "Ceremony enquiry";
   }
   locationSelect.addEventListener("change", syncToLocation);
   syncToLocation();
@@ -481,7 +481,7 @@ function buildEnquiry() {
     form,
     el("p", { class: "wed-form-alt" }, [
       el("a", {
-        href: `mailto:${email}?subject=${encodeURIComponent("Wedding enquiry")}`,
+        href: `mailto:${email}?subject=${encodeURIComponent("Ceremony enquiry")}`,
         text: q.emailFallback || "Email me instead"
       })
     ])
@@ -502,7 +502,7 @@ function injectStructuredData() {
   const service = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: CFG.BRAND_WEDDINGS_NAME || "KYEPA Weddings",
+    name: CFG.BRAND_WEDDINGS_NAME || "KYEPA Ceremonies",
     serviceType: "LGBTQ wedding planner St. Martin",
     description: (S.hero || {}).subline || "",
     audience: {
@@ -526,7 +526,7 @@ function injectStructuredData() {
     url: "https://kyepa.com/weddings/",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: ways.title || "Wedding services",
+      name: ways.title || "Ceremony services",
       itemListElement: open.map((c) => ({
         "@type": "Offer",
         name: c.name,
@@ -560,7 +560,7 @@ function injectStructuredData() {
 function render() {
   // The sub-brand name is config-driven, so the nav and footer read it too.
   document.querySelectorAll("[data-wed-brand]").forEach((node) => {
-    node.textContent = CFG.BRAND_WEDDINGS_NAME || "KYEPA Weddings";
+    node.textContent = CFG.BRAND_WEDDINGS_NAME || "KYEPA Ceremonies";
   });
 
   mount("wed-banner", buildBanner());

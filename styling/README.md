@@ -80,7 +80,7 @@ preselecting anything when they were first added.
 The **Design Partner add-on** is not on the page; it sits as a commented
 block at the bottom of `offers`. Move it into `items` to bring it back.
 
-Stage & Event Styling came back as **Weddings & Stage**, now covering
+Stage & Event Styling came back as **Ceremonies & Stage**, now covering
 couples as well as delegates and performers.
 
 ---
@@ -207,12 +207,12 @@ permission. Three real sentences beat thirty invented ones.
       and `credentials`
 - [ ] **Workbook price** — currently "Price TBC"
 - [ ] **Personal Shopper price** — currently "Ask me", never specified
-- [ ] **Weddings & Stage price** — "From €500" carried over from Stage &
+- [ ] **Ceremonies & Stage price** — "From €500" carried over from Stage &
       Event; check it still fits now weddings are in scope
 - [ ] **Confirm the other prices** — €250 / €1,800 / €3,500, and what the
       three monthly payments actually come to
 - [ ] **Decide whether Delegate Look Package stays** — it is not in the
-      PDF's own list of offers, and may be covered by Weddings & Stage
+      PDF's own list of offers, and may be covered by Ceremonies & Stage
 - [ ] **Reel URL** — `REEL_URL`
 - [ ] **Formspree endpoint** — `FORM_ENDPOINT`, see above
 - [ ] **Share card** — `assets/styling/og.jpg`, 1200×630. Until it exists,

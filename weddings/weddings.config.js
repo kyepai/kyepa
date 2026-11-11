@@ -28,7 +28,7 @@ window.WEDDINGS_CONFIG = {
   /* Working name for the sub-brand. It appears in the nav of this page,
      the footer and the share card.
      TODO(Kyle): still undecided — change it here and it changes everywhere. */
-  BRAND_WEDDINGS_NAME: "KYEPA Weddings",
+  BRAND_WEDDINGS_NAME: "KYEPA Ceremonies",
 
   CONTACT_EMAIL: "info@kyepa.com",
   INSTAGRAM_HANDLE: "kye_pa",
@@ -75,7 +75,7 @@ window.WEDDINGS_CONFIG = {
       headline: "Married exactly as yourselves.",
       subline:
         "Queer-first weddings, with every couple welcome. Destination " +
-        "weddings on St. Martin and wedding styling wherever you live.",
+        "ceremonies on St. Martin, and styling wherever you live.",
       cta: "Plan a conversation",
       media: "../assets/weddings/hero.jpg",
       /* Describes what is actually in the frame. It is deliberately two
@@ -107,19 +107,19 @@ window.WEDDINGS_CONFIG = {
         {
           id: "french",
           statusKey: "WEDDING_FRENCH_SIDE_STATUS",
-          name: "Destination weddings — French side",
+          name: "Destination ceremonies — French side",
           place: "Saint-Martin",
           body:
-            "Full planning for a wedding on the French side: venues, the " +
-            "vendor team, the run of the day, and the guest experience " +
-            "from the moment they land. I am on the island; you don't " +
-            "have to be until the week itself.",
+            "Full planning on the French side: the venue, the vendor " +
+            "team, the run of the day, and the guest experience from the " +
+            "moment they land. I am on the island; you don't have to be " +
+            "until the week itself.",
           formValue: "French side (Saint-Martin)"
         },
         {
           id: "dutch",
           statusKey: "WEDDING_DUTCH_SIDE_STATUS",
-          name: "Destination weddings — Dutch side",
+          name: "Destination ceremonies — Dutch side",
           place: "Sint Maarten",
           body:
             "The same planning, the same team, the other half of the " +
@@ -130,7 +130,7 @@ window.WEDDINGS_CONFIG = {
         {
           id: "styling",
           statusKey: "WEDDING_STYLING_STATUS",
-          name: "Wedding styling, anywhere",
+          name: "Styling for the day, anywhere",
           place: "Remote or in person",
           body:
             "Couple and groom styling, personal shopping for the day, and " +
@@ -240,8 +240,8 @@ window.WEDDINGS_CONFIG = {
         {
           q: "Do you only plan queer weddings?",
           a:
-            "Queer weddings are my speciality and my priority, and every " +
-            "couple is welcome. What that means in practice: queer couples " +
+            "They are my speciality and my priority, and every couple " +
+            "is welcome. What that means in practice: queer couples " +
             "get first priority in my calendar, and nobody who books me " +
             "has to brief me on their relationship before we start."
         },
@@ -256,15 +256,15 @@ window.WEDDINGS_CONFIG = {
             "you, wherever the legal paperwork ends up happening."
         },
         {
-          q: "When will Dutch-side weddings be available?",
+          q: "When will the Dutch side be available?",
           a:
             "Soon. Tap “Notify me” and you'll be the first to know."
         },
         {
           q: "Do you work with couples who aren't marrying on the island?",
           a:
-            "Constantly. Wedding styling, personal shopping for the day " +
-            "and first-dance choreography all run over video, wherever " +
+            "Constantly. Styling, personal shopping for the day and " +
+            "first-dance choreography all run over video, wherever " +
             "you live. Most of the couples I style are not getting " +
             "married anywhere near St. Martin."
         },
@@ -291,16 +291,16 @@ window.WEDDINGS_CONFIG = {
 
     /* ---- 9. Enquiry form ---- */
     enquiry: {
-      title: "Tell me about your wedding",
+      title: "Tell me about your day",
       intro:
-        "No form on earth captures a wedding. Give me the outline and " +
-        "we'll talk properly.",
+        "No form on earth captures a day like this. Give me the " +
+        "outline and we'll talk properly.",
       namesLabel: "Your names",
       namesHint: "Both of you, however you'd like to be introduced.",
       emailLabel: "Email",
       countryLabel: "Country of residence",
       countryHint: "So I know your time zone.",
-      locationLabel: "Where's the wedding?",
+      locationLabel: "Where's the ceremony?",
       dateLabel: "Approximate date",
       dateHint: "A month and a year is plenty.",
       guestsLabel: "Roughly how many guests?",
@@ -318,7 +318,7 @@ window.WEDDINGS_CONFIG = {
         "assume. Skip it with no explanation needed.",
       messageLabel: "Anything else?",
       consentLabel:
-        "Yes, you can email me about my wedding enquiry. No list-selling, " +
+        "Yes, you can email me about my enquiry. No list-selling, " +
         "no spam.",
       submit: "Send it over",
       /* Replaces the button label when the Dutch side is selected. */
@@ -329,8 +329,8 @@ window.WEDDINGS_CONFIG = {
         "I read every one of these myself. You'll hear back from me, not " +
         "a template.",
       successNotify:
-        "You're on the list. You'll be the first to know when Dutch-side " +
-        "weddings open.",
+        "You're on the list. You'll be the first to know when the " +
+        "Dutch side opens.",
       error:
         "That didn't send — the connection dropped. Try again, or email " +
         "me directly at info@kyepa.com.",

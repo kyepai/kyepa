@@ -311,19 +311,19 @@ window.STYLING_CONFIG = {
         {
           /* A link card: `link` sends the button to another page instead of
              the form, and the card renders without a price. */
-          tier: "Weddings",
-          name: "Weddings & Stage",
+          tier: "Ceremonies",
+          name: "Ceremonies & Stage",
           price: "",
           priceNote: "",
           badge: "",
           meta: "Queer-first, every couple welcome",
           body:
             "Couple and groom styling, personal shopping for the day, and " +
-            "first-dance choreography. Destination weddings on St. Martin, " +
-            "wedding styling wherever you live.",
+            "first-dance choreography. Destination ceremonies on St. " +
+            "Martin, styling wherever you live.",
           bonuses: [],
           link: "../weddings/index.html",
-          cta: "See the wedding pages"
+          cta: "See the ceremony pages"
         }
       ],
       bonusLabel: "Included",

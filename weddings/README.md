@@ -1,8 +1,20 @@
-# Weddings — `/weddings/`
+# Ceremonies — `/weddings/`
 
-`KYEPA Weddings` (working name). Queer-first wedding planning and styling:
-destination weddings on St. Martin, and wedding styling, personal shopping
-and first-dance choreography wherever the couple lives.
+`KYEPA Ceremonies`. Queer-first weddings, with every couple welcome:
+destination ceremonies on St. Martin, and styling, personal shopping and
+first-dance choreography wherever the couple lives.
+
+The directory and the URL stay `/weddings/` — the page has been linked and
+indexed under it, and moving it would break both for nothing. Only the
+reading copy says "ceremonies".
+
+**The word "wedding" is used sparingly on purpose.** "Ceremonies" leads;
+"queer-first weddings" is the one phrase that keeps the older word, because
+it is the positioning. The exceptions are the strings only a machine reads
+— the `<title>`, the meta descriptions and `serviceType` in the structured
+data — which keep "wedding planner" because that is what people type into
+a search box. Changing those costs the page its traffic and buys nothing a
+visitor would ever see.
 
 Open `weddings/index.html` from disk, or serve the repo
 (`python3 -m http.server`) and go to <http://localhost:8000/weddings/>.
@@ -105,8 +117,8 @@ itself — about how vendors are chosen — stands on its own without a badge.
       before they read a word
 - [ ] **Portfolio photos** — the styled shoot; queer couples first
 - [ ] **First-dance video** — `FIRST_DANCE_VIDEO`
-- [ ] **The sub-brand name** — `BRAND_WEDDINGS_NAME`, currently the
-      placeholder "KYEPA Weddings"
+- [ ] **The sub-brand name** — `BRAND_WEDDINGS_NAME`, currently
+      "KYEPA Ceremonies"
 - [ ] **Prices** — every card says "Price on request"
 - [ ] **Formspree endpoint** — `FORM_ENDPOINT`
 - [ ] **Legal confirmation** — the civil registry, before adding detail
