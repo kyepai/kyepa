@@ -112,10 +112,12 @@ Kyle will point you to the right authority.
 civil registry before adding any detail.`
 
 **The "In loving memory" section is a dedication, not a service.** It is
-Kyle's late husband Petr, and it belongs to him: change it only the way he
-asks, and never fold it into an offer, a testimonial or the structured
-data. Clearing `strings.memory.body` removes the whole section, photo and
-all, without touching code.
+Kyle's late husband Petr, and the words there are Kyle's own: change them
+only the way he asks, and never fold the section into an offer, a
+testimonial or the structured data. The photo is from their wedding day,
+Amsterdam 2017 — it was posted to Instagram half a year later, so do not
+re-date the picture from the post. Clearing `strings.memory.body` removes
+the whole section, photo and all, without touching code.
 
 **The SAFE Harbour seal is hidden.** `SAFE_HARBOUR_SEAL` is `false` and
 should stay false until the training is actually done. The safe promise

@@ -244,17 +244,16 @@ window.WEDDINGS_CONFIG = {
        it renders at all only while `body` is non-empty — clearing that one
        string removes the whole section.
 
-       TODO(Kyle): the words below are mine, not yours. Replace them. This
-       is the one section on the site where my voice should not be standing
-       in for yours. */
+       The words are Kyle's own, given on 2026-11-11, bar punctuation and
+       the last clause he asked to keep. */
     memory: {
       title: "In loving memory",
       body:
         "Petr, my husband. We married in Amsterdam in 2017, and this is " +
-        "the two of us on the day itself, laughing at something on a page " +
-        "neither of us can have been reading properly.\n\n" +
-        "I plan other people's days now knowing exactly what one of them " +
-        "is worth.",
+        "the two of us on the day itself.\n\n" +
+        "He was the Love of my Life, and I miss him every day. That's why " +
+        "I plan other people's special day with the attention to detail " +
+        "that I do — I know exactly what one of them is worth.",
       image: "../assets/weddings/memory.jpg",
       alt:
         "Kyle Patrick and his husband Petr, both in white shirts, heads " +
