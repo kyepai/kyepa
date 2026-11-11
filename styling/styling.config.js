@@ -190,11 +190,15 @@ window.STYLING_CONFIG = {
              the same plate component as the homepage's Club Athleten link.
              Leave it off and the price is plain text. */
           priceInfo:
-            "Too Busy You Decide. It isn't priced yet — join the list and " +
-            "help me set it.",
+            "Too Busy You Decide — name your price. It isn't priced until " +
+            "launch, and what you'd pay is what sets the final number.",
           priceNote: "",
           badge: "Coming soon",
           meta: "Digital · work through it at your own pace",
+          /* Reveals the "what would you pay" question in the form whenever
+             this offer is the one selected. Set it on any offer you want
+             priced that way. */
+          nameYourPrice: true,
           body:
             "The Discover and Define steps as a workbook you run on " +
             "yourself: the questions I ask, the exercises I set, and the " +
@@ -478,6 +482,11 @@ window.STYLING_CONFIG = {
          appears here automatically, in the same order. This is only the
          extra choice tacked on the end. Set to "" to drop it. */
       interestFallback: "Not sure yet",
+      /* Only shown when a name-your-price offer is selected above. */
+      priceLabel: "What would you pay for it?",
+      priceHint:
+        "There's no wrong answer and it isn't a commitment — it's how the " +
+        "price gets set. A number or a range, whatever feels right.",
       goalLabel: "What's the occasion, or the goal?",
       goalHint: "A sentence is plenty.",
       consentLabel:

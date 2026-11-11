@@ -79,6 +79,8 @@ function ctaLink(label, offerName, extraClass = "") {
       const select = document.getElementById("sl-interest");
       if (select && [...select.options].some((o) => o.value === offerName)) {
         select.value = offerName;
+        // Let the form react — a name-your-price offer reveals its question.
+        select.dispatchEvent(new Event("change", { bubbles: true }));
       }
     });
   }
@@ -691,6 +693,14 @@ function buildWaitlist() {
 
   const goalInput = el("textarea", { id: "sl-goal", name: "goal", rows: "3" });
 
+  /* Name-your-price. Hidden until an offer priced that way is selected,
+     so the question only appears to the people it is actually asking. */
+  const priceInput = el("input", {
+    type: "text", id: "sl-price", name: "price_suggestion", autocomplete: "off"
+  });
+  const priceField = field("sl-price", w.priceLabel || "What would you pay?",
+    priceInput, w.priceHint, "styling-field--wide");
+
   const consentInput = el("input", {
     type: "checkbox", id: "sl-consent", name: "consent", required: "", value: "yes"
   });
@@ -724,6 +734,7 @@ function buildWaitlist() {
     // one alone on its row, and these are the two worth the space.
     field("sl-interest", w.interestLabel || "Interested in", interestSelect, null,
       "styling-field--wide"),
+    priceField,
     field("sl-goal", w.goalLabel || "Occasion or goal", goalInput, w.goalHint,
       "styling-field--wide"),
     el("div", { class: "styling-field styling-field--consent" }, [
@@ -743,6 +754,19 @@ function buildWaitlist() {
       : null,
     status
   ]);
+
+  /* An offer carrying nameYourPrice reveals the question; anything else
+     hides it and clears whatever was typed, so a stale number can never be
+     submitted against a fixed-price offer. */
+  function syncPriceQuestion() {
+    const chosen = ((S.offers || {}).items || [])
+      .find((o) => o.name === interestSelect.value);
+    const ask = !!(chosen && chosen.nameYourPrice);
+    priceField.hidden = !ask;
+    if (!ask) priceInput.value = "";
+  }
+  interestSelect.addEventListener("change", syncPriceQuestion);
+  syncPriceQuestion();
 
   if (endpoint) {
     form.addEventListener("submit", (event) => {
@@ -787,6 +811,8 @@ function buildWaitlist() {
         `${w.locationLabel} ${data.get("location") || ""}`,
         `${w.preparingLabel}: ${data.get("preparing") || ""}`,
         `${w.interestLabel}: ${data.get("interest") || ""}`,
+        ...(data.get("price_suggestion")
+          ? [`${w.priceLabel} ${data.get("price_suggestion")}`] : []),
         `${w.goalLabel} ${data.get("goal") || ""}`
       ].join("\n");
 
