@@ -158,7 +158,7 @@ window.WEDDINGS_CONFIG = {
        TODO(Kyle): confirm current rules with the Collectivité de
        Saint-Martin civil registry before adding any detail here. */
     legal: {
-      title: "Legal and symbolic weddings",
+      title: "Legal and symbolic ceremonies",
       body:
         "Every couple's legal path depends on nationality and residence. " +
         "I'll walk you through your options, from a legal ceremony to a " +
