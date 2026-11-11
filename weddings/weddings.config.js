@@ -236,7 +236,11 @@ window.WEDDINGS_CONFIG = {
 
     /* ---- 8. In loving memory ----
        A dedication to Kyle's late husband Petr, not a service and not a
-       credential. It renders between the portfolio and the questions, and
+       credential.
+
+       The photo is from their wedding day, Amsterdam 2017. Kyle posted it
+       half a year afterwards, so the post is dated 2018 — do not re-date
+       the picture from it, which is a mistake I already made once. It renders between the portfolio and the questions, and
        it renders at all only while `body` is non-empty — clearing that one
        string removes the whole section.
 
@@ -247,7 +251,7 @@ window.WEDDINGS_CONFIG = {
       title: "In loving memory",
       body:
         "Petr, my husband. We married in Amsterdam in 2017, and this is " +
-        "the two of us half a year in, laughing at something on a page " +
+        "the two of us on the day itself, laughing at something on a page " +
         "neither of us can have been reading properly.\n\n" +
         "I plan other people's days now knowing exactly what one of them " +
         "is worth.",

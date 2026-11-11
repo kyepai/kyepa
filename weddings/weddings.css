@@ -245,6 +245,10 @@
   display: grid;
   gap: 1.75rem;
   align-items: center;
+  /* Aligned right. text-align carries the copy; the photo is pushed over
+     with an auto left margin rather than justify-items, which would size
+     the copy to its own content and make the wrap fragile. */
+  text-align: right;
 }
 
 .wed-memory-image {
@@ -254,6 +258,7 @@
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 8px;
+  margin-left: auto;
 }
 
 .wed-content .wed-memory-copy h2 {
@@ -274,8 +279,22 @@
 
 @media (min-width: 40rem) {
   .wed-memory {
-    grid-template-columns: 320px 1fr;
+    /* The photo takes the right-hand column, so the copy runs toward it
+       rather than away from it. Placed explicitly rather than with
+       `order`, which would leave the visual order disagreeing with the
+       document order for no reason. */
+    grid-template-columns: 1fr 320px;
     gap: 2.5rem;
+  }
+
+  .wed-memory-image {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .wed-memory-copy {
+    grid-column: 1;
+    grid-row: 1;
   }
 }
 
