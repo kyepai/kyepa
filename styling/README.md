@@ -211,9 +211,9 @@ permission. Three real sentences beat thirty invented ones.
 - [ ] **Personal Shopper price** — currently "Ask me", never specified
 - [ ] **Ceremonies & Stage price** — "From €500" carried over from Stage &
       Event; check it still fits now weddings are in scope
-- [ ] **Confirm the other prices** — €250 / €1,800, and what the three
-      monthly payments actually come to (the Delegate Look Package is
-      settled at €3,800)
+- [ ] **Confirm the remaining price** — €1,800 for the Full Image
+      Sprint, and what its three monthly payments actually come to
+      (Style Sprint €240 and Delegate Look Package €3,800 are settled)
 - [ ] **Decide whether Delegate Look Package stays** — it is not in the
       PDF's own list of offers, and may be covered by Ceremonies & Stage
 - [ ] **Reel URL** — `REEL_URL`

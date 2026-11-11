@@ -224,7 +224,7 @@ window.STYLING_CONFIG = {
         {
           tier: "Start here",
           name: "Style Sprint",
-          price: "From €250",
+          price: "From €240",
           priceNote: "",
           badge: "",
           meta: "2–3 hours · fully remote, or in person on Sint Maarten",
@@ -575,7 +575,7 @@ window.STYLING_CONFIG = {
             "national costume out of mesh, tulle, " +
             "glitter and patience; the pelican is in the lookbook above. " +
             "The Full Image Sprint also splits into three monthly " +
-            "payments, and the Style Sprint starts at €250 so you can " +
+            "payments, and the Style Sprint starts at €240 so you can " +
             "begin somewhere rather than nowhere."
         },
         {
