@@ -270,7 +270,42 @@ function buildPortfolio() {
 }
 
 /* --------------------------------------------------------------------------
-   8. FAQ
+   8. In loving memory
+   --------------------------------------------------------------------------
+   A dedication, not a service. The whole section disappears when `body` is
+   empty, so it is removed by clearing one string in the config rather than
+   by deleting code. Blank lines in `body` become real paragraphs — the
+   copy is set as text, never markup.
+   -------------------------------------------------------------------------- */
+function buildMemory() {
+  const mem = S.memory || {};
+  if (!mem.body) return null;
+
+  const paragraphs = mem.body
+    .split(/\n\s*\n/)
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => el("p", { text: part }));
+
+  const figure = mem.image
+    ? el("img", {
+        class: "wed-memory-image", src: mem.image,
+        alt: mem.alt || "",
+        loading: "lazy", decoding: "async"
+      })
+    : null;
+
+  return el("section", { class: "wed-memory" }, [
+    figure,
+    el("div", { class: "wed-memory-copy" }, [
+      el("h2", { text: mem.title || "" }),
+      ...paragraphs
+    ])
+  ]);
+}
+
+/* --------------------------------------------------------------------------
+   9. FAQ
    -------------------------------------------------------------------------- */
 function buildFaq() {
   const faq = S.faq || {};
@@ -290,7 +325,7 @@ function buildFaq() {
 }
 
 /* --------------------------------------------------------------------------
-   9. Enquiry form
+   10. Enquiry form
    -------------------------------------------------------------------------- */
 function field(id, labelText, control, hint, extraClass = "") {
   const hintId = hint ? `${id}-hint` : null;
@@ -571,6 +606,7 @@ function render() {
   mount("wed-safe", buildSafe());
   mount("wed-dance", buildFirstDance());
   mount("wed-portfolio", buildPortfolio());
+  mount("wed-memory", buildMemory());
   mount("wed-faq", buildFaq());
   mount("wed-enquiry-mount", buildEnquiry());
   injectStructuredData();

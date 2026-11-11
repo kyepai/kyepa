@@ -232,6 +232,54 @@
 }
 
 /* --------------------------------------------------------------------------
+   In loving memory
+   --------------------------------------------------------------------------
+   Deliberately the quietest block on the page: no plate, no border, no
+   button, nothing to click. The photo is square and stays square, and the
+   copy sits beside it from 40rem up and under it below that.
+
+   Prefixed with .wed-content so the paragraph colour outranks
+   `.content p` (0-1-1) from style.css rather than fighting it.
+   -------------------------------------------------------------------------- */
+.wed-memory {
+  display: grid;
+  gap: 1.75rem;
+  align-items: center;
+}
+
+.wed-memory-image {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.wed-content .wed-memory-copy h2 {
+  margin-bottom: 0.9rem;
+  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.wed-content .wed-memory-copy p {
+  color: rgba(245, 245, 245, 0.72);
+  font-style: italic;
+}
+
+.wed-content .wed-memory-copy p + p {
+  margin-top: 0.9rem;
+}
+
+@media (min-width: 40rem) {
+  .wed-memory {
+    grid-template-columns: 320px 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
    The safe promise
    -------------------------------------------------------------------------- */
 .wed-safe-plate {

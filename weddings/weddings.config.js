@@ -123,8 +123,9 @@ window.WEDDINGS_CONFIG = {
           place: "Sint Maarten",
           body:
             "The same planning, the same team, the other half of the " +
-            "island. Not open yet — tell me you want it and you'll be " +
-            "first to hear when it is.",
+            "island. It isn't possible there for the moment, and I'm " +
+            "working on that — tell me you want it and you'll be the " +
+            "first to hear when it changes.",
           formValue: "Dutch side — notify me"
         },
         {
@@ -233,7 +234,31 @@ window.WEDDINGS_CONFIG = {
       ]
     },
 
-    /* ---- 8. FAQ ---- */
+    /* ---- 8. In loving memory ----
+       A dedication to Kyle's late husband Petr, not a service and not a
+       credential. It renders between the portfolio and the questions, and
+       it renders at all only while `body` is non-empty — clearing that one
+       string removes the whole section.
+
+       TODO(Kyle): the words below are mine, not yours. Replace them. This
+       is the one section on the site where my voice should not be standing
+       in for yours. */
+    memory: {
+      title: "In loving memory",
+      body:
+        "Petr, my husband. We married in Amsterdam in 2017, and this is " +
+        "the two of us half a year in, laughing at something on a page " +
+        "neither of us can have been reading properly.\n\n" +
+        "I plan other people's days now knowing exactly what one of them " +
+        "is worth.",
+      image: "../assets/weddings/memory.jpg",
+      alt:
+        "Kyle Patrick and his husband Petr, both in white shirts, heads " +
+        "together and laughing over a small open book in a room full of " +
+        "window light. Black and white."
+    },
+
+    /* ---- 9. FAQ ---- */
     faq: {
       title: "Questions",
       items: [
@@ -257,8 +282,16 @@ window.WEDDINGS_CONFIG = {
         },
         {
           q: "When will the Dutch side be available?",
+          /* Kyle's own words, 2026-11-11. It is not a capacity problem and
+             the answer should not imply it is. No legal detail beyond this
+             — same rule as the legal section.
+             TODO(Kyle): confirm how you want SAFE named here, and whether
+             to link them. */
           a:
-            "Soon. Tap “Notify me” and you'll be the first to know."
+            "Not yet, and I'd rather say so plainly: for the moment it " +
+            "isn't possible there. I'm working on it through SAFE, who " +
+            "have it among their top five prioritised action points. Tap " +
+            "“Notify me” and you'll hear from me the day that changes."
         },
         {
           q: "Do you work with couples who aren't marrying on the island?",
@@ -289,7 +322,7 @@ window.WEDDINGS_CONFIG = {
       ]
     },
 
-    /* ---- 9. Enquiry form ---- */
+    /* ---- 10. Enquiry form ---- */
     enquiry: {
       title: "Tell me about your day",
       intro:

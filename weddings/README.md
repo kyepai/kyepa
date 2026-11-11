@@ -63,6 +63,13 @@ change. The badge disappears, the card stops being dashed, the button
 becomes "Plan a conversation", the form stops hiding the date and guest
 count for it, and the service joins the structured data.
 
+**Why it is closed matters for the wording.** It is not a capacity
+problem and the copy must not imply it is: for the moment it is not
+possible there, and Kyle is working on it through SAFE, who have it among
+their top five prioritised action points. The card and the FAQ both say
+that, and neither promises a date. Keep it that way — a promised date you
+do not control is the one thing worse than "not yet".
+
 ---
 
 ## The enquiry form
@@ -95,7 +102,7 @@ what protects it. Nothing in this folder contains a key or a token.
 
 ---
 
-## Two things kept deliberately careful
+## Three things kept deliberately careful
 
 **The legal section makes no legal claims.** Marriage rules differ by
 nationality and residence, differ between the French and Dutch sides, and
@@ -103,6 +110,12 @@ change. The copy says only that the path depends on your situation and that
 Kyle will point you to the right authority.
 `TODO(Kyle): confirm current rules with the Collectivité de Saint-Martin
 civil registry before adding any detail.`
+
+**The "In loving memory" section is a dedication, not a service.** It is
+Kyle's late husband Petr, and it belongs to him: change it only the way he
+asks, and never fold it into an offer, a testimonial or the structured
+data. Clearing `strings.memory.body` removes the whole section, photo and
+all, without touching code.
 
 **The SAFE Harbour seal is hidden.** `SAFE_HARBOUR_SEAL` is `false` and
 should stay false until the training is actually done. The safe promise
