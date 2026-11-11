@@ -131,6 +131,18 @@ plays every single time:
 | `REPLAY_INTRO: false` | **Current setting.** The film plays once per browser session. Clicking around the site afterwards opens the pop-up straight at the hero. |
 | `REPLAY_INTRO: true` | The full film plays on every page load. |
 
+Both of those only decide what happens on a load the pop-up is allowed to
+greet in the first place, and `OPEN_ON_INTERNAL_NAV` decides which loads
+those are:
+
+| Setting | Effect |
+| --- | --- |
+| `OPEN_ON_INTERNAL_NAV: false` | **Current setting.** Only a real arrival opens it — a first visit, a campaign link, a typed URL or bookmark, or a deliberate refresh. Coming back to the homepage from `/styling/`, or using the back button, shows the corner pill instead. |
+| `OPEN_ON_INTERNAL_NAV: true` | Every homepage load opens it, however the visitor got there. |
+
+`?mgw` and `#mgw` force the pop-up open regardless of all three switches, so
+campaign links always land on the experience and you can always retest it.
+
 Set `ALWAYS_OPEN` back to `false` once the competition is over.
 
 #### Links out of the hero

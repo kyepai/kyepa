@@ -36,6 +36,16 @@ window.MGW_CONFIG = {
              clicking around the site. */
   REPLAY_INTRO: false,
 
+  /* Which homepage loads the pop-up is allowed to greet.
+     false — only a real arrival opens it: a first visit, a campaign link
+             from Instagram, a typed URL or bookmark, or a deliberate
+             refresh. Clicking back to the homepage from elsewhere on
+             kyepa.com does not, and neither does the back button; those
+             get the pill instead, which reopens it on demand.
+     true  — every homepage load opens it, however the visitor got there.
+     ?mgw and #mgw still force it open either way. */
+  OPEN_ON_INTERNAL_NAV: false,
+
   /* "greenlit" | "voting" | "competing" | "results"
      Drives the headline, the primary button, and how the intro film re-cuts
      itself. See strings.en.phases below for what each one says. */

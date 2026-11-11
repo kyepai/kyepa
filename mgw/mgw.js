@@ -205,6 +205,60 @@
   }
 
   /* ------------------------------------------------------------------------
+     Real arrival, or just a visitor coming back to the homepage from
+     elsewhere on kyepa.com?
+
+     Someone who has clicked through to /styling/ and then taps the logo to
+     come home should not be handed the film a second time. A first arrival,
+     a campaign link, a typed URL and a deliberate refresh all still should.
+
+     Two signals, because neither is enough alone:
+       - the Navigation Timing type tells a reload (keep it) and a
+         back/forward move (suppress it) apart from an ordinary navigation;
+       - the referrer tells an in-site click (suppress) from an arrival out
+         of Instagram, a search result, a bookmark or the address bar, which
+         leave the referrer empty or on another origin.
+
+     Anything unreadable falls through to true: showing the campaign is the
+     better failure.
+     ------------------------------------------------------------------------ */
+  function isRealArrival() {
+    var navType = "";
+    try {
+      var entries = window.performance.getEntriesByType("navigation");
+      if (entries && entries.length) {
+        navType = entries[0].type || "";
+      } else if (window.performance.navigation) {
+        /* Older browsers: 1 is TYPE_RELOAD, 2 is TYPE_BACK_FORWARD. */
+        navType = window.performance.navigation.type === 1 ? "reload"
+          : window.performance.navigation.type === 2 ? "back_forward"
+            : "navigate";
+      }
+    } catch (err) {
+      /* No timing API at all: the referrer below decides on its own. */
+    }
+
+    if (navType === "reload") return true;
+    if (navType === "back_forward") return false;
+
+    var ref = "";
+    try {
+      ref = document.referrer || "";
+    } catch (err) {
+      ref = "";
+    }
+    /* No referrer means nobody linked here — typed, bookmarked, or opened
+       from a privacy-stripped link. That is an arrival. */
+    if (!ref) return true;
+
+    try {
+      return new URL(ref).origin !== window.location.origin;
+    } catch (err) {
+      return true;
+    }
+  }
+
+  /* ------------------------------------------------------------------------
      Tiny DOM helper. Text always goes in via textContent, never innerHTML.
      ------------------------------------------------------------------------ */
   function el(tag, attrs, kids) {
@@ -1009,13 +1063,21 @@
     }
 
     /* ---- Decide whether to play on load ----
-       Auto-plays the full film on a first visit. ?mgw or #mgw forces it open
-       again even for repeat visitors, so campaign links from Instagram always
-       land on the experience (and so you can retest it yourself). */
+       Auto-plays the full film when someone actually arrives. ?mgw or #mgw
+       forces it open even for repeat visitors, so campaign links from
+       Instagram always land on the experience (and so you can retest it
+       yourself).
+
+       A visitor returning to the homepage from inside the site gets the
+       pill instead of the film — see isRealArrival, and OPEN_ON_INTERNAL_NAV
+       in the config to turn that back off. */
     var forced = /[?&]mgw\b/.test(window.location.search) ||
       window.location.hash === "#mgw";
+    var cameFromInside = !CFG.OPEN_ON_INTERNAL_NAV && !isRealArrival();
 
     if (!supported) {
+      showPill();
+    } else if (!forced && cameFromInside) {
       showPill();
     } else if (forced || CFG.ALWAYS_OPEN || !wasDismissed()) {
       /* With ALWAYS_OPEN set, the film itself is still only replayed as
