@@ -1,0 +1,51 @@
+/* Awareness — layered on ../style.css, same palette and components. */
+.aw-page .aw-content {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+}
+
+.aw-content .aw-panel {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.aw-title {
+  font-size: clamp(2rem, 8vw, 3rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.aw-content .aw-price {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+.aw-content .aw-body {
+  margin-top: 1.25rem;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: #e2e2e2;
+}
+
+.aw-content .aw-contact {
+  margin-top: 2rem;
+}
+
+/* Shown for a missing key, a wrong key and a corrupted file alike, so a
+   visitor without the key cannot tell which. */
+.aw-content .aw-waiting {
+  font-size: 0.95rem;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+.site-footer a {
+  color: inherit;
+  text-decoration-color: rgba(207, 207, 207, 0.4);
+  text-underline-offset: 0.15em;
+}

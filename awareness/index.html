@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Keep this page out of search results. It carries no title or
+       description worth indexing, and the content is encrypted anyway. -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <meta name="referrer" content="no-referrer">
+  <title>Kyepa</title>
+  <link rel="icon" href="../logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="awareness.css">
+</head>
+<body class="aw-page">
+
+  <video class="bg-video bg-video-a is-active" src="../background.mov" autoplay muted loop playsinline aria-hidden="true"></video>
+  <div class="blur-layer" aria-hidden="true"></div>
+
+  <main class="content aw-content" id="aw-main">
+    <section class="aw-panel">
+      <!-- Filled in by awareness.js once the key in the link decrypts the
+           content. Until then it says nothing about what is here. -->
+      <div id="aw-mount">
+        <p class="aw-waiting">Opening…</p>
+      </div>
+      <noscript>
+        <p class="aw-waiting">This page needs JavaScript.</p>
+      </noscript>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p><a href="../index.html">kyepa.com</a></p>
+  </footer>
+
+  <script src="awareness.js" defer></script>
+</body>
+</html>

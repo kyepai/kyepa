@@ -22,6 +22,13 @@ manager, framework, or test suite**.
   and whether the service is published in the structured data) — change the
   switch, never the five. The legal section deliberately makes no legal
   claims, and the SAFE Harbour seal stays hidden until the training is real.
+- `awareness/` — an unlisted page whose copy is AES-256-GCM ciphertext in
+  `content.json`. The key is never in this repo: it lives in the fragment of
+  the link, which browsers do not send to servers. The repo is public, so a
+  secret path would protect nothing — this is why it is encrypted rather than
+  merely unlinked. Changing the copy or rotating the key means re-encrypting;
+  the plaintext is not stored here. It is also the one page that does NOT
+  work from `file://`, because Web Crypto needs https or localhost.
 - `styling/` — the "Styled in Motion" styling service line at `/styling/`.
   Same shape as `mgw/`: a config file holds every string and price, a
   renderer builds the page, and a stylesheet layers on top of `style.css`.
