@@ -281,10 +281,13 @@ window.STYLING_CONFIG = {
         {
           tier: "Done for you",
           name: "Delegate Look Package",
-          price: "From €3,500",
+          price: "From €3,800",
           priceNote: "garments billed separately",
-          /* TODO(Kyle): only keep this badge while it is literally true. */
-          badge: "3 places per pageant season",
+          /* A real capacity limit, confirmed by Kyle on 2026-11-11: four
+             delegates a season is what he can actually dress. It is a plain
+             string, never a counter that ticks down — keep it only while it
+             stays literally true. */
+          badge: "4 places per pageant season",
           meta: "Complete stage and street looks, sourced and delivered",
           body:
             "Every look for the whole competition, built as one package " +
@@ -408,15 +411,23 @@ window.STYLING_CONFIG = {
         },
         {
           id: "malta",
-          /* TODO(Kyle): TWO things to fix here.
-             (1) The exact title and year of the Malta win.
-             (2) The photo now attached is captioned, on your own account,
-                 "Suit-look for @faconastyle at @messe_dornbirn" — Dornbirn,
-                 Austria, April 2018. That is not Malta. Either the title
-                 needs to change to match the photo, or this is the wrong
-                 photo for this card. The copy below claims no location, so
-                 nothing false is published until you decide. */
-          title: "Fashion show winner — Malta",
+          /* The Dornbirn photo on a card titled Malta looked like a mismatch
+             and is not one — it is the prize, two years later.
+
+             Mr Gay World 2016 was held in Malta on 23 April 2016, and Kyle
+             placed third runner-up for Sint Maarten. The contest was run by
+             Dieter Sapper of Nouba Events (Langen bei Bregenz, Vorarlberg),
+             who held Mr Gay World's management and creative direction under
+             the previous organisation and was vice-president of Mr Gay
+             Europe from 2014. Nouba has been Messe Dornbirn's agency for
+             its Modeschauen since 2014. Sapper started the fashion show
+             sash, and winning it meant walking his shows in that region —
+             which is how a Malta sash ends up photographed in Austria.
+
+             The sash itself is Kyle's own account; the rest is on the
+             public record.
+             TODO(Kyle): confirm the sash's exact name if it had one. */
+          title: "Fashion show sash — Mr Gay World 2016, Malta",
           initials: "MLT",
           thinking:
             "A suit built to be walked in: the jacket holds its line " +
@@ -426,7 +437,16 @@ window.STYLING_CONFIG = {
           alt:
             "Kyle Patrick in a navy three-piece suit and bow tie, " +
             "mid-stride against a white building with louvred shutters",
-          detail: ""
+          detail:
+            "Mr Gay World 2016 in Malta: I went third runner-up for Sint " +
+            "Maarten and took the fashion show sash. The sash existed " +
+            "because one of the contest's own producers, Dieter Sapper of " +
+            "Nouba Events, had started it — and he also staged the " +
+            "Modeschauen for Messe Dornbirn. So the prize was not a " +
+            "trophy. It was walking his shows in his region. This suit is " +
+            "that prize being collected, two years later in Austria: a " +
+            "jacket that holds its line through a full stride, and shoes " +
+            "chosen to be seen mid-step."
         }
       ]
     },
@@ -462,8 +482,7 @@ window.STYLING_CONFIG = {
     credentials: [
       "19 years in professional performance",
       "Mr Gay World — Sint Maarten titleholder",
-      /* TODO(Kyle): confirm the exact wording of the Malta win. */
-      "Fashion show winner, Malta",
+      "Fashion show sash — Mr Gay World 2016, Malta",
       "Working remotely worldwide, based on Sint Maarten",
       "English · Nederlands · Deutsch"
     ],

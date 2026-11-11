@@ -98,8 +98,10 @@ a deadline that has gone.
 
 There is no countdown clock and no "only 2 places left" counter, by design.
 Those are trivial to fake and visitors can tell. The one scarcity claim on
-the page — "3 places per pageant season" on the Delegate Look Package — is a
-plain `badge` string: **only keep it while it is literally true.**
+the page — "4 places per pageant season" on the Delegate Look Package — is a
+plain `badge` string, and it is a real limit: four delegates a season is what
+Kyle can actually dress. It states a capacity, it does not tick down, and it
+should **only stay while it is literally true.**
 
 ---
 
@@ -209,8 +211,9 @@ permission. Three real sentences beat thirty invented ones.
 - [ ] **Personal Shopper price** — currently "Ask me", never specified
 - [ ] **Ceremonies & Stage price** — "From €500" carried over from Stage &
       Event; check it still fits now weddings are in scope
-- [ ] **Confirm the other prices** — €250 / €1,800 / €3,500, and what the
-      three monthly payments actually come to
+- [ ] **Confirm the other prices** — €250 / €1,800, and what the three
+      monthly payments actually come to (the Delegate Look Package is
+      settled at €3,800)
 - [ ] **Decide whether Delegate Look Package stays** — it is not in the
       PDF's own list of offers, and may be covered by Ceremonies & Stage
 - [ ] **Reel URL** — `REEL_URL`
