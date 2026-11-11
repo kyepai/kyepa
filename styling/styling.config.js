@@ -399,7 +399,12 @@ window.STYLING_CONFIG = {
        The quotes themselves live in styling.testimonials.js. */
     results: {
       title: "Client results",
-      intro: "Three placeholders below, waiting on real people.",
+      /* Leave empty until there are real quotes to introduce. */
+      intro: "",
+      /* false — placeholder quotes are hidden, and the whole section
+         disappears while there are no real ones. true — show them, for
+         checking the layout locally. Never publish with this on. */
+      showPlaceholders: false,
       beforeLabel: "Before",
       afterLabel: "After",
       placeholderNote: "Placeholder — not a real client"

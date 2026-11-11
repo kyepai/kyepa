@@ -400,11 +400,23 @@ function buildPortfolio() {
    something, so the label is not subtle and these cards are also kept out
    of the structured data.
    -------------------------------------------------------------------------- */
+/* Placeholder quotes are kept OUT of the live page by default: the section
+   simply does not render while every entry is filler, and comes back on its
+   own the moment a real quote is added. Set results.showPlaceholders to
+   true to see them locally while writing. */
+function visibleTestimonials() {
+  const r = S.results || {};
+  return r.showPlaceholders
+    ? TESTIMONIALS
+    : TESTIMONIALS.filter((item) => !item.placeholder);
+}
+
 function buildResults() {
-  if (!TESTIMONIALS.length) return null;
+  const shown = visibleTestimonials();
+  if (!shown.length) return null;
   const r = S.results || {};
 
-  const cards = TESTIMONIALS.map((item, index) => {
+  const cards = shown.map((item, index) => {
     const initials = (item.name || "")
       .split(/\s+/).filter(Boolean).map((w) => w[0]).join("").slice(0, 3).toUpperCase();
 
