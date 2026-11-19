@@ -50,20 +50,23 @@ Opening the Dutch side to bookings is one config value:
 ## GREENLIT — the Mr Gay World 2026 campaign
 
 The campaign experience lives entirely in **`mgw/`** plus the images in
-`assets/mgw/`. It appears in two places:
+`assets/mgw/`. It is now **one place only**:
 
-- **A pop-up on the homepage.** Plays the full intro film on someone's first
-  visit. Once dismissed it leaves a small pill in the bottom corner
-  ("Sint Maarten @ Mr Gay World — Vote") that reopens it, skipping the film.
 - **A standalone page at `/mgw/`** — open `mgw/index.html` from disk, or
   <http://localhost:8000/mgw/> if you are serving the folder;
   `kyepa.com/mgw/` live. This is the one to put in the Instagram bio and in
   stories. It has its own title, description and share card, and continues
   below the hero into the story, the itinerary and the partners strip.
 
-Add `?mgw` to any homepage link (`kyepa.com/?mgw`) to force the pop-up open
-even for people who have already dismissed it. Handy for campaign links, and
-for retesting it yourself without clearing your browser storage.
+**The homepage pop-up was removed on 2026-11-19.** The code is all still
+here and still works — only the four lines that wired it into `index.html`
+are gone, and a comment there says exactly how to put them back. Nothing on
+the site links to `/mgw/` any more, so the page is reached by its own link,
+which is what the Instagram bio uses anyway.
+
+While the pop-up is off the homepage, the switches below (`ALWAYS_OPEN`,
+`REPLAY_INTRO`, `OPEN_ON_INTERNAL_NAV`) and `?mgw` have nothing to act on.
+They start mattering again the moment it is restored.
 
 ### Everything is driven by one file
 
@@ -212,5 +215,6 @@ trap, Escape-to-close, and focus returning where it was.
 
 ### Taking it down afterwards
 
-Delete the `mgw/` and `assets/mgw/` folders, then remove the two commented
-blocks from `index.html`. Nothing else references it.
+The homepage half is already gone. To remove the rest, delete the `mgw/`
+and `assets/mgw/` folders and the leftover comment in `index.html`.
+Nothing else references it.

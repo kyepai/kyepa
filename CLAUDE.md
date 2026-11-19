@@ -13,8 +13,12 @@ manager, framework, or test suite**.
   hero, prose sections, and four reveal modals.
 - `style.css` — all styles for the main page.
 - `script.js` — all behaviour for the main page.
-- `mgw/` — the self-contained "GREENLIT" Mr Gay World 2026 campaign (a pop-up
-  on the homepage plus a standalone route at `/mgw/`). See the README.
+- `mgw/` — the self-contained "GREENLIT" Mr Gay World 2026 campaign. As of
+  2026-11-19 it is **only** the standalone route at `/mgw/`: the homepage
+  pop-up was removed, and `index.html` carries a comment saying how to
+  restore it. Nothing on the site links to `/mgw/` now, so it is reached by
+  its direct link. Removing the pop-up also took the Google Fonts off the
+  homepage — they were loaded for it alone. See the README.
 - `weddings/` — "KYEPA Ceremonies" at `/weddings/`: queer-first weddings,
   with every couple welcome. Same self-contained shape as `mgw/` and
   `styling/`. **The reading copy says "ceremonies", not "weddings"** — the
